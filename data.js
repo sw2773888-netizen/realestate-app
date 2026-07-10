@@ -132,7 +132,120 @@ const TOPICS = {
       { emoji: "🍒", en: "Cherry", vi: "Quả anh đào", say: "Cherry" },
     ],
   },
+
+  body: {
+    title: "🧍 Cơ thể",
+    items: [
+      { emoji: "👁️", en: "Eye", vi: "Con mắt", say: "Eye" },
+      { emoji: "👂", en: "Ear", vi: "Cái tai", say: "Ear" },
+      { emoji: "👃", en: "Nose", vi: "Cái mũi", say: "Nose" },
+      { emoji: "👄", en: "Mouth", vi: "Cái miệng", say: "Mouth" },
+      { emoji: "🦷", en: "Tooth", vi: "Cái răng", say: "Tooth" },
+      { emoji: "✋", en: "Hand", vi: "Bàn tay", say: "Hand" },
+      { emoji: "🦶", en: "Foot", vi: "Bàn chân", say: "Foot" },
+      { emoji: "💇", en: "Hair", vi: "Mái tóc", say: "Hair" },
+      { emoji: "🦵", en: "Leg", vi: "Cái chân", say: "Leg" },
+      { emoji: "💪", en: "Arm", vi: "Cánh tay", say: "Arm" },
+    ],
+  },
+
+  actions: {
+    title: "🏃 Hành động",
+    items: [
+      { emoji: "🏃", en: "Run", vi: "Chạy", say: "Run" },
+      { emoji: "🚶", en: "Walk", vi: "Đi bộ", say: "Walk" },
+      { emoji: "🦘", en: "Jump", vi: "Nhảy", say: "Jump" },
+      { emoji: "😴", en: "Sleep", vi: "Ngủ", say: "Sleep" },
+      { emoji: "🍽️", en: "Eat", vi: "Ăn", say: "Eat" },
+      { emoji: "🥤", en: "Drink", vi: "Uống", say: "Drink" },
+      { emoji: "📖", en: "Read", vi: "Đọc", say: "Read" },
+      { emoji: "✍️", en: "Write", vi: "Viết", say: "Write" },
+      { emoji: "🎵", en: "Sing", vi: "Hát", say: "Sing" },
+      { emoji: "💃", en: "Dance", vi: "Nhảy múa", say: "Dance" },
+      { emoji: "😀", en: "Smile", vi: "Cười", say: "Smile" },
+      { emoji: "👏", en: "Clap", vi: "Vỗ tay", say: "Clap" },
+    ],
+  },
+
+  classroom: {
+    title: "🎒 Đồ dùng học tập",
+    items: [
+      { emoji: "📚", en: "Book", vi: "Quyển sách", say: "Book" },
+      { emoji: "✏️", en: "Pencil", vi: "Bút chì", say: "Pencil" },
+      { emoji: "🖊️", en: "Pen", vi: "Bút mực", say: "Pen" },
+      { emoji: "🎒", en: "Bag", vi: "Cặp sách", say: "Bag" },
+      { emoji: "📏", en: "Ruler", vi: "Thước kẻ", say: "Ruler" },
+      { emoji: "✂️", en: "Scissors", vi: "Cái kéo", say: "Scissors" },
+      { emoji: "🧽", en: "Eraser", vi: "Cục tẩy", say: "Eraser" },
+      { emoji: "🪑", en: "Chair", vi: "Cái ghế", say: "Chair" },
+      { emoji: "🖥️", en: "Desk", vi: "Cái bàn", say: "Desk" },
+      { emoji: "🖍️", en: "Crayon", vi: "Bút sáp màu", say: "Crayon" },
+    ],
+  },
+
+  food: {
+    title: "🍔 Đồ ăn",
+    items: [
+      { emoji: "🍚", en: "Rice", vi: "Cơm", say: "Rice" },
+      { emoji: "🍞", en: "Bread", vi: "Bánh mì", say: "Bread" },
+      { emoji: "🥛", en: "Milk", vi: "Sữa", say: "Milk" },
+      { emoji: "🥚", en: "Egg", vi: "Trứng", say: "Egg" },
+      { emoji: "🍔", en: "Burger", vi: "Bánh mì kẹp", say: "Burger" },
+      { emoji: "🍕", en: "Pizza", vi: "Bánh pizza", say: "Pizza" },
+      { emoji: "🍜", en: "Noodles", vi: "Mì / Phở", say: "Noodles" },
+      { emoji: "🧀", en: "Cheese", vi: "Phô mai", say: "Cheese" },
+      { emoji: "🍰", en: "Cake", vi: "Bánh ngọt", say: "Cake" },
+      { emoji: "🍬", en: "Candy", vi: "Kẹo", say: "Candy" },
+    ],
+  },
+
+  weather: {
+    title: "🌤️ Thời tiết",
+    items: [
+      { emoji: "☀️", en: "Sunny", vi: "Trời nắng", say: "Sunny" },
+      { emoji: "🌧️", en: "Rainy", vi: "Trời mưa", say: "Rainy" },
+      { emoji: "☁️", en: "Cloudy", vi: "Trời nhiều mây", say: "Cloudy" },
+      { emoji: "💨", en: "Windy", vi: "Trời có gió", say: "Windy" },
+      { emoji: "❄️", en: "Snowy", vi: "Trời có tuyết", say: "Snowy" },
+      { emoji: "🌈", en: "Rainbow", vi: "Cầu vồng", say: "Rainbow" },
+      { emoji: "⛈️", en: "Storm", vi: "Bão", say: "Storm" },
+      { emoji: "🥵", en: "Hot", vi: "Nóng", say: "Hot" },
+      { emoji: "🥶", en: "Cold", vi: "Lạnh", say: "Cold" },
+    ],
+  },
+
+  transport: {
+    title: "🚗 Phương tiện",
+    items: [
+      { emoji: "🚗", en: "Car", vi: "Xe hơi", say: "Car" },
+      { emoji: "🚌", en: "Bus", vi: "Xe buýt", say: "Bus" },
+      { emoji: "🚲", en: "Bike", vi: "Xe đạp", say: "Bike" },
+      { emoji: "🏍️", en: "Motorbike", vi: "Xe máy", say: "Motorbike" },
+      { emoji: "✈️", en: "Plane", vi: "Máy bay", say: "Plane" },
+      { emoji: "🚢", en: "Ship", vi: "Con tàu", say: "Ship" },
+      { emoji: "🚂", en: "Train", vi: "Tàu hoả", say: "Train" },
+      { emoji: "🚁", en: "Helicopter", vi: "Trực thăng", say: "Helicopter" },
+      { emoji: "🚕", en: "Taxi", vi: "Xe taxi", say: "Taxi" },
+      { emoji: "🚑", en: "Ambulance", vi: "Xe cứu thương", say: "Ambulance" },
+    ],
+  },
 };
 
-// Các chủ đề dùng cho trò chơi (đố vui)
-const GAME_TOPICS = ["animals", "fruits", "colors", "numbers", "shapes"];
+// Các chủ đề dùng cho trò chơi đố vui (chọn hình đúng)
+const GAME_TOPICS = [
+  "animals", "fruits", "colors", "numbers", "shapes",
+  "body", "food", "weather", "transport", "classroom",
+];
+
+// Các chủ đề dùng cho trò chơi ghép chữ (từ ngắn, dễ đánh vần)
+const SPELL_TOPICS = [
+  "animals", "fruits", "colors", "shapes", "body",
+  "food", "transport", "classroom",
+];
+
+// Danh sách chữ cái & số dùng cho phần Tập viết
+const TRACE_SET = [
+  "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+  "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+  "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+];

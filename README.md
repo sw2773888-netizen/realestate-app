@@ -5,12 +5,22 @@ Giao diện nhiều màu sắc, nút bấm to, có **phát âm chuẩn tiếng A
 
 ## ✨ Tính năng
 
-- **🔤 Bảng chữ cái (A–Z)** — mỗi chữ kèm một từ ví dụ và hình minh hoạ.
-- **🔢 Số đếm (1–10)**, **🎨 Màu sắc**, **🐘 Con vật**, **⭐ Hình khối**, **👨‍👩‍👧‍👦 Gia đình**, **🍎 Trái cây**.
-- **🔊 Phát âm tiếng Anh** tự động (dùng Web Speech API của trình duyệt) — đọc chậm, rõ để bé nghe theo.
-- **🎮 Trò chơi đố vui** — nghe từ và chọn đúng hình, có chấm điểm và pháo hoa khen thưởng.
-- **⭐ Hệ thống sao thưởng** — bé nhận sao khi học xong chủ đề hoặc trả lời đúng (lưu lại trên máy).
-- **📱 Chạy tốt trên điện thoại, máy tính bảng, máy tính** — vuốt trái/phải để lật thẻ, bấm phím mũi tên trên máy tính.
+### 📚 13 chủ đề học bằng thẻ (flashcard)
+Bảng chữ cái A–Z · Số đếm 1–10 · Màu sắc · Con vật · Hình khối · Gia đình ·
+Trái cây · Cơ thể · Hành động · Đồ dùng học tập · Đồ ăn · Thời tiết · Phương tiện.
+Mỗi thẻ có hình minh hoạ, từ tiếng Anh, nghĩa tiếng Việt và nút nghe phát âm.
+
+### 🎯 Luyện tập & Trò chơi
+- **🎮 Chọn hình đúng** — nghe từ tiếng Anh rồi chọn đúng hình, có chấm điểm.
+- **🔡 Ghép chữ (Spelling)** — nhìn hình và ghép các chữ cái thành từ; có nút **Gợi ý** và **Xoá**.
+- **✍️ Tập viết** — bé tô theo nét chữ cái và chữ số (A–Z, 0–9) bằng ngón tay hoặc chuột, có dòng kẻ ô ly như vở tập viết.
+- **🏆 Thành tích** — theo dõi các chủ đề đã học, cấp độ (🌱 → 🐣 → 🌟 → 🚀 → 👑) và thanh tiến trình.
+
+### 🛠️ Tiện ích khác
+- **🔊 Phát âm tiếng Anh** tự động (Web Speech API) — đọc chậm, rõ để bé nghe theo.
+- **⚙️ Cài đặt** — chỉnh **tốc độ đọc** (chậm/vừa/nhanh), nghe thử, và đặt lại tiến trình.
+- **⭐ Hệ thống sao thưởng** — nhận sao khi học xong chủ đề, viết xong, hay trả lời đúng (lưu trên máy, không mất khi tắt).
+- **📱 Chạy tốt trên điện thoại, máy tính bảng, máy tính** — vuốt trái/phải để lật thẻ, bấm phím mũi tên & phím cách trên máy tính.
 - Hoạt hình, âm thanh vui tai, hiệu ứng pháo hoa để tạo hứng thú.
 
 ## 🚀 Cách dùng
@@ -35,7 +45,7 @@ python3 -m http.server 8000
 | `index.html` | Khung giao diện các màn hình |
 | `styles.css` | Toàn bộ màu sắc, hoạt hình, bố cục thân thiện với trẻ |
 | `data.js` | Nội dung học tập (chữ cái, số, màu, con vật…) — **dễ dàng thêm/sửa** |
-| `app.js` | Xử lý điều hướng, phát âm, trò chơi, sao thưởng |
+| `app.js` | Điều hướng, phát âm, các trò chơi, tập viết, thành tích, cài đặt |
 
 ## ➕ Thêm nội dung mới
 

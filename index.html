@@ -50,15 +50,65 @@
         <span class="menu-label">Trái cây</span>
         <span class="menu-en">Fruits</span>
       </button>
+      <button class="menu-card" style="--c1:#fddb92;--c2:#d1fdff" data-go="body">
+        <span class="menu-emoji">🧍</span>
+        <span class="menu-label">Cơ thể</span>
+        <span class="menu-en">Body</span>
+      </button>
+      <button class="menu-card" style="--c1:#c471f5;--c2:#fa71cd" data-go="actions">
+        <span class="menu-emoji">🏃</span>
+        <span class="menu-label">Hành động</span>
+        <span class="menu-en">Actions</span>
+      </button>
+      <button class="menu-card" style="--c1:#48c6ef;--c2:#6f86d6" data-go="classroom">
+        <span class="menu-emoji">🎒</span>
+        <span class="menu-label">Đồ dùng học tập</span>
+        <span class="menu-en">Classroom</span>
+      </button>
+      <button class="menu-card" style="--c1:#f6d365;--c2:#fda085" data-go="food">
+        <span class="menu-emoji">🍔</span>
+        <span class="menu-label">Đồ ăn</span>
+        <span class="menu-en">Food</span>
+      </button>
+      <button class="menu-card" style="--c1:#89f7fe;--c2:#66a6ff" data-go="weather">
+        <span class="menu-emoji">🌤️</span>
+        <span class="menu-label">Thời tiết</span>
+        <span class="menu-en">Weather</span>
+      </button>
+      <button class="menu-card" style="--c1:#fbc2eb;--c2:#a18cd1" data-go="transport">
+        <span class="menu-emoji">🚗</span>
+        <span class="menu-label">Phương tiện</span>
+        <span class="menu-en">Transport</span>
+      </button>
+    </div>
+
+    <h2 class="section-title">🎯 Luyện tập &amp; Trò chơi</h2>
+    <div class="menu-grid">
       <button class="menu-card game-card" style="--c1:#f093fb;--c2:#f5576c" data-go="game">
         <span class="menu-emoji">🎮</span>
-        <span class="menu-label">Trò chơi</span>
+        <span class="menu-label">Chọn hình đúng</span>
         <span class="menu-en">Quiz Game</span>
+      </button>
+      <button class="menu-card game-card" style="--c1:#fa709a;--c2:#fee140" data-go="spell">
+        <span class="menu-emoji">🔡</span>
+        <span class="menu-label">Ghép chữ</span>
+        <span class="menu-en">Spelling</span>
+      </button>
+      <button class="menu-card" style="--c1:#a1ffce;--c2:#faffd1" data-go="trace">
+        <span class="menu-emoji">✍️</span>
+        <span class="menu-label">Tập viết</span>
+        <span class="menu-en">Writing</span>
+      </button>
+      <button class="menu-card" style="--c1:#ffd26f;--c2:#f9a825" data-go="badges">
+        <span class="menu-emoji">🏆</span>
+        <span class="menu-label">Thành tích</span>
+        <span class="menu-en">Rewards</span>
       </button>
     </div>
 
     <footer class="home-foot">
       <button id="sound-toggle" class="foot-btn" title="Bật/tắt âm thanh">🔊 Âm thanh</button>
+      <button class="foot-btn" data-go="settings" title="Cài đặt">⚙️ Cài đặt</button>
       <span class="star-count">⭐ <b id="home-stars">0</b> sao</span>
     </footer>
   </section>
@@ -101,6 +151,100 @@
       <div class="quiz-word" id="quiz-word"></div>
       <div class="quiz-options" id="quiz-options"></div>
       <p class="game-feedback" id="game-feedback"></p>
+    </div>
+  </section>
+
+  <!-- Spelling game screen -->
+  <section id="spell" class="screen">
+    <div class="topbar">
+      <button class="back-btn" data-go="home">⬅️ Về nhà</button>
+      <h2 class="topbar-title">🔡 Ghép chữ</h2>
+      <span class="progress-pill">⭐ <b id="spell-score">0</b></span>
+    </div>
+
+    <div class="game-body">
+      <div class="spell-emoji" id="spell-emoji">🍎</div>
+      <div class="spell-vi" id="spell-vi">Quả táo</div>
+      <button class="big-speak" id="spell-speak">🔊 Nghe từ</button>
+
+      <div class="spell-slots" id="spell-slots"></div>
+      <div class="spell-tiles" id="spell-tiles"></div>
+
+      <div class="spell-actions">
+        <button class="mini-btn" id="spell-undo">⬅️ Xoá</button>
+        <button class="mini-btn" id="spell-hint">💡 Gợi ý</button>
+      </div>
+      <p class="game-feedback" id="spell-feedback"></p>
+    </div>
+  </section>
+
+  <!-- Tracing / writing screen -->
+  <section id="trace" class="screen">
+    <div class="topbar">
+      <button class="back-btn" data-go="home">⬅️ Về nhà</button>
+      <h2 class="topbar-title">✍️ Tập viết</h2>
+      <button class="mini-btn" id="trace-speak">🔊 Đọc</button>
+    </div>
+
+    <div class="trace-stage">
+      <div class="trace-wrap">
+        <div class="trace-ghost" id="trace-ghost">A</div>
+        <canvas id="trace-canvas" width="600" height="600"></canvas>
+      </div>
+    </div>
+
+    <div class="trace-controls">
+      <button class="nav-arrow small" id="trace-prev" aria-label="Trước">‹</button>
+      <button class="mini-btn" id="trace-clear">🧽 Xoá hết</button>
+      <button class="mini-btn big-done" id="trace-done">✅ Xong</button>
+      <button class="nav-arrow small" id="trace-next" aria-label="Sau">›</button>
+    </div>
+  </section>
+
+  <!-- Achievements / badges screen -->
+  <section id="badges" class="screen">
+    <div class="topbar">
+      <button class="back-btn" data-go="home">⬅️ Về nhà</button>
+      <h2 class="topbar-title">🏆 Thành tích</h2>
+      <span class="progress-pill">⭐ <b id="badge-stars">0</b></span>
+    </div>
+
+    <div class="badges-body">
+      <div class="level-box">
+        <div class="level-emoji" id="level-emoji">🌱</div>
+        <div class="level-name" id="level-name">Bé mới bắt đầu</div>
+        <div class="level-bar"><div class="level-fill" id="level-fill"></div></div>
+        <div class="level-hint" id="level-hint"></div>
+      </div>
+      <h3 class="badges-sub">Các chủ đề đã học 📚</h3>
+      <div class="badge-grid" id="badge-grid"></div>
+    </div>
+  </section>
+
+  <!-- Settings screen -->
+  <section id="settings" class="screen">
+    <div class="topbar">
+      <button class="back-btn" data-go="home">⬅️ Về nhà</button>
+      <h2 class="topbar-title">⚙️ Cài đặt</h2>
+      <span></span>
+    </div>
+
+    <div class="settings-body">
+      <div class="setting-row">
+        <label class="setting-label">🐢 Tốc độ đọc</label>
+        <input type="range" id="rate-range" min="0.5" max="1" step="0.1" value="0.8" />
+        <span class="setting-val" id="rate-val">Vừa</span>
+      </div>
+      <button class="mini-btn" id="test-voice">🔊 Nghe thử: "Hello"</button>
+
+      <div class="setting-row column">
+        <label class="setting-label">🗑️ Xoá tiến trình học</label>
+        <button class="mini-btn danger" id="reset-progress">Đặt lại sao &amp; thành tích</button>
+      </div>
+
+      <p class="settings-note">
+        Ứng dụng chạy hoàn toàn trên máy của bé, không thu thập dữ liệu, không quảng cáo. 💚
+      </p>
     </div>
   </section>
 </div>
