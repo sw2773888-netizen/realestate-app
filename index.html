@@ -1,0 +1,112 @@
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="#ff8fab" />
+<title>Bé Học Tiếng Anh 🌈 | Chuẩn bị vào lớp 1</title>
+<link rel="stylesheet" href="styles.css" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎈</text></svg>" />
+
+<!-- ================= HOME / MENU ================= -->
+<div id="app">
+  <!-- Home screen -->
+  <section id="home" class="screen active">
+    <header class="home-header">
+      <h1 class="app-title">🎈 Bé Học Tiếng Anh 🎈</h1>
+      <p class="app-sub">Vui học mỗi ngày — Chuẩn bị vào lớp 1 🌟</p>
+    </header>
+
+    <div class="menu-grid">
+      <button class="menu-card" style="--c1:#ff9a9e;--c2:#fecfef" data-go="alphabet">
+        <span class="menu-emoji">🔤</span>
+        <span class="menu-label">Bảng chữ cái</span>
+        <span class="menu-en">ABC</span>
+      </button>
+      <button class="menu-card" style="--c1:#a1c4fd;--c2:#c2e9fb" data-go="numbers">
+        <span class="menu-emoji">🔢</span>
+        <span class="menu-label">Số đếm</span>
+        <span class="menu-en">Numbers</span>
+      </button>
+      <button class="menu-card" style="--c1:#ffecd2;--c2:#fcb69f" data-go="colors">
+        <span class="menu-emoji">🎨</span>
+        <span class="menu-label">Màu sắc</span>
+        <span class="menu-en">Colors</span>
+      </button>
+      <button class="menu-card" style="--c1:#84fab0;--c2:#8fd3f4" data-go="animals">
+        <span class="menu-emoji">🐘</span>
+        <span class="menu-label">Con vật</span>
+        <span class="menu-en">Animals</span>
+      </button>
+      <button class="menu-card" style="--c1:#fbc2eb;--c2:#a6c1ee" data-go="shapes">
+        <span class="menu-emoji">⭐</span>
+        <span class="menu-label">Hình khối</span>
+        <span class="menu-en">Shapes</span>
+      </button>
+      <button class="menu-card" style="--c1:#f6d365;--c2:#fda085" data-go="family">
+        <span class="menu-emoji">👨‍👩‍👧‍👦</span>
+        <span class="menu-label">Gia đình</span>
+        <span class="menu-en">Family</span>
+      </button>
+      <button class="menu-card" style="--c1:#d4fc79;--c2:#96e6a1" data-go="fruits">
+        <span class="menu-emoji">🍎</span>
+        <span class="menu-label">Trái cây</span>
+        <span class="menu-en">Fruits</span>
+      </button>
+      <button class="menu-card game-card" style="--c1:#f093fb;--c2:#f5576c" data-go="game">
+        <span class="menu-emoji">🎮</span>
+        <span class="menu-label">Trò chơi</span>
+        <span class="menu-en">Quiz Game</span>
+      </button>
+    </div>
+
+    <footer class="home-foot">
+      <button id="sound-toggle" class="foot-btn" title="Bật/tắt âm thanh">🔊 Âm thanh</button>
+      <span class="star-count">⭐ <b id="home-stars">0</b> sao</span>
+    </footer>
+  </section>
+
+  <!-- Learn screen (flashcards) -->
+  <section id="learn" class="screen">
+    <div class="topbar">
+      <button class="back-btn" data-go="home">⬅️ Về nhà</button>
+      <h2 id="learn-title" class="topbar-title">Học</h2>
+      <span class="progress-pill"><b id="card-index">1</b>/<span id="card-total">1</span></span>
+    </div>
+
+    <div class="card-stage">
+      <button class="nav-arrow" id="prev-card" aria-label="Trước">‹</button>
+
+      <div class="flashcard" id="flashcard">
+        <div class="flash-emoji" id="flash-emoji">🍎</div>
+        <div class="flash-word" id="flash-word">Apple</div>
+        <div class="flash-vi" id="flash-vi">Quả táo</div>
+        <button class="speak-btn" id="speak-btn">🔊 Nghe đọc</button>
+      </div>
+
+      <button class="nav-arrow" id="next-card" aria-label="Sau">›</button>
+    </div>
+
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <!-- Game screen -->
+  <section id="game" class="screen">
+    <div class="topbar">
+      <button class="back-btn" data-go="home">⬅️ Về nhà</button>
+      <h2 class="topbar-title">🎮 Trò chơi</h2>
+      <span class="progress-pill">⭐ <b id="game-score">0</b></span>
+    </div>
+
+    <div class="game-body">
+      <p class="game-question">Nghe và chọn đúng hình! 👂</p>
+      <button class="big-speak" id="game-speak">🔊 Nghe lại</button>
+      <div class="quiz-word" id="quiz-word"></div>
+      <div class="quiz-options" id="quiz-options"></div>
+      <p class="game-feedback" id="game-feedback"></p>
+    </div>
+  </section>
+</div>
+
+<!-- Confetti + reward layer -->
+<div id="reward" class="reward-layer"></div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
