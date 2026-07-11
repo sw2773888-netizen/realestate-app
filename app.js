@@ -1,11 +1,49 @@
+/* ================= Bộ nhớ an toàn ================= */
+/* Bọc localStorage để app không lỗi khi trình duyệt chặn (ví dụ chế độ ẩn danh,
+   iframe sandbox). Nếu không dùng được thì lưu tạm trong bộ nhớ. */
+const LS = (() => {
+  const mem = {};
+  let ok = true;
+  try {
+    const k = "__bhta_test__";
+    localStorage.setItem(k, "1");
+    localStorage.removeItem(k);
+  } catch (e) {
+    ok = false;
+  }
+  return {
+    get: (k) => {
+      try {
+        return ok ? localStorage.getItem(k) : mem[k] ?? null;
+      } catch (e) {
+        return mem[k] ?? null;
+      }
+    },
+    set: (k, v) => {
+      try {
+        ok ? localStorage.setItem(k, v) : (mem[k] = String(v));
+      } catch (e) {
+        mem[k] = String(v);
+      }
+    },
+    remove: (k) => {
+      try {
+        ok ? localStorage.removeItem(k) : delete mem[k];
+      } catch (e) {
+        delete mem[k];
+      }
+    },
+  };
+})();
+
 /* ================= State ================= */
 const state = {
   topic: null,
   index: 0,
   soundOn: true,
-  stars: Number(localStorage.getItem("bhta_stars") || 0),
-  rate: Number(localStorage.getItem("bhta_rate") || 0.8),
-  done: JSON.parse(localStorage.getItem("bhta_done") || "{}"), // chủ đề đã học xong
+  stars: Number(LS.get("bhta_stars") || 0),
+  rate: Number(LS.get("bhta_rate") || 0.8),
+  done: JSON.parse(LS.get("bhta_done") || "{}"), // chủ đề đã học xong
   gameScore: 0,
   gameAnswer: null,
   // spelling
@@ -19,7 +57,7 @@ const state = {
 function markDone(topic) {
   if (!state.done[topic]) {
     state.done[topic] = true;
-    localStorage.setItem("bhta_done", JSON.stringify(state.done));
+    LS.set("bhta_done", JSON.stringify(state.done));
   }
 }
 
@@ -86,7 +124,7 @@ const playWrong = () => playTone([300, 200], 0.2);
 /* ---------- Sao thưởng ---------- */
 function addStars(n) {
   state.stars += n;
-  localStorage.setItem("bhta_stars", state.stars);
+  LS.set("bhta_stars", state.stars);
   updateStars();
 }
 function updateStars() {
@@ -577,7 +615,7 @@ $("#trace-speak").addEventListener("click", () => {
 /* ---- Settings events ---- */
 $("#rate-range").addEventListener("input", (e) => {
   state.rate = Number(e.target.value);
-  localStorage.setItem("bhta_rate", state.rate);
+  LS.set("bhta_rate", state.rate);
   updateRateLabel();
 });
 $("#test-voice").addEventListener("click", () => speak("Hello. How are you?"));
@@ -585,8 +623,8 @@ $("#reset-progress").addEventListener("click", () => {
   if (confirm("Xoá toàn bộ sao và thành tích của bé?")) {
     state.stars = 0;
     state.done = {};
-    localStorage.removeItem("bhta_stars");
-    localStorage.removeItem("bhta_done");
+    LS.remove("bhta_stars");
+    LS.remove("bhta_done");
     updateStars();
     alert("Đã đặt lại! Bé bắt đầu lại từ đầu nhé 🌱");
   }

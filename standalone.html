@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<meta name="theme-color" content="#ff8fab" />
+<title>Bé Học Tiếng Anh 🌈 | Chuẩn bị vào lớp 1</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎈</text></svg>" />
+<style>
+/* ================= Reset & base ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --pink: #ff8fab;
+  --purple: #b892ff;
+  --sky: #6ec1e4;
+  --sun: #ffd166;
+  --font: "Comic Sans MS", "Baloo 2", "Segoe UI", system-ui, sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font);
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 50%, #fff1c1 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+  color: #3a3a5a;
+  user-select: none;
+}
+
+#app {
+  min-height: 100vh;
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ================= Screens ================= */
+.screen {
+  display: none;
+  min-height: 100vh;
+  padding: 16px;
+  flex-direction: column;
+}
+.screen.active {
+  display: flex;
+  animation: fadeIn 0.4s ease;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ================= Home ================= */
+.home-header {
+  text-align: center;
+  margin: 12px 0 20px;
+}
+.app-title {
+  font-size: clamp(1.8rem, 6vw, 2.8rem);
+  color: #fff;
+  text-shadow: 2px 2px 0 var(--pink), 4px 4px 0 rgba(0, 0, 0, 0.12);
+  animation: wiggle 3s ease-in-out infinite;
+}
+@keyframes wiggle {
+  0%,
+  100% {
+    transform: rotate(-1.5deg);
+  }
+  50% {
+    transform: rotate(1.5deg);
+  }
+}
+.app-sub {
+  margin-top: 8px;
+  font-size: clamp(0.95rem, 3vw, 1.2rem);
+  color: #6a5a8a;
+  font-weight: bold;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  flex: 1;
+}
+@media (min-width: 620px) {
+  .menu-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.menu-card {
+  border: none;
+  border-radius: 26px;
+  padding: 20px 10px;
+  background: linear-gradient(145deg, var(--c1), var(--c2));
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 8px 0 rgba(0, 0, 0, 0.1), 0 10px 20px rgba(0, 0, 0, 0.12);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.menu-card:active {
+  transform: translateY(6px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+.menu-emoji {
+  font-size: clamp(2.4rem, 9vw, 3.4rem);
+  filter: drop-shadow(0 3px 3px rgba(0, 0, 0, 0.15));
+}
+.menu-label {
+  font-size: clamp(1rem, 3.6vw, 1.25rem);
+  font-weight: bold;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.15);
+}
+.menu-en {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+.game-card {
+  animation: bounce 1.6s ease-in-out infinite;
+}
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-7px);
+  }
+}
+
+.home-foot {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+.foot-btn {
+  border: none;
+  background: #fff;
+  color: #6a5a8a;
+  font-family: var(--font);
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 10px 18px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+.foot-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+.star-count {
+  background: #fff;
+  padding: 10px 18px;
+  border-radius: 30px;
+  font-weight: bold;
+  color: #f4a900;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* ================= Topbar ================= */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.back-btn {
+  border: none;
+  background: #fff;
+  color: #6a5a8a;
+  font-family: var(--font);
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 10px 16px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+}
+.back-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+}
+.topbar-title {
+  font-size: clamp(1.1rem, 4vw, 1.5rem);
+  color: #fff;
+  text-shadow: 1px 1px 0 var(--purple);
+}
+.progress-pill {
+  background: #fff;
+  padding: 8px 14px;
+  border-radius: 30px;
+  font-weight: bold;
+  color: #6a5a8a;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+/* ================= Flashcard ================= */
+.card-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.nav-arrow {
+  border: none;
+  background: rgba(255, 255, 255, 0.85);
+  color: var(--pink);
+  font-size: 2.6rem;
+  font-weight: bold;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.08);
+  line-height: 1;
+}
+.nav-arrow:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.08);
+}
+
+.flashcard {
+  background: #fff;
+  border-radius: 34px;
+  padding: 30px 20px;
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  cursor: pointer;
+  border: 6px solid #fff;
+}
+.flashcard.pop {
+  animation: popIn 0.4s cubic-bezier(0.2, 1.4, 0.5, 1);
+}
+@keyframes popIn {
+  0% {
+    transform: scale(0.7) rotate(-4deg);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(1) rotate(0);
+    opacity: 1;
+  }
+}
+.flash-emoji {
+  font-size: clamp(6rem, 30vw, 9rem);
+  line-height: 1.1;
+  filter: drop-shadow(0 6px 6px rgba(0, 0, 0, 0.15));
+}
+.flash-word {
+  font-size: clamp(2.2rem, 10vw, 3.2rem);
+  font-weight: bold;
+  color: var(--pink);
+  margin-top: 6px;
+}
+.flash-vi {
+  font-size: clamp(1rem, 4vw, 1.3rem);
+  color: #7a6a9a;
+  margin-top: 4px;
+  font-weight: bold;
+}
+.speak-btn {
+  margin-top: 18px;
+  border: none;
+  background: linear-gradient(145deg, #6ec1e4, #5aa9d0);
+  color: #fff;
+  font-family: var(--font);
+  font-weight: bold;
+  font-size: 1.15rem;
+  padding: 12px 26px;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 5px 0 #4890b8;
+}
+.speak-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #4890b8;
+}
+
+.dots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 7px;
+  padding: 14px 0 6px;
+}
+.dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transition: all 0.2s;
+}
+.dot.on {
+  background: var(--pink);
+  transform: scale(1.4);
+}
+
+/* ================= Game ================= */
+.game-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+}
+.game-question {
+  font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+  font-weight: bold;
+  color: #6a5a8a;
+}
+.big-speak {
+  border: none;
+  background: linear-gradient(145deg, #ffd166, #f4a900);
+  color: #fff;
+  font-family: var(--font);
+  font-weight: bold;
+  font-size: 1.3rem;
+  padding: 16px 34px;
+  border-radius: 34px;
+  cursor: pointer;
+  box-shadow: 0 6px 0 #d99200;
+}
+.big-speak:active {
+  transform: translateY(3px);
+  box-shadow: 0 3px 0 #d99200;
+}
+.quiz-word {
+  font-size: clamp(1.4rem, 6vw, 2rem);
+  font-weight: bold;
+  color: var(--purple);
+  background: #fff;
+  padding: 10px 24px;
+  border-radius: 24px;
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.08);
+}
+.quiz-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 6px;
+}
+.quiz-opt {
+  border: none;
+  background: #fff;
+  font-size: clamp(3rem, 14vw, 4.5rem);
+  width: clamp(90px, 26vw, 130px);
+  height: clamp(90px, 26vw, 130px);
+  border-radius: 28px;
+  cursor: pointer;
+  box-shadow: 0 7px 0 rgba(0, 0, 0, 0.1);
+  transition: transform 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.quiz-opt:active {
+  transform: translateY(4px);
+  box-shadow: 0 3px 0 rgba(0, 0, 0, 0.1);
+}
+.quiz-opt.right {
+  background: #b8f2c8;
+  animation: correctPulse 0.5s ease;
+  box-shadow: 0 7px 0 #7ad39a;
+}
+.quiz-opt.wrong {
+  background: #ffc9c9;
+  animation: shake 0.4s ease;
+  opacity: 0.7;
+}
+@keyframes correctPulse {
+  50% {
+    transform: scale(1.15);
+  }
+}
+@keyframes shake {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-8px);
+  }
+  75% {
+    transform: translateX(8px);
+  }
+}
+.game-feedback {
+  font-size: clamp(1.2rem, 5vw, 1.7rem);
+  font-weight: bold;
+  color: var(--pink);
+  min-height: 1.5em;
+}
+
+/* ================= Section title ================= */
+.section-title {
+  text-align: center;
+  color: #fff;
+  font-size: clamp(1.1rem, 4vw, 1.4rem);
+  margin: 22px 0 12px;
+  text-shadow: 1px 1px 0 var(--purple);
+}
+
+/* ================= Mini buttons ================= */
+.mini-btn {
+  border: none;
+  background: #fff;
+  color: #6a5a8a;
+  font-family: var(--font);
+  font-weight: bold;
+  font-size: 1rem;
+  padding: 10px 18px;
+  border-radius: 26px;
+  cursor: pointer;
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.12);
+}
+.mini-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.12);
+}
+.mini-btn.big-done {
+  background: linear-gradient(145deg, #84fab0, #4bcf8a);
+  color: #fff;
+  box-shadow: 0 4px 0 #37ab6f;
+}
+.mini-btn.danger {
+  background: #ffdede;
+  color: #d64545;
+}
+
+/* ================= Spelling game ================= */
+.spell-emoji {
+  font-size: clamp(4.5rem, 20vw, 7rem);
+  filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.15));
+}
+.spell-vi {
+  font-size: clamp(1.1rem, 4.5vw, 1.5rem);
+  font-weight: bold;
+  color: #7a6a9a;
+}
+.spell-slots {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 6px;
+}
+.spell-slot {
+  width: clamp(38px, 11vw, 54px);
+  height: clamp(46px, 13vw, 64px);
+  border-radius: 14px;
+  background: #fff;
+  border: 3px dashed #c9b8e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: clamp(1.4rem, 6vw, 2rem);
+  font-weight: bold;
+  color: var(--purple);
+}
+.spell-slot.filled {
+  border-style: solid;
+  border-color: var(--pink);
+}
+.spell-slot.correct {
+  background: #b8f2c8;
+  border-color: #4bcf8a;
+  animation: correctPulse 0.4s ease;
+}
+.spell-slot.shake {
+  animation: shake 0.4s ease;
+  background: #ffdede;
+}
+.spell-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 4px;
+  max-width: 500px;
+}
+.spell-tile {
+  width: clamp(44px, 12vw, 58px);
+  height: clamp(44px, 12vw, 58px);
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #fa709a, #fee140);
+  color: #fff;
+  font-family: var(--font);
+  font-weight: bold;
+  font-size: clamp(1.4rem, 6vw, 2rem);
+  cursor: pointer;
+  box-shadow: 0 5px 0 rgba(0, 0, 0, 0.12);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.15);
+}
+.spell-tile:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.12);
+}
+.spell-tile.used {
+  opacity: 0.25;
+  pointer-events: none;
+}
+.spell-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 4px;
+}
+
+/* ================= Tracing / writing ================= */
+.trace-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.trace-wrap {
+  position: relative;
+  width: min(78vw, 62vh, 420px);
+  aspect-ratio: 1;
+  background: #fff;
+  border-radius: 30px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+/* dòng kẻ ô ly như vở tập viết */
+.trace-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(#e7e0f4 1px, transparent 1px),
+    linear-gradient(90deg, #e7e0f4 1px, transparent 1px);
+  background-size: 25% 25%;
+}
+.trace-ghost {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: min(58vw, 46vh, 320px);
+  font-weight: bold;
+  color: #e2d6f3;
+  line-height: 1;
+  user-select: none;
+}
+#trace-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  cursor: crosshair;
+}
+.trace-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 0 6px;
+  flex-wrap: wrap;
+}
+.nav-arrow.small {
+  width: 48px;
+  height: 48px;
+  font-size: 2rem;
+}
+
+/* ================= Badges / achievements ================= */
+.badges-body {
+  flex: 1;
+  overflow-y: auto;
+}
+.level-box {
+  background: #fff;
+  border-radius: 26px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+.level-emoji {
+  font-size: 3.4rem;
+}
+.level-name {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: var(--pink);
+  margin-top: 4px;
+}
+.level-bar {
+  height: 18px;
+  background: #eee3f6;
+  border-radius: 20px;
+  overflow: hidden;
+  margin: 12px 0 8px;
+}
+.level-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, #fa709a, #fee140);
+  border-radius: 20px;
+  transition: width 0.6s ease;
+}
+.level-hint {
+  color: #7a6a9a;
+  font-weight: bold;
+  font-size: 0.95rem;
+}
+.badges-sub {
+  color: #fff;
+  text-align: center;
+  margin: 18px 0 12px;
+  text-shadow: 1px 1px 0 var(--purple);
+}
+.badge-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  padding-bottom: 16px;
+}
+.badge-item {
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 20px;
+  padding: 14px 8px;
+  text-align: center;
+  opacity: 0.75;
+}
+.badge-item.earned {
+  background: #fff;
+  opacity: 1;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.08);
+}
+.badge-face {
+  font-size: 2.4rem;
+}
+.badge-name {
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #6a5a8a;
+  margin-top: 4px;
+}
+
+/* ================= Settings ================= */
+.settings-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-items: center;
+  padding-top: 10px;
+}
+.setting-row {
+  background: #fff;
+  border-radius: 22px;
+  padding: 16px 20px;
+  width: 100%;
+  max-width: 460px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 6px 0 rgba(0, 0, 0, 0.08);
+}
+.setting-row.column {
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+}
+.setting-label {
+  font-weight: bold;
+  color: #6a5a8a;
+  white-space: nowrap;
+}
+.setting-row input[type="range"] {
+  flex: 1;
+  accent-color: var(--pink);
+  height: 8px;
+}
+.setting-val {
+  font-weight: bold;
+  color: var(--pink);
+  min-width: 60px;
+  text-align: right;
+}
+.settings-note {
+  color: #6a5a8a;
+  text-align: center;
+  max-width: 460px;
+  font-weight: bold;
+  line-height: 1.5;
+}
+
+/* ================= Reward / confetti ================= */
+.reward-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 999;
+}
+.confetti {
+  position: absolute;
+  top: -40px;
+  animation: fall 1.6s linear forwards;
+}
+@keyframes fall {
+  to {
+    transform: translateY(105vh) rotate(360deg);
+    opacity: 0.9;
+  }
+}
+.reward-bubble {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  color: var(--pink);
+  font-size: clamp(1.4rem, 6vw, 2.2rem);
+  font-weight: bold;
+  padding: 18px 34px;
+  border-radius: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  animation: bubblePop 1.8s ease forwards;
+  white-space: nowrap;
+}
+@keyframes bubblePop {
+  0% {
+    transform: translate(-50%, -50%) scale(0.3);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 1;
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -60%) scale(0.9);
+    opacity: 0;
+  }
+}
+
+</style>
+</head>
+<body>
+<div id="app">
+  <!-- Home screen -->
+  <section id="home" class="screen active">
+    <header class="home-header">
+      <h1 class="app-title">🎈 Bé Học Tiếng Anh 🎈</h1>
+      <p class="app-sub">Vui học mỗi ngày — Chuẩn bị vào lớp 1 🌟</p>
+    </header>
+
+    <div class="menu-grid">
+      <button class="menu-card" style="--c1:#ff9a9e;--c2:#fecfef" data-go="alphabet">
+        <span class="menu-emoji">🔤</span>
+        <span class="menu-label">Bảng chữ cái</span>
+        <span class="menu-en">ABC</span>
+      </button>
+      <button class="menu-card" style="--c1:#a1c4fd;--c2:#c2e9fb" data-go="numbers">
+        <span class="menu-emoji">🔢</span>
+        <span class="menu-label">Số đếm</span>
+        <span class="menu-en">Numbers</span>
+      </button>
+      <button class="menu-card" style="--c1:#ffecd2;--c2:#fcb69f" data-go="colors">
+        <span class="menu-emoji">🎨</span>
+        <span class="menu-label">Màu sắc</span>
+        <span class="menu-en">Colors</span>
+      </button>
+      <button class="menu-card" style="--c1:#84fab0;--c2:#8fd3f4" data-go="animals">
+        <span class="menu-emoji">🐘</span>
+        <span class="menu-label">Con vật</span>
+        <span class="menu-en">Animals</span>
+      </button>
+      <button class="menu-card" style="--c1:#fbc2eb;--c2:#a6c1ee" data-go="shapes">
+        <span class="menu-emoji">⭐</span>
+        <span class="menu-label">Hình khối</span>
+        <span class="menu-en">Shapes</span>
+      </button>
+      <button class="menu-card" style="--c1:#f6d365;--c2:#fda085" data-go="family">
+        <span class="menu-emoji">👨‍👩‍👧‍👦</span>
+        <span class="menu-label">Gia đình</span>
+        <span class="menu-en">Family</span>
+      </button>
+      <button class="menu-card" style="--c1:#d4fc79;--c2:#96e6a1" data-go="fruits">
+        <span class="menu-emoji">🍎</span>
+        <span class="menu-label">Trái cây</span>
+        <span class="menu-en">Fruits</span>
+      </button>
+      <button class="menu-card" style="--c1:#fddb92;--c2:#d1fdff" data-go="body">
+        <span class="menu-emoji">🧍</span>
+        <span class="menu-label">Cơ thể</span>
+        <span class="menu-en">Body</span>
+      </button>
+      <button class="menu-card" style="--c1:#c471f5;--c2:#fa71cd" data-go="actions">
+        <span class="menu-emoji">🏃</span>
+        <span class="menu-label">Hành động</span>
+        <span class="menu-en">Actions</span>
+      </button>
+      <button class="menu-card" style="--c1:#48c6ef;--c2:#6f86d6" data-go="classroom">
+        <span class="menu-emoji">🎒</span>
+        <span class="menu-label">Đồ dùng học tập</span>
+        <span class="menu-en">Classroom</span>
+      </button>
+      <button class="menu-card" style="--c1:#f6d365;--c2:#fda085" data-go="food">
+        <span class="menu-emoji">🍔</span>
+        <span class="menu-label">Đồ ăn</span>
+        <span class="menu-en">Food</span>
+      </button>
+      <button class="menu-card" style="--c1:#89f7fe;--c2:#66a6ff" data-go="weather">
+        <span class="menu-emoji">🌤️</span>
+        <span class="menu-label">Thời tiết</span>
+        <span class="menu-en">Weather</span>
+      </button>
+      <button class="menu-card" style="--c1:#fbc2eb;--c2:#a18cd1" data-go="transport">
+        <span class="menu-emoji">🚗</span>
+        <span class="menu-label">Phương tiện</span>
+        <span class="menu-en">Transport</span>
+      </button>
+    </div>
+
+    <h2 class="section-title">🎯 Luyện tập &amp; Trò chơi</h2>
+    <div class="menu-grid">
+      <button class="menu-card game-card" style="--c1:#f093fb;--c2:#f5576c" data-go="game">
+        <span class="menu-emoji">🎮</span>
+        <span class="menu-label">Chọn hình đúng</span>
+        <span class="menu-en">Quiz Game</span>
+      </button>
+      <button class="menu-card game-card" style="--c1:#fa709a;--c2:#fee140" data-go="spell">
+        <span class="menu-emoji">🔡</span>
+        <span class="menu-label">Ghép chữ</span>
+        <span class="menu-en">Spelling</span>
+      </button>
+      <button class="menu-card" style="--c1:#a1ffce;--c2:#faffd1" data-go="trace">
+        <span class="menu-emoji">✍️</span>
+        <span class="menu-label">Tập viết</span>
+        <span class="menu-en">Writing</span>
+      </button>
+      <button class="menu-card" style="--c1:#ffd26f;--c2:#f9a825" data-go="badges">
+        <span class="menu-emoji">🏆</span>
+        <span class="menu-label">Thành tích</span>
+        <span class="menu-en">Rewards</span>
+      </button>
+    </div>
+
+    <footer class="home-foot">
+      <button id="sound-toggle" class="foot-btn" title="Bật/tắt âm thanh">🔊 Âm thanh</button>
+      <button class="foot-btn" data-go="settings" title="Cài đặt">⚙️ Cài đặt</button>
+      <span class="star-count">⭐ <b id="home-stars">0</b> sao</span>
+    </footer>
+  </section>
+
+  <!-- Learn screen (flashcards) -->
+  <section id="learn" class="screen">
+    <div class="topbar">
+      <button class="back-btn" data-go="home">⬅️ Về nhà</button>
+      <h2 id="learn-title" class="topbar-title">Học</h2>
+      <span class="progress-pill"><b id="card-index">1</b>/<span id="card-total">1</span></span>
+    </div>
+
+    <div class="card-stage">
+      <button class="nav-arrow" id="prev-card" aria-label="Trước">‹</button>
+
+      <div class="flashcard" id="flashcard">
+        <div class="flash-emoji" id="flash-emoji">🍎</div>
+        <div class="flash-word" id="flash-word">Apple</div>
+        <div class="flash-vi" id="flash-vi">Quả táo</div>
+        <button class="speak-btn" id="speak-btn">🔊 Nghe đọc</button>
+      </div>
+
+      <button class="nav-arrow" id="next-card" aria-label="Sau">›</button>
+    </div>
+
+    <div class="dots" id="dots"></div>
+  </section>
+
+  <!-- Game screen -->
+  <section id="game" class="screen">
+    <div class="topbar">
+      <button class="back-btn" data-go="home">⬅️ Về nhà</button>
+      <h2 class="topbar-title">🎮 Trò chơi</h2>
+      <span class="progress-pill">⭐ <b id="game-score">0</b></span>
+    </div>
+
+    <div class="game-body">
+      <p class="game-question">Nghe và chọn đúng hình! 👂</p>
+      <button class="big-speak" id="game-speak">🔊 Nghe lại</button>
+      <div class="quiz-word" id="quiz-word"></div>
+      <div class="quiz-options" id="quiz-options"></div>
+      <p class="game-feedback" id="game-feedback"></p>
+    </div>
+  </section>
+
+  <!-- Spelling game screen -->
+  <section id="spell" class="screen">
+    <div class="topbar">
+      <button class="back-btn" data-go="home">⬅️ Về nhà</button>
+      <h2 class="topbar-title">🔡 Ghép chữ</h2>
+      <span class="progress-pill">⭐ <b id="spell-score">0</b></span>
+    </div>
+
+    <div class="game-body">
+      <div class="spell-emoji" id="spell-emoji">🍎</div>
+      <div class="spell-vi" id="spell-vi">Quả táo</div>
+      <button class="big-speak" id="spell-speak">🔊 Nghe từ</button>
+
+      <div class="spell-slots" id="spell-slots"></div>
+      <div class="spell-tiles" id="spell-tiles"></div>
+
+      <div class="spell-actions">
+        <button class="mini-btn" id="spell-undo">⬅️ Xoá</button>
+        <button class="mini-btn" id="spell-hint">💡 Gợi ý</button>
+      </div>
+      <p class="game-feedback" id="spell-feedback"></p>
+    </div>
+  </section>
+
+  <!-- Tracing / writing screen -->
+  <section id="trace" class="screen">
+    <div class="topbar">
+      <button class="back-btn" data-go="home">⬅️ Về nhà</button>
+      <h2 class="topbar-title">✍️ Tập viết</h2>
+      <button class="mini-btn" id="trace-speak">🔊 Đọc</button>
+    </div>
+
+    <div class="trace-stage">
+      <div class="trace-wrap">
+        <div class="trace-ghost" id="trace-ghost">A</div>
+        <canvas id="trace-canvas" width="600" height="600"></canvas>
+      </div>
+    </div>
+
+    <div class="trace-controls">
+      <button class="nav-arrow small" id="trace-prev" aria-label="Trước">‹</button>
+      <button class="mini-btn" id="trace-clear">🧽 Xoá hết</button>
+      <button class="mini-btn big-done" id="trace-done">✅ Xong</button>
+      <button class="nav-arrow small" id="trace-next" aria-label="Sau">›</button>
+    </div>
+  </section>
+
+  <!-- Achievements / badges screen -->
+  <section id="badges" class="screen">
+    <div class="topbar">
+      <button class="back-btn" data-go="home">⬅️ Về nhà</button>
+      <h2 class="topbar-title">🏆 Thành tích</h2>
+      <span class="progress-pill">⭐ <b id="badge-stars">0</b></span>
+    </div>
+
+    <div class="badges-body">
+      <div class="level-box">
+        <div class="level-emoji" id="level-emoji">🌱</div>
+        <div class="level-name" id="level-name">Bé mới bắt đầu</div>
+        <div class="level-bar"><div class="level-fill" id="level-fill"></div></div>
+        <div class="level-hint" id="level-hint"></div>
+      </div>
+      <h3 class="badges-sub">Các chủ đề đã học 📚</h3>
+      <div class="badge-grid" id="badge-grid"></div>
+    </div>
+  </section>
+
+  <!-- Settings screen -->
+  <section id="settings" class="screen">
+    <div class="topbar">
+      <button class="back-btn" data-go="home">⬅️ Về nhà</button>
+      <h2 class="topbar-title">⚙️ Cài đặt</h2>
+      <span></span>
+    </div>
+
+    <div class="settings-body">
+      <div class="setting-row">
+        <label class="setting-label">🐢 Tốc độ đọc</label>
+        <input type="range" id="rate-range" min="0.5" max="1" step="0.1" value="0.8" />
+        <span class="setting-val" id="rate-val">Vừa</span>
+      </div>
+      <button class="mini-btn" id="test-voice">🔊 Nghe thử: "Hello"</button>
+
+      <div class="setting-row column">
+        <label class="setting-label">🗑️ Xoá tiến trình học</label>
+        <button class="mini-btn danger" id="reset-progress">Đặt lại sao &amp; thành tích</button>
+      </div>
+
+      <p class="settings-note">
+        Ứng dụng chạy hoàn toàn trên máy của bé, không thu thập dữ liệu, không quảng cáo. 💚
+      </p>
+    </div>
+  </section>
+</div>
+
+<!-- Confetti + reward layer -->
+<div id="reward" class="reward-layer"></div>
+<script>
+/*
+ * Nội dung học tập cho bé chuẩn bị vào lớp 1.
+ * Mỗi mục có: emoji (hình minh hoạ), en (từ tiếng Anh), vi (nghĩa tiếng Việt),
+ * và say (câu để máy đọc — có thể kèm ví dụ).
+ */
+const TOPICS = {
+  alphabet: {
+    title: "🔤 Bảng chữ cái",
+    items: [
+      { emoji: "🍎", en: "A", vi: "A — Apple (Quả táo)", say: "A. A for Apple" },
+      { emoji: "🎈", en: "B", vi: "B — Balloon (Bóng bay)", say: "B. B for Balloon" },
+      { emoji: "🐱", en: "C", vi: "C — Cat (Con mèo)", say: "C. C for Cat" },
+      { emoji: "🐶", en: "D", vi: "D — Dog (Con chó)", say: "D. D for Dog" },
+      { emoji: "🥚", en: "E", vi: "E — Egg (Quả trứng)", say: "E. E for Egg" },
+      { emoji: "🐟", en: "F", vi: "F — Fish (Con cá)", say: "F. F for Fish" },
+      { emoji: "🍇", en: "G", vi: "G — Grapes (Chùm nho)", say: "G. G for Grapes" },
+      { emoji: "🎩", en: "H", vi: "H — Hat (Cái mũ)", say: "H. H for Hat" },
+      { emoji: "🍦", en: "I", vi: "I — Ice cream (Kem)", say: "I. I for Ice cream" },
+      { emoji: "🧃", en: "J", vi: "J — Juice (Nước ép)", say: "J. J for Juice" },
+      { emoji: "🪁", en: "K", vi: "K — Kite (Cái diều)", say: "K. K for Kite" },
+      { emoji: "🦁", en: "L", vi: "L — Lion (Sư tử)", say: "L. L for Lion" },
+      { emoji: "🌙", en: "M", vi: "M — Moon (Mặt trăng)", say: "M. M for Moon" },
+      { emoji: "👃", en: "N", vi: "N — Nose (Cái mũi)", say: "N. N for Nose" },
+      { emoji: "🍊", en: "O", vi: "O — Orange (Quả cam)", say: "O. O for Orange" },
+      { emoji: "🐷", en: "P", vi: "P — Pig (Con lợn)", say: "P. P for Pig" },
+      { emoji: "👑", en: "Q", vi: "Q — Queen (Nữ hoàng)", say: "Q. Q for Queen" },
+      { emoji: "🌈", en: "R", vi: "R — Rainbow (Cầu vồng)", say: "R. R for Rainbow" },
+      { emoji: "☀️", en: "S", vi: "S — Sun (Mặt trời)", say: "S. S for Sun" },
+      { emoji: "🌳", en: "T", vi: "T — Tree (Cái cây)", say: "T. T for Tree" },
+      { emoji: "☂️", en: "U", vi: "U — Umbrella (Cái ô)", say: "U. U for Umbrella" },
+      { emoji: "🎻", en: "V", vi: "V — Violin (Đàn vĩ cầm)", say: "V. V for Violin" },
+      { emoji: "🍉", en: "W", vi: "W — Watermelon (Dưa hấu)", say: "W. W for Watermelon" },
+      { emoji: "🎁", en: "X", vi: "X — Box (Cái hộp)", say: "X. X for Box" },
+      { emoji: "🛥️", en: "Y", vi: "Y — Yacht (Du thuyền)", say: "Y. Y for Yacht" },
+      { emoji: "🦓", en: "Z", vi: "Z — Zebra (Ngựa vằn)", say: "Z. Z for Zebra" },
+    ],
+  },
+
+  numbers: {
+    title: "🔢 Số đếm",
+    items: [
+      { emoji: "☝️", en: "One", vi: "Số 1 — Một", say: "One. Number one" },
+      { emoji: "✌️", en: "Two", vi: "Số 2 — Hai", say: "Two. Number two" },
+      { emoji: "🖐️", en: "Three", vi: "Số 3 — Ba", say: "Three. Number three" },
+      { emoji: "🍀", en: "Four", vi: "Số 4 — Bốn", say: "Four. Number four" },
+      { emoji: "🖐️", en: "Five", vi: "Số 5 — Năm", say: "Five. Number five" },
+      { emoji: "🎲", en: "Six", vi: "Số 6 — Sáu", say: "Six. Number six" },
+      { emoji: "🌈", en: "Seven", vi: "Số 7 — Bảy", say: "Seven. Number seven" },
+      { emoji: "🐙", en: "Eight", vi: "Số 8 — Tám", say: "Eight. Number eight" },
+      { emoji: "🎱", en: "Nine", vi: "Số 9 — Chín", say: "Nine. Number nine" },
+      { emoji: "🔟", en: "Ten", vi: "Số 10 — Mười", say: "Ten. Number ten" },
+    ],
+  },
+
+  colors: {
+    title: "🎨 Màu sắc",
+    items: [
+      { emoji: "🔴", en: "Red", vi: "Màu đỏ", say: "Red" },
+      { emoji: "🟠", en: "Orange", vi: "Màu cam", say: "Orange" },
+      { emoji: "🟡", en: "Yellow", vi: "Màu vàng", say: "Yellow" },
+      { emoji: "🟢", en: "Green", vi: "Màu xanh lá", say: "Green" },
+      { emoji: "🔵", en: "Blue", vi: "Màu xanh dương", say: "Blue" },
+      { emoji: "🟣", en: "Purple", vi: "Màu tím", say: "Purple" },
+      { emoji: "🟤", en: "Brown", vi: "Màu nâu", say: "Brown" },
+      { emoji: "⚫", en: "Black", vi: "Màu đen", say: "Black" },
+      { emoji: "⚪", en: "White", vi: "Màu trắng", say: "White" },
+      { emoji: "🩷", en: "Pink", vi: "Màu hồng", say: "Pink" },
+    ],
+  },
+
+  animals: {
+    title: "🐘 Con vật",
+    items: [
+      { emoji: "🐶", en: "Dog", vi: "Con chó", say: "Dog" },
+      { emoji: "🐱", en: "Cat", vi: "Con mèo", say: "Cat" },
+      { emoji: "🐘", en: "Elephant", vi: "Con voi", say: "Elephant" },
+      { emoji: "🦁", en: "Lion", vi: "Sư tử", say: "Lion" },
+      { emoji: "🐯", en: "Tiger", vi: "Con hổ", say: "Tiger" },
+      { emoji: "🐵", en: "Monkey", vi: "Con khỉ", say: "Monkey" },
+      { emoji: "🐰", en: "Rabbit", vi: "Con thỏ", say: "Rabbit" },
+      { emoji: "🐻", en: "Bear", vi: "Con gấu", say: "Bear" },
+      { emoji: "🐷", en: "Pig", vi: "Con lợn", say: "Pig" },
+      { emoji: "🐮", en: "Cow", vi: "Con bò", say: "Cow" },
+      { emoji: "🐴", en: "Horse", vi: "Con ngựa", say: "Horse" },
+      { emoji: "🐔", en: "Chicken", vi: "Con gà", say: "Chicken" },
+      { emoji: "🦆", en: "Duck", vi: "Con vịt", say: "Duck" },
+      { emoji: "🐟", en: "Fish", vi: "Con cá", say: "Fish" },
+      { emoji: "🐦", en: "Bird", vi: "Con chim", say: "Bird" },
+    ],
+  },
+
+  shapes: {
+    title: "⭐ Hình khối",
+    items: [
+      { emoji: "⭕", en: "Circle", vi: "Hình tròn", say: "Circle" },
+      { emoji: "🟥", en: "Square", vi: "Hình vuông", say: "Square" },
+      { emoji: "🔺", en: "Triangle", vi: "Hình tam giác", say: "Triangle" },
+      { emoji: "🟦", en: "Rectangle", vi: "Hình chữ nhật", say: "Rectangle" },
+      { emoji: "⭐", en: "Star", vi: "Hình ngôi sao", say: "Star" },
+      { emoji: "❤️", en: "Heart", vi: "Hình trái tim", say: "Heart" },
+      { emoji: "💎", en: "Diamond", vi: "Hình thoi", say: "Diamond" },
+      { emoji: "🥚", en: "Oval", vi: "Hình bầu dục", say: "Oval" },
+    ],
+  },
+
+  family: {
+    title: "👨‍👩‍👧‍👦 Gia đình",
+    items: [
+      { emoji: "👨", en: "Father", vi: "Bố", say: "Father. Dad" },
+      { emoji: "👩", en: "Mother", vi: "Mẹ", say: "Mother. Mom" },
+      { emoji: "👦", en: "Brother", vi: "Anh / Em trai", say: "Brother" },
+      { emoji: "👧", en: "Sister", vi: "Chị / Em gái", say: "Sister" },
+      { emoji: "👴", en: "Grandfather", vi: "Ông", say: "Grandfather" },
+      { emoji: "👵", en: "Grandmother", vi: "Bà", say: "Grandmother" },
+      { emoji: "👶", en: "Baby", vi: "Em bé", say: "Baby" },
+      { emoji: "👨‍👩‍👧‍👦", en: "Family", vi: "Gia đình", say: "Family" },
+    ],
+  },
+
+  fruits: {
+    title: "🍎 Trái cây",
+    items: [
+      { emoji: "🍎", en: "Apple", vi: "Quả táo", say: "Apple" },
+      { emoji: "🍌", en: "Banana", vi: "Quả chuối", say: "Banana" },
+      { emoji: "🍊", en: "Orange", vi: "Quả cam", say: "Orange" },
+      { emoji: "🍇", en: "Grapes", vi: "Chùm nho", say: "Grapes" },
+      { emoji: "🍉", en: "Watermelon", vi: "Dưa hấu", say: "Watermelon" },
+      { emoji: "🍓", en: "Strawberry", vi: "Dâu tây", say: "Strawberry" },
+      { emoji: "🍍", en: "Pineapple", vi: "Quả dứa", say: "Pineapple" },
+      { emoji: "🥭", en: "Mango", vi: "Quả xoài", say: "Mango" },
+      { emoji: "🍑", en: "Peach", vi: "Quả đào", say: "Peach" },
+      { emoji: "🍒", en: "Cherry", vi: "Quả anh đào", say: "Cherry" },
+    ],
+  },
+
+  body: {
+    title: "🧍 Cơ thể",
+    items: [
+      { emoji: "👁️", en: "Eye", vi: "Con mắt", say: "Eye" },
+      { emoji: "👂", en: "Ear", vi: "Cái tai", say: "Ear" },
+      { emoji: "👃", en: "Nose", vi: "Cái mũi", say: "Nose" },
+      { emoji: "👄", en: "Mouth", vi: "Cái miệng", say: "Mouth" },
+      { emoji: "🦷", en: "Tooth", vi: "Cái răng", say: "Tooth" },
+      { emoji: "✋", en: "Hand", vi: "Bàn tay", say: "Hand" },
+      { emoji: "🦶", en: "Foot", vi: "Bàn chân", say: "Foot" },
+      { emoji: "💇", en: "Hair", vi: "Mái tóc", say: "Hair" },
+      { emoji: "🦵", en: "Leg", vi: "Cái chân", say: "Leg" },
+      { emoji: "💪", en: "Arm", vi: "Cánh tay", say: "Arm" },
+    ],
+  },
+
+  actions: {
+    title: "🏃 Hành động",
+    items: [
+      { emoji: "🏃", en: "Run", vi: "Chạy", say: "Run" },
+      { emoji: "🚶", en: "Walk", vi: "Đi bộ", say: "Walk" },
+      { emoji: "🦘", en: "Jump", vi: "Nhảy", say: "Jump" },
+      { emoji: "😴", en: "Sleep", vi: "Ngủ", say: "Sleep" },
+      { emoji: "🍽️", en: "Eat", vi: "Ăn", say: "Eat" },
+      { emoji: "🥤", en: "Drink", vi: "Uống", say: "Drink" },
+      { emoji: "📖", en: "Read", vi: "Đọc", say: "Read" },
+      { emoji: "✍️", en: "Write", vi: "Viết", say: "Write" },
+      { emoji: "🎵", en: "Sing", vi: "Hát", say: "Sing" },
+      { emoji: "💃", en: "Dance", vi: "Nhảy múa", say: "Dance" },
+      { emoji: "😀", en: "Smile", vi: "Cười", say: "Smile" },
+      { emoji: "👏", en: "Clap", vi: "Vỗ tay", say: "Clap" },
+    ],
+  },
+
+  classroom: {
+    title: "🎒 Đồ dùng học tập",
+    items: [
+      { emoji: "📚", en: "Book", vi: "Quyển sách", say: "Book" },
+      { emoji: "✏️", en: "Pencil", vi: "Bút chì", say: "Pencil" },
+      { emoji: "🖊️", en: "Pen", vi: "Bút mực", say: "Pen" },
+      { emoji: "🎒", en: "Bag", vi: "Cặp sách", say: "Bag" },
+      { emoji: "📏", en: "Ruler", vi: "Thước kẻ", say: "Ruler" },
+      { emoji: "✂️", en: "Scissors", vi: "Cái kéo", say: "Scissors" },
+      { emoji: "🧽", en: "Eraser", vi: "Cục tẩy", say: "Eraser" },
+      { emoji: "🪑", en: "Chair", vi: "Cái ghế", say: "Chair" },
+      { emoji: "🖥️", en: "Desk", vi: "Cái bàn", say: "Desk" },
+      { emoji: "🖍️", en: "Crayon", vi: "Bút sáp màu", say: "Crayon" },
+    ],
+  },
+
+  food: {
+    title: "🍔 Đồ ăn",
+    items: [
+      { emoji: "🍚", en: "Rice", vi: "Cơm", say: "Rice" },
+      { emoji: "🍞", en: "Bread", vi: "Bánh mì", say: "Bread" },
+      { emoji: "🥛", en: "Milk", vi: "Sữa", say: "Milk" },
+      { emoji: "🥚", en: "Egg", vi: "Trứng", say: "Egg" },
+      { emoji: "🍔", en: "Burger", vi: "Bánh mì kẹp", say: "Burger" },
+      { emoji: "🍕", en: "Pizza", vi: "Bánh pizza", say: "Pizza" },
+      { emoji: "🍜", en: "Noodles", vi: "Mì / Phở", say: "Noodles" },
+      { emoji: "🧀", en: "Cheese", vi: "Phô mai", say: "Cheese" },
+      { emoji: "🍰", en: "Cake", vi: "Bánh ngọt", say: "Cake" },
+      { emoji: "🍬", en: "Candy", vi: "Kẹo", say: "Candy" },
+    ],
+  },
+
+  weather: {
+    title: "🌤️ Thời tiết",
+    items: [
+      { emoji: "☀️", en: "Sunny", vi: "Trời nắng", say: "Sunny" },
+      { emoji: "🌧️", en: "Rainy", vi: "Trời mưa", say: "Rainy" },
+      { emoji: "☁️", en: "Cloudy", vi: "Trời nhiều mây", say: "Cloudy" },
+      { emoji: "💨", en: "Windy", vi: "Trời có gió", say: "Windy" },
+      { emoji: "❄️", en: "Snowy", vi: "Trời có tuyết", say: "Snowy" },
+      { emoji: "🌈", en: "Rainbow", vi: "Cầu vồng", say: "Rainbow" },
+      { emoji: "⛈️", en: "Storm", vi: "Bão", say: "Storm" },
+      { emoji: "🥵", en: "Hot", vi: "Nóng", say: "Hot" },
+      { emoji: "🥶", en: "Cold", vi: "Lạnh", say: "Cold" },
+    ],
+  },
+
+  transport: {
+    title: "🚗 Phương tiện",
+    items: [
+      { emoji: "🚗", en: "Car", vi: "Xe hơi", say: "Car" },
+      { emoji: "🚌", en: "Bus", vi: "Xe buýt", say: "Bus" },
+      { emoji: "🚲", en: "Bike", vi: "Xe đạp", say: "Bike" },
+      { emoji: "🏍️", en: "Motorbike", vi: "Xe máy", say: "Motorbike" },
+      { emoji: "✈️", en: "Plane", vi: "Máy bay", say: "Plane" },
+      { emoji: "🚢", en: "Ship", vi: "Con tàu", say: "Ship" },
+      { emoji: "🚂", en: "Train", vi: "Tàu hoả", say: "Train" },
+      { emoji: "🚁", en: "Helicopter", vi: "Trực thăng", say: "Helicopter" },
+      { emoji: "🚕", en: "Taxi", vi: "Xe taxi", say: "Taxi" },
+      { emoji: "🚑", en: "Ambulance", vi: "Xe cứu thương", say: "Ambulance" },
+    ],
+  },
+};
+
+// Các chủ đề dùng cho trò chơi đố vui (chọn hình đúng)
+const GAME_TOPICS = [
+  "animals", "fruits", "colors", "numbers", "shapes",
+  "body", "food", "weather", "transport", "classroom",
+];
+
+// Các chủ đề dùng cho trò chơi ghép chữ (từ ngắn, dễ đánh vần)
+const SPELL_TOPICS = [
+  "animals", "fruits", "colors", "shapes", "body",
+  "food", "transport", "classroom",
+];
+
+// Danh sách chữ cái & số dùng cho phần Tập viết
+const TRACE_SET = [
+  "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M",
+  "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+  "1", "2", "3", "4", "5", "6", "7", "8", "9", "0",
+];
+
+</script>
+<script>
+/* ================= Bộ nhớ an toàn ================= */
+/* Bọc localStorage để app không lỗi khi trình duyệt chặn (ví dụ chế độ ẩn danh,
+   iframe sandbox). Nếu không dùng được thì lưu tạm trong bộ nhớ. */
+const LS = (() => {
+  const mem = {};
+  let ok = true;
+  try {
+    const k = "__bhta_test__";
+    localStorage.setItem(k, "1");
+    localStorage.removeItem(k);
+  } catch (e) {
+    ok = false;
+  }
+  return {
+    get: (k) => {
+      try {
+        return ok ? localStorage.getItem(k) : mem[k] ?? null;
+      } catch (e) {
+        return mem[k] ?? null;
+      }
+    },
+    set: (k, v) => {
+      try {
+        ok ? localStorage.setItem(k, v) : (mem[k] = String(v));
+      } catch (e) {
+        mem[k] = String(v);
+      }
+    },
+    remove: (k) => {
+      try {
+        ok ? localStorage.removeItem(k) : delete mem[k];
+      } catch (e) {
+        delete mem[k];
+      }
+    },
+  };
+})();
+
+/* ================= State ================= */
+const state = {
+  topic: null,
+  index: 0,
+  soundOn: true,
+  stars: Number(LS.get("bhta_stars") || 0),
+  rate: Number(LS.get("bhta_rate") || 0.8),
+  done: JSON.parse(LS.get("bhta_done") || "{}"), // chủ đề đã học xong
+  gameScore: 0,
+  gameAnswer: null,
+  // spelling
+  spellWord: null,
+  spellBuilt: [],
+  spellScore: 0,
+  // tracing
+  traceIndex: 0,
+};
+
+function markDone(topic) {
+  if (!state.done[topic]) {
+    state.done[topic] = true;
+    LS.set("bhta_done", JSON.stringify(state.done));
+  }
+}
+
+/* ================= Helpers ================= */
+const $ = (sel) => document.querySelector(sel);
+const $$ = (sel) => Array.from(document.querySelectorAll(sel));
+
+function showScreen(id) {
+  $$(".screen").forEach((s) => s.classList.remove("active"));
+  $("#" + id).classList.add("active");
+}
+
+/* ---------- Text to speech (đọc tiếng Anh) ---------- */
+let voices = [];
+function loadVoices() {
+  voices = window.speechSynthesis ? window.speechSynthesis.getVoices() : [];
+}
+if (window.speechSynthesis) {
+  loadVoices();
+  window.speechSynthesis.onvoiceschanged = loadVoices;
+}
+
+function speak(text) {
+  if (!state.soundOn || !window.speechSynthesis) return;
+  window.speechSynthesis.cancel();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = "en-US";
+  u.rate = state.rate; // chậm để bé nghe rõ
+  u.pitch = 1.1;
+  const enVoice =
+    voices.find((v) => /en-US/i.test(v.lang) && /female|Samantha|Google US/i.test(v.name)) ||
+    voices.find((v) => /^en/i.test(v.lang));
+  if (enVoice) u.voice = enVoice;
+  window.speechSynthesis.speak(u);
+}
+
+/* ---------- Âm thanh vui khi làm đúng (Web Audio) ---------- */
+let audioCtx = null;
+function playTone(freqs, dur = 0.15) {
+  if (!state.soundOn) return;
+  try {
+    audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+    freqs.forEach((f, i) => {
+      const o = audioCtx.createOscillator();
+      const g = audioCtx.createGain();
+      o.type = "triangle";
+      o.frequency.value = f;
+      o.connect(g);
+      g.connect(audioCtx.destination);
+      const t = audioCtx.currentTime + i * dur;
+      g.gain.setValueAtTime(0.0001, t);
+      g.gain.exponentialRampToValueAtTime(0.3, t + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      o.start(t);
+      o.stop(t + dur);
+    });
+  } catch (e) {
+    /* bỏ qua nếu trình duyệt không hỗ trợ */
+  }
+}
+const playCorrect = () => playTone([523, 659, 784, 1047]); // đô-mi-sol-đô vui tai
+const playWrong = () => playTone([300, 200], 0.2);
+
+/* ---------- Sao thưởng ---------- */
+function addStars(n) {
+  state.stars += n;
+  LS.set("bhta_stars", state.stars);
+  updateStars();
+}
+function updateStars() {
+  $("#home-stars").textContent = state.stars;
+}
+
+/* ---------- Pháo hoa / khen thưởng ---------- */
+function celebrate(msg) {
+  const layer = $("#reward");
+  layer.innerHTML = "";
+  const bubble = document.createElement("div");
+  bubble.className = "reward-bubble";
+  bubble.textContent = msg;
+  layer.appendChild(bubble);
+
+  const emojis = ["🎉", "⭐", "🌟", "🎈", "🏆", "✨", "🎊", "💖"];
+  for (let i = 0; i < 26; i++) {
+    const c = document.createElement("div");
+    c.className = "confetti";
+    c.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    c.style.left = Math.random() * 100 + "vw";
+    c.style.animationDelay = Math.random() * 0.5 + "s";
+    c.style.fontSize = 18 + Math.random() * 26 + "px";
+    layer.appendChild(c);
+  }
+  setTimeout(() => (layer.innerHTML = ""), 1800);
+}
+
+/* ================= Flashcards (Học) ================= */
+function openTopic(key) {
+  state.topic = key;
+  state.index = 0;
+  const t = TOPICS[key];
+  $("#learn-title").textContent = t.title;
+  $("#card-total").textContent = t.items.length;
+  buildDots(t.items.length);
+  renderCard();
+  showScreen("learn");
+}
+
+function buildDots(n) {
+  const dots = $("#dots");
+  dots.innerHTML = "";
+  for (let i = 0; i < n; i++) {
+    const d = document.createElement("span");
+    d.className = "dot";
+    dots.appendChild(d);
+  }
+}
+
+function renderCard() {
+  const item = TOPICS[state.topic].items[state.index];
+  const card = $("#flashcard");
+  card.classList.remove("pop");
+  void card.offsetWidth; // reset animation
+  card.classList.add("pop");
+
+  $("#flash-emoji").textContent = item.emoji;
+  $("#flash-word").textContent = item.en;
+  $("#flash-vi").textContent = item.vi;
+  $("#card-index").textContent = state.index + 1;
+
+  $$("#dots .dot").forEach((d, i) => d.classList.toggle("on", i === state.index));
+
+  speak(item.say);
+}
+
+function nextCard() {
+  const items = TOPICS[state.topic].items;
+  if (state.index < items.length - 1) {
+    state.index++;
+    renderCard();
+  } else {
+    // học hết một chủ đề -> thưởng
+    addStars(1);
+    markDone(state.topic);
+    celebrate("Giỏi quá! 🏆 +1 sao");
+    playCorrect();
+  }
+}
+function prevCard() {
+  if (state.index > 0) {
+    state.index--;
+    renderCard();
+  }
+}
+
+/* ================= Trò chơi (Quiz) ================= */
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
+function startGame() {
+  state.gameScore = 0;
+  $("#game-score").textContent = 0;
+  showScreen("game");
+  nextQuestion();
+}
+
+function nextQuestion() {
+  $("#game-feedback").textContent = "";
+  // gộp tất cả items từ các chủ đề chơi
+  const pool = [];
+  GAME_TOPICS.forEach((k) => TOPICS[k].items.forEach((it) => pool.push(it)));
+
+  const correct = pool[Math.floor(Math.random() * pool.length)];
+  state.gameAnswer = correct;
+
+  // 3 lựa chọn: 1 đúng + 2 sai (khác emoji)
+  const wrongs = shuffle(pool.filter((p) => p.emoji !== correct.emoji)).slice(0, 2);
+  const options = shuffle([correct, ...wrongs]);
+
+  $("#quiz-word").textContent = correct.en + "  ·  " + correct.vi.split("—")[0];
+  const box = $("#quiz-options");
+  box.innerHTML = "";
+  options.forEach((opt) => {
+    const b = document.createElement("button");
+    b.className = "quiz-opt";
+    b.textContent = opt.emoji;
+    b.onclick = () => checkAnswer(opt, b);
+    box.appendChild(b);
+  });
+
+  setTimeout(() => speak(correct.say), 350);
+}
+
+function checkAnswer(opt, btn) {
+  if (opt.emoji === state.gameAnswer.emoji) {
+    btn.classList.add("right");
+    $("#game-feedback").textContent = "Chính xác! 🎉";
+    state.gameScore++;
+    $("#game-score").textContent = state.gameScore;
+    addStars(1);
+    playCorrect();
+    celebrate("Đúng rồi! ⭐");
+    $$("#quiz-options .quiz-opt").forEach((b) => (b.disabled = true));
+    setTimeout(nextQuestion, 1300);
+  } else {
+    btn.classList.add("wrong");
+    btn.disabled = true;
+    $("#game-feedback").textContent = "Thử lại nào! 💪";
+    playWrong();
+  }
+}
+
+/* ================= Trò chơi ghép chữ (Spelling) ================= */
+function startSpell() {
+  state.spellScore = 0;
+  $("#spell-score").textContent = 0;
+  showScreen("spell");
+  nextSpell();
+}
+
+function nextSpell() {
+  $("#spell-feedback").textContent = "";
+  const pool = [];
+  SPELL_TOPICS.forEach((k) =>
+    TOPICS[k].items.forEach((it) => {
+      // chỉ lấy từ 1 chữ, ngắn (<= 8 ký tự) cho bé dễ ghép
+      if (/^[a-zA-Z]+$/.test(it.en) && it.en.length <= 8) pool.push(it);
+    })
+  );
+  const word = pool[Math.floor(Math.random() * pool.length)];
+  state.spellWord = word;
+  state.spellBuilt = [];
+
+  $("#spell-emoji").textContent = word.emoji;
+  $("#spell-vi").textContent = word.vi;
+
+  // ô trống theo số chữ cái
+  const slots = $("#spell-slots");
+  slots.innerHTML = "";
+  word.en.split("").forEach(() => {
+    const s = document.createElement("div");
+    s.className = "spell-slot";
+    slots.appendChild(s);
+  });
+
+  // các mảnh chữ cái xáo trộn
+  const letters = shuffle(word.en.toUpperCase().split(""));
+  const tiles = $("#spell-tiles");
+  tiles.innerHTML = "";
+  letters.forEach((ch, i) => {
+    const t = document.createElement("button");
+    t.className = "spell-tile";
+    t.textContent = ch;
+    t.dataset.idx = i;
+    t.onclick = () => placeLetter(ch, t);
+    tiles.appendChild(t);
+  });
+
+  setTimeout(() => speak(word.say), 300);
+  renderSpellSlots();
+}
+
+function renderSpellSlots() {
+  const slots = $$("#spell-slots .spell-slot");
+  slots.forEach((s, i) => {
+    s.textContent = state.spellBuilt[i] || "";
+    s.classList.toggle("filled", !!state.spellBuilt[i]);
+  });
+}
+
+function placeLetter(ch, tile) {
+  if (tile.disabled) return;
+  const target = state.spellWord.en.toUpperCase();
+  if (state.spellBuilt.length >= target.length) return;
+  state.spellBuilt.push(ch);
+  tile.disabled = true;
+  tile.classList.add("used");
+  renderSpellSlots();
+
+  if (state.spellBuilt.length === target.length) checkSpell();
+}
+
+function undoLetter() {
+  if (!state.spellBuilt.length) return;
+  state.spellBuilt.pop();
+  // bật lại mảnh chữ cuối cùng đã dùng
+  const usedTiles = $$("#spell-tiles .spell-tile.used");
+  const last = usedTiles[usedTiles.length - 1];
+  if (last) {
+    last.disabled = false;
+    last.classList.remove("used");
+  }
+  $("#spell-feedback").textContent = "";
+  renderSpellSlots();
+}
+
+function checkSpell() {
+  const target = state.spellWord.en.toUpperCase();
+  const built = state.spellBuilt.join("");
+  if (built === target) {
+    $("#spell-feedback").textContent = "Tuyệt vời! 🎉 " + state.spellWord.en;
+    $$("#spell-slots .spell-slot").forEach((s) => s.classList.add("correct"));
+    state.spellScore++;
+    $("#spell-score").textContent = state.spellScore;
+    addStars(1);
+    playCorrect();
+    celebrate("Đúng chính tả! ⭐");
+    speak(state.spellWord.say);
+    setTimeout(nextSpell, 1600);
+  } else {
+    $("#spell-feedback").textContent = "Chưa đúng, thử lại nhé! 💪";
+    playWrong();
+    $$("#spell-slots .spell-slot").forEach((s) => s.classList.add("shake"));
+    setTimeout(() => resetSpellAttempt(), 700);
+  }
+}
+
+function resetSpellAttempt() {
+  state.spellBuilt = [];
+  $$("#spell-tiles .spell-tile").forEach((t) => {
+    t.disabled = false;
+    t.classList.remove("used");
+  });
+  $$("#spell-slots .spell-slot").forEach((s) =>
+    s.classList.remove("correct", "shake")
+  );
+  renderSpellSlots();
+}
+
+function spellHint() {
+  // điền chữ cái đúng tiếp theo
+  const target = state.spellWord.en.toUpperCase();
+  const nextCh = target[state.spellBuilt.length];
+  if (!nextCh) return;
+  const tile = $$("#spell-tiles .spell-tile").find(
+    (t) => !t.disabled && t.textContent === nextCh
+  );
+  if (tile) placeLetter(nextCh, tile);
+}
+
+/* ================= Tập viết (Tracing) ================= */
+let traceCtx = null;
+let tracing = false;
+
+function initTraceCanvas() {
+  const canvas = $("#trace-canvas");
+  traceCtx = canvas.getContext("2d");
+  traceCtx.lineCap = "round";
+  traceCtx.lineJoin = "round";
+  traceCtx.lineWidth = 26;
+  traceCtx.strokeStyle = "#ff5c8a";
+}
+
+function tracePos(e) {
+  const canvas = $("#trace-canvas");
+  const rect = canvas.getBoundingClientRect();
+  const p = e.touches ? e.touches[0] : e;
+  return {
+    x: ((p.clientX - rect.left) / rect.width) * canvas.width,
+    y: ((p.clientY - rect.top) / rect.height) * canvas.height,
+  };
+}
+
+function startTrace() {
+  state.traceIndex = 0;
+  showScreen("trace");
+  initTraceCanvas();
+  renderTrace();
+}
+
+function renderTrace() {
+  const ch = TRACE_SET[state.traceIndex];
+  $("#trace-ghost").textContent = ch;
+  clearTrace();
+  const isLetter = /[A-Z]/.test(ch);
+  speak(isLetter ? ch + ". " + ch : "Number " + ch);
+}
+
+function clearTrace() {
+  const canvas = $("#trace-canvas");
+  if (traceCtx) traceCtx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function traceMove(e) {
+  if (!tracing) return;
+  e.preventDefault();
+  const pos = tracePos(e);
+  traceCtx.lineTo(pos.x, pos.y);
+  traceCtx.stroke();
+}
+function traceStart(e) {
+  tracing = true;
+  const pos = tracePos(e);
+  traceCtx.beginPath();
+  traceCtx.moveTo(pos.x, pos.y);
+}
+function traceEnd() {
+  tracing = false;
+}
+
+function traceNav(dir) {
+  state.traceIndex =
+    (state.traceIndex + dir + TRACE_SET.length) % TRACE_SET.length;
+  renderTrace();
+}
+
+function traceDone() {
+  addStars(1);
+  playCorrect();
+  celebrate("Viết đẹp lắm! ✍️ +1 sao");
+  setTimeout(() => traceNav(1), 900);
+}
+
+/* ================= Thành tích (Badges) ================= */
+const LEVELS = [
+  { min: 0, emoji: "🌱", name: "Bé mới bắt đầu" },
+  { min: 10, emoji: "🐣", name: "Chăm học" },
+  { min: 25, emoji: "🌟", name: "Bé giỏi" },
+  { min: 50, emoji: "🚀", name: "Siêu sao" },
+  { min: 100, emoji: "👑", name: "Nhà vô địch" },
+];
+
+function currentLevel() {
+  let lvl = LEVELS[0];
+  for (const l of LEVELS) if (state.stars >= l.min) lvl = l;
+  return lvl;
+}
+
+function showBadges() {
+  $("#badge-stars").textContent = state.stars;
+  const lvl = currentLevel();
+  const next = LEVELS.find((l) => l.min > state.stars);
+  $("#level-emoji").textContent = lvl.emoji;
+  $("#level-name").textContent = lvl.name;
+  if (next) {
+    const prevMin = lvl.min;
+    const pct = Math.min(
+      100,
+      ((state.stars - prevMin) / (next.min - prevMin)) * 100
+    );
+    $("#level-fill").style.width = pct + "%";
+    $("#level-hint").textContent =
+      "Còn " + (next.min - state.stars) + " sao nữa lên " + next.emoji + " " + next.name;
+  } else {
+    $("#level-fill").style.width = "100%";
+    $("#level-hint").textContent = "Bé đã đạt cấp cao nhất! 🎉";
+  }
+
+  const grid = $("#badge-grid");
+  grid.innerHTML = "";
+  Object.keys(TOPICS).forEach((key) => {
+    const t = TOPICS[key];
+    const done = !!state.done[key];
+    const b = document.createElement("div");
+    b.className = "badge-item" + (done ? " earned" : "");
+    b.innerHTML =
+      '<div class="badge-face">' +
+      (done ? "🏅" : "🔒") +
+      "</div><div class='badge-name'>" +
+      t.title +
+      "</div>";
+    grid.appendChild(b);
+  });
+  showScreen("badges");
+}
+
+/* ================= Cài đặt (Settings) ================= */
+function initSettings() {
+  const range = $("#rate-range");
+  range.value = state.rate;
+  updateRateLabel();
+}
+function updateRateLabel() {
+  const r = state.rate;
+  $("#rate-val").textContent = r <= 0.6 ? "Chậm 🐢" : r >= 0.9 ? "Nhanh 🐇" : "Vừa";
+}
+
+/* ================= Điều hướng & sự kiện ================= */
+function go(target) {
+  if (window.speechSynthesis) window.speechSynthesis.cancel();
+  if (target === "home") {
+    updateStars();
+    showScreen("home");
+  } else if (target === "game") {
+    startGame();
+  } else if (target === "spell") {
+    startSpell();
+  } else if (target === "trace") {
+    startTrace();
+  } else if (target === "badges") {
+    showBadges();
+  } else if (target === "settings") {
+    initSettings();
+    showScreen("settings");
+  } else if (TOPICS[target]) {
+    openTopic(target);
+  }
+}
+
+document.addEventListener("click", (e) => {
+  const goBtn = e.target.closest("[data-go]");
+  if (goBtn) go(goBtn.dataset.go);
+});
+
+$("#next-card").addEventListener("click", nextCard);
+$("#prev-card").addEventListener("click", prevCard);
+$("#speak-btn").addEventListener("click", () =>
+  speak(TOPICS[state.topic].items[state.index].say)
+);
+$("#flashcard").addEventListener("click", (e) => {
+  if (!e.target.closest(".speak-btn")) {
+    speak(TOPICS[state.topic].items[state.index].say);
+  }
+});
+
+$("#game-speak").addEventListener("click", () => {
+  if (state.gameAnswer) speak(state.gameAnswer.say);
+});
+
+$("#sound-toggle").addEventListener("click", () => {
+  state.soundOn = !state.soundOn;
+  $("#sound-toggle").textContent = state.soundOn ? "🔊 Âm thanh" : "🔇 Tắt tiếng";
+  if (!state.soundOn && window.speechSynthesis) window.speechSynthesis.cancel();
+});
+
+/* ---- Spelling events ---- */
+$("#spell-speak").addEventListener("click", () => {
+  if (state.spellWord) speak(state.spellWord.say);
+});
+$("#spell-undo").addEventListener("click", undoLetter);
+$("#spell-hint").addEventListener("click", spellHint);
+
+/* ---- Tracing events ---- */
+const traceCanvas = $("#trace-canvas");
+traceCanvas.addEventListener("mousedown", traceStart);
+traceCanvas.addEventListener("mousemove", traceMove);
+window.addEventListener("mouseup", traceEnd);
+traceCanvas.addEventListener("touchstart", traceStart, { passive: false });
+traceCanvas.addEventListener("touchmove", traceMove, { passive: false });
+traceCanvas.addEventListener("touchend", traceEnd);
+$("#trace-clear").addEventListener("click", clearTrace);
+$("#trace-done").addEventListener("click", traceDone);
+$("#trace-prev").addEventListener("click", () => traceNav(-1));
+$("#trace-next").addEventListener("click", () => traceNav(1));
+$("#trace-speak").addEventListener("click", () => {
+  const ch = TRACE_SET[state.traceIndex];
+  speak(/[A-Z]/.test(ch) ? ch : "Number " + ch);
+});
+
+/* ---- Settings events ---- */
+$("#rate-range").addEventListener("input", (e) => {
+  state.rate = Number(e.target.value);
+  LS.set("bhta_rate", state.rate);
+  updateRateLabel();
+});
+$("#test-voice").addEventListener("click", () => speak("Hello. How are you?"));
+$("#reset-progress").addEventListener("click", () => {
+  if (confirm("Xoá toàn bộ sao và thành tích của bé?")) {
+    state.stars = 0;
+    state.done = {};
+    LS.remove("bhta_stars");
+    LS.remove("bhta_done");
+    updateStars();
+    alert("Đã đặt lại! Bé bắt đầu lại từ đầu nhé 🌱");
+  }
+});
+
+// Vuốt trái/phải trên điện thoại để chuyển thẻ
+let touchX = null;
+$("#learn").addEventListener("touchstart", (e) => (touchX = e.touches[0].clientX));
+$("#learn").addEventListener("touchend", (e) => {
+  if (touchX === null) return;
+  const dx = e.changedTouches[0].clientX - touchX;
+  if (dx < -50) nextCard();
+  else if (dx > 50) prevCard();
+  touchX = null;
+});
+
+// Phím mũi tên trên máy tính
+document.addEventListener("keydown", (e) => {
+  if (!$("#learn").classList.contains("active")) return;
+  if (e.key === "ArrowRight") nextCard();
+  if (e.key === "ArrowLeft") prevCard();
+  if (e.key === " ") {
+    e.preventDefault();
+    speak(TOPICS[state.topic].items[state.index].say);
+  }
+});
+
+/* ================= Khởi động ================= */
+updateStars();
+
+</script>
+</body>
+</html>
