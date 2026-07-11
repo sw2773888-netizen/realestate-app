@@ -17,11 +17,23 @@ Mỗi thẻ có hình minh hoạ, từ tiếng Anh, nghĩa tiếng Việt và n�
 - **🏆 Thành tích** — theo dõi các chủ đề đã học, cấp độ (🌱 → 🐣 → 🌟 → 🚀 → 👑) và thanh tiến trình.
 
 ### 🛠️ Tiện ích khác
+- **📲 Cài vào màn hình điện thoại như app thật (PWA)** — có icon riêng, mở toàn màn hình, **dùng được cả khi không có mạng**.
 - **🔊 Phát âm tiếng Anh** tự động (Web Speech API) — đọc chậm, rõ để bé nghe theo.
 - **⚙️ Cài đặt** — chỉnh **tốc độ đọc** (chậm/vừa/nhanh), nghe thử, và đặt lại tiến trình.
 - **⭐ Hệ thống sao thưởng** — nhận sao khi học xong chủ đề, viết xong, hay trả lời đúng (lưu trên máy, không mất khi tắt).
 - **📱 Chạy tốt trên điện thoại, máy tính bảng, máy tính** — vuốt trái/phải để lật thẻ, bấm phím mũi tên & phím cách trên máy tính.
 - Hoạt hình, âm thanh vui tai, hiệu ứng pháo hoa để tạo hứng thú.
+
+## 📲 Cài app vào màn hình điện thoại
+
+App hỗ trợ **PWA** — mở link app trên trình duyệt rồi làm theo:
+
+- **Android (Chrome):** bấm menu **⋮** → **Thêm vào Màn hình chính** (*Add to Home screen*).
+- **iPhone/iPad (Safari):** bấm nút **Chia sẻ** ⬆️ → **Thêm vào MH chính** (*Add to Home Screen*).
+
+Sau đó app có **icon 🎈 ABC** riêng trên màn hình, mở lên chạy toàn màn hình như app tải từ store, và **vẫn dùng được khi không có mạng** (đã lưu sẵn nhờ Service Worker).
+
+> ⚠️ PWA cần chạy qua **địa chỉ web (http/https)** — ví dụ GitHub Pages hoặc githack — chứ không dùng được khi mở trực tiếp file. Bản 1 file `standalone.html` vẫn mở & chơi được nhưng không cài vào màn hình.
 
 ## 🚀 Cách dùng
 
@@ -46,6 +58,10 @@ python3 -m http.server 8000
 | `styles.css` | Toàn bộ màu sắc, hoạt hình, bố cục thân thiện với trẻ |
 | `data.js` | Nội dung học tập (chữ cái, số, màu, con vật…) — **dễ dàng thêm/sửa** |
 | `app.js` | Điều hướng, phát âm, các trò chơi, tập viết, thành tích, cài đặt |
+| `manifest.webmanifest` | Khai báo PWA (tên, icon, màu) để cài vào màn hình |
+| `sw.js` | Service Worker — lưu app để chạy khi không có mạng |
+| `icon-192.png`, `icon-512.png`, `apple-touch-icon.png` | Icon của app |
+| `standalone.html` | Bản gộp **1 file** duy nhất — tiện gửi/mở trực tiếp |
 
 ## ➕ Thêm nội dung mới
 

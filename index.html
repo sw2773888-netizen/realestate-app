@@ -5,6 +5,14 @@
 <link rel="stylesheet" href="styles.css" />
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎈</text></svg>" />
 
+<!-- PWA: cài vào màn hình điện thoại như app thật -->
+<link rel="manifest" href="manifest.webmanifest" />
+<link rel="apple-touch-icon" href="apple-touch-icon.png" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="Học Tiếng Anh" />
+
 <!-- ================= HOME / MENU ================= -->
 <div id="app">
   <!-- Home screen -->
@@ -254,3 +262,11 @@
 
 <script src="data.js"></script>
 <script src="app.js"></script>
+<script>
+  // Đăng ký Service Worker để app chạy offline & cài được vào màn hình
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("sw.js").catch(() => {});
+    });
+  }
+</script>
