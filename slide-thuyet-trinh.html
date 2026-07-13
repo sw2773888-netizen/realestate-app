@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Slide — Quy Trình Kiến Tạo Khóa Học Triệu Đô</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0d1016;
+    --bg2: #12161f;
+    --card: #191e29;
+    --card-br: #2a3140;
+    --gold: #f4c74b;
+    --gold-soft: #ffdf87;
+    --text: #eef1f6;
+    --muted: #9aa3b2;
+    --font: "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial, sans-serif;
+  }
+  html, body { height: 100%; background: var(--bg); font-family: var(--font); overflow: hidden; }
+
+  .deck { position: fixed; inset: 0; }
+  .slide {
+    position: absolute; inset: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6vh 8vw;
+    background: radial-gradient(120% 120% at 80% 0%, #161b26 0%, var(--bg) 55%);
+    color: var(--text);
+    animation: fade .45s ease;
+  }
+  .slide.active { display: flex; }
+  @keyframes fade { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+  .tag {
+    display: inline-block;
+    align-self: flex-start;
+    background: rgba(244,199,75,.14);
+    color: var(--gold);
+    font-size: clamp(.7rem, 1.5vw, 1rem);
+    font-weight: 700;
+    letter-spacing: 3px;
+    padding: 7px 16px;
+    border-radius: 20px;
+    margin-bottom: 3vh;
+    text-transform: uppercase;
+  }
+  h1 {
+    font-size: clamp(2rem, 6vw, 4.4rem);
+    line-height: 1.08;
+    color: var(--gold-soft);
+    font-weight: 800;
+    text-wrap: balance;
+    margin-bottom: 2.4vh;
+  }
+  h2 {
+    font-size: clamp(1.6rem, 4.6vw, 3.2rem);
+    line-height: 1.12;
+    color: var(--gold-soft);
+    font-weight: 800;
+    text-wrap: balance;
+    margin-bottom: 3.2vh;
+  }
+  .subtitle { font-size: clamp(1rem, 2.4vw, 1.6rem); color: var(--muted); font-weight: 500; }
+  .lead { font-size: clamp(1.05rem, 2.5vw, 1.7rem); color: var(--text); max-width: 60ch; line-height: 1.5; }
+
+  /* card grids */
+  .cards { display: grid; gap: clamp(12px, 2vw, 22px); }
+  .cards.c2 { grid-template-columns: repeat(2, 1fr); }
+  .cards.c3 { grid-template-columns: repeat(3, 1fr); }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--card-br);
+    border-radius: 18px;
+    padding: clamp(16px, 2.4vw, 30px);
+    position: relative;
+  }
+  .card.bar { border-left: 5px solid var(--gold); }
+  .card .ico {
+    width: clamp(42px, 5vw, 62px); height: clamp(42px, 5vw, 62px);
+    border-radius: 50%; background: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-size: clamp(1.2rem, 2.6vw, 1.8rem); margin-bottom: 14px;
+  }
+  .card h3 { font-size: clamp(1.05rem, 2.4vw, 1.7rem); color: var(--text); margin-bottom: 8px; font-weight: 700; }
+  .card p { font-size: clamp(.85rem, 1.7vw, 1.15rem); color: var(--muted); line-height: 1.45; }
+
+  /* numbered list */
+  .steps { display: grid; gap: clamp(10px, 1.6vw, 16px); grid-template-columns: repeat(2, 1fr); }
+  .step { display: flex; align-items: center; gap: 16px; background: var(--card); border: 1px solid var(--card-br); border-radius: 14px; padding: clamp(12px, 1.8vw, 20px); }
+  .step .num {
+    flex-shrink: 0;
+    width: clamp(36px, 4vw, 52px); height: clamp(36px, 4vw, 52px);
+    border-radius: 50%; background: rgba(244,199,75,.16); color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: clamp(1rem, 2.2vw, 1.5rem);
+  }
+  .step span { font-size: clamp(.95rem, 1.9vw, 1.3rem); color: var(--text); font-weight: 600; }
+
+  /* big step detail */
+  .bignum { font-size: clamp(3rem, 9vw, 7rem); font-weight: 900; color: rgba(244,199,75,.22); line-height: 1; margin-bottom: 1vh; }
+  ul.points { list-style: none; display: grid; gap: 1.6vh; margin-top: 2vh; }
+  ul.points li { font-size: clamp(1rem, 2.3vw, 1.55rem); color: var(--text); line-height: 1.4; padding-left: 34px; position: relative; max-width: 62ch; }
+  ul.points li::before { content: "▸"; color: var(--gold); position: absolute; left: 0; font-size: 1.1em; }
+
+  .center { align-items: center; text-align: center; }
+  .center h1, .center h2 { text-align: center; }
+  .center .lead { text-align: center; }
+
+  .flow { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 2vh; }
+  .flow span { background: var(--card); border: 1px solid var(--card-br); color: var(--gold-soft); font-weight: 600; padding: 10px 18px; border-radius: 30px; font-size: clamp(.85rem, 1.8vw, 1.15rem); }
+
+  /* footer / controls */
+  .foot { position: fixed; bottom: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; padding: 10px 22px; font-size: .85rem; color: var(--muted); z-index: 10; }
+  .progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--gold); transition: width .3s; z-index: 20; }
+  .nav-btn { background: rgba(255,255,255,.06); border: 1px solid var(--card-br); color: var(--text); width: 40px; height: 40px; border-radius: 50%; font-size: 1.3rem; cursor: pointer; }
+  .nav-btn:hover { background: rgba(244,199,75,.2); }
+  .hint { position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%); color: var(--muted); font-size: .8rem; opacity: .7; }
+</style>
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="deck" id="deck">
+
+  <!-- 1. TITLE -->
+  <section class="slide center active">
+    <span class="tag">Khóa học kiến tạo</span>
+    <h1>Quy Trình Kiến Tạo<br>Khóa Học Triệu Đô</h1>
+    <p class="subtitle">Thuyết trình bởi <b style="color:var(--gold-soft)">[TÊN CỦA BẠN]</b></p>
+    <p class="subtitle" style="margin-top:1.5vh">Thời đại AI • Sản phẩm số • Thu nhập tự động</p>
+  </section>
+
+  <!-- 2. AGENDA -->
+  <section class="slide">
+    <span class="tag">Nội dung</span>
+    <h2>Hôm Nay Chúng Ta Sẽ Đi Qua</h2>
+    <div class="steps">
+      <div class="step"><div class="num">1</div><span>Thực trạng kinh doanh truyền thống</span></div>
+      <div class="step"><div class="num">2</div><span>Sức mạnh của sản phẩm số</span></div>
+      <div class="step"><div class="num">3</div><span>Thời đại AI &amp; cơ hội vàng</span></div>
+      <div class="step"><div class="num">4</div><span>Quy trình 7 bước kiến tạo khóa học</span></div>
+    </div>
+  </section>
+
+  <!-- 3. THUC TRANG -->
+  <section class="slide">
+    <span class="tag">Thực trạng</span>
+    <h2>Kinh Doanh Truyền Thống Đang Kìm Hãm Bạn</h2>
+    <div class="cards c3">
+      <div class="card bar"><h3>Bán 1 → Thu 1 lần</h3><p>Mỗi đơn hàng đòi hỏi công sức mới. Không tích lũy, không đòn bẩy.</p></div>
+      <div class="card bar"><h3>Phụ thuộc địa lý</h3><p>Chỉ bán được cho khách ở gần bạn — bị giới hạn bởi vị trí.</p></div>
+      <div class="card bar"><h3>Phụ thuộc thời gian</h3><p>Không làm việc = không có tiền. Mô hình không thể mở rộng.</p></div>
+    </div>
+  </section>
+
+  <!-- 4. CO HOI -->
+  <section class="slide">
+    <span class="tag">Cơ hội</span>
+    <h2>Sức Mạnh Của Sản Phẩm Số</h2>
+    <div class="cards c2">
+      <div class="card"><div class="ico">∞</div><h3>Không giới hạn số lượng</h3><p>Một sản phẩm số bán cho hàng triệu người cùng lúc.</p></div>
+      <div class="card"><div class="ico">💰</div><h3>Không giới hạn thu nhập</h3><p>Thu nhập tỉ lệ thuận với giá trị bạn tạo ra, không phải giờ làm.</p></div>
+      <div class="card"><div class="ico">🌐</div><h3>Không giới hạn địa lý</h3><p>Bán cho bất kỳ ai, bất kỳ đâu trên thế giới, 24/7.</p></div>
+      <div class="card"><div class="ico">⚙️</div><h3>Làm 1 lần – Bán mãi mãi</h3><p>Xây một lần, thu nhập chạy tự động ngay cả khi bạn đang ngủ.</p></div>
+    </div>
+  </section>
+
+  <!-- 5. XU HUONG -->
+  <section class="slide center">
+    <span class="tag">Xu hướng</span>
+    <h1>Thời Đại AI<br>Ai Nắm Công Nghệ,<br>Người Đó Có Tiền</h1>
+    <p class="subtitle" style="margin-top:2vh">Ứng dụng AI ngay hôm nay &nbsp;•&nbsp; Hệ thống giáo dục online</p>
+  </section>
+
+  <!-- 6. AI GIUP GI -->
+  <section class="slide">
+    <span class="tag">Công cụ</span>
+    <h2>AI Giúp Bạn Làm Gì?</h2>
+    <ul class="points">
+      <li>Lên ý tưởng &amp; dàn bài khóa học chỉ trong vài phút</li>
+      <li>Viết nội dung bài giảng, kịch bản video, lời quảng cáo</li>
+      <li>Tạo hình ảnh, bài tập, thậm chí cả một ứng dụng học tập</li>
+      <li><b style="color:var(--gold-soft)">Bạn không cần giỏi công nghệ — chỉ cần biết dùng AI</b></li>
+    </ul>
+  </section>
+
+  <!-- 7. QUY TRINH OVERVIEW -->
+  <section class="slide">
+    <span class="tag">Quy trình</span>
+    <h2>7 Bước Kiến Tạo Khóa Học Triệu Đô</h2>
+    <div class="steps" style="grid-template-columns:repeat(2,1fr)">
+      <div class="step"><div class="num">1</div><span>Chọn ngách &amp; đối tượng</span></div>
+      <div class="step"><div class="num">2</div><span>Tìm nỗi đau &amp; kết quả</span></div>
+      <div class="step"><div class="num">3</div><span>Thiết kế lộ trình học</span></div>
+      <div class="step"><div class="num">4</div><span>Dùng AI sản xuất nội dung</span></div>
+      <div class="step"><div class="num">5</div><span>Tạo sản phẩm &amp; lên mạng</span></div>
+      <div class="step"><div class="num">6</div><span>Marketing &amp; bán hàng</span></div>
+      <div class="step"><div class="num">7</div><span>Tự động hóa &amp; mở rộng</span></div>
+    </div>
+  </section>
+
+  <!-- 8. BUOC 1 -->
+  <section class="slide">
+    <span class="tag">Bước 1</span>
+    <div class="bignum">01</div>
+    <h2 style="margin-bottom:1vh">Chọn Ngách &amp; Đối Tượng</h2>
+    <ul class="points">
+      <li>Đừng dạy cho "tất cả mọi người" — hãy chọn một ngách cụ thể bạn giỏi hoặc đam mê</li>
+      <li>Ví dụ: dạy tiếng Anh cho bé vào lớp 1, nấu ăn eat-clean, bán hàng online…</li>
+      <li>Xác định rõ: khách hàng là ai, bao nhiêu tuổi, đang khổ vì điều gì</li>
+    </ul>
+  </section>
+
+  <!-- 9. BUOC 2 -->
+  <section class="slide">
+    <span class="tag">Bước 2</span>
+    <div class="bignum">02</div>
+    <h2 style="margin-bottom:1vh">Tìm "Nỗi Đau" &amp; "Kết Quả"</h2>
+    <ul class="points">
+      <li>Người ta không mua khóa học — người ta mua sự <b style="color:var(--gold-soft)">chuyển hóa</b></li>
+      <li>Nỗi đau: học viên đang gặp vấn đề gì? Kết quả: sau khóa học họ đạt được gì?</li>
+      <li>Khoảng cách giữa nỗi đau và kết quả chính là giá trị khóa học của bạn</li>
+    </ul>
+  </section>
+
+  <!-- 10. BUOC 3 -->
+  <section class="slide">
+    <span class="tag">Bước 3</span>
+    <div class="bignum">03</div>
+    <h2 style="margin-bottom:1vh">Thiết Kế Lộ Trình Học</h2>
+    <ul class="points">
+      <li>Chia kết quả lớn thành các bước nhỏ, sắp xếp từ dễ đến khó</li>
+      <li>Khung thường gặp: Mở đầu tạo động lực → Bài học cốt lõi → Thực hành → Tổng kết</li>
+      <li>Nhờ ChatGPT: "Hãy thiết kế dàn bài khóa học dạy [chủ đề] cho [đối tượng]"</li>
+    </ul>
+  </section>
+
+  <!-- 11. BUOC 4 -->
+  <section class="slide">
+    <span class="tag">Bước 4</span>
+    <div class="bignum">04</div>
+    <h2 style="margin-bottom:1vh">Dùng AI Sản Xuất Nội Dung</h2>
+    <ul class="points">
+      <li>Dùng ChatGPT viết nội dung từng bài, kịch bản video, bài tập, ví dụ</li>
+      <li>Việc trước đây mất cả tuần — giờ xong trong một buổi</li>
+      <li>Đọc lại &amp; chỉnh theo giọng văn của bạn — "chất riêng" khiến khóa học có hồn</li>
+    </ul>
+  </section>
+
+  <!-- 12. BUOC 5 -->
+  <section class="slide">
+    <span class="tag">Bước 5</span>
+    <div class="bignum">05</div>
+    <h2 style="margin-bottom:1vh">Tạo Sản Phẩm &amp; Đưa Lên Mạng</h2>
+    <ul class="points">
+      <li>Đóng gói thành sản phẩm: video bài giảng, tài liệu, hoặc ứng dụng học tập</li>
+      <li>Đưa lên mạng để có một đường link ai cũng truy cập được</li>
+      <li>Khi có link — sản phẩm của bạn chính thức "mở cửa hàng" 24/7</li>
+    </ul>
+  </section>
+
+  <!-- 13. BUOC 6 -->
+  <section class="slide">
+    <span class="tag">Bước 6</span>
+    <div class="bignum">06</div>
+    <h2 style="margin-bottom:1vh">Marketing &amp; Bán Hàng</h2>
+    <ul class="points">
+      <li>Làm nội dung (video ngắn, bài đăng) chia sẻ giá trị miễn phí để tạo niềm tin</li>
+      <li>Xây "phễu" đơn giản: thu hút → cho dùng thử → mời mua khóa học đầy đủ</li>
+      <li>Bán hàng thực chất là giúp đúng người giải quyết đúng vấn đề</li>
+    </ul>
+  </section>
+
+  <!-- 14. BUOC 7 -->
+  <section class="slide">
+    <span class="tag">Bước 7</span>
+    <div class="bignum">07</div>
+    <h2 style="margin-bottom:1vh">Tự Động Hóa &amp; Mở Rộng</h2>
+    <ul class="points">
+      <li>Thiết lập hệ thống chạy tự động: trang bán hàng, thanh toán, gửi khóa học</li>
+      <li>Tập trung tạo thêm giá trị: thêm khóa học mới, phục vụ thêm học viên</li>
+      <li>Đây là lúc "Làm 1 lần – Bán mãi mãi" thật sự phát huy</li>
+    </ul>
+  </section>
+
+  <!-- 15. TOM TAT -->
+  <section class="slide center">
+    <span class="tag" style="align-self:center">Tóm lại</span>
+    <h2>Hành Trình 7 Bước</h2>
+    <div class="flow">
+      <span>1 · Chọn ngách</span>
+      <span>2 · Nỗi đau &amp; kết quả</span>
+      <span>3 · Lộ trình</span>
+      <span>4 · AI sản xuất</span>
+      <span>5 · Lên mạng</span>
+      <span>6 · Marketing</span>
+      <span>7 · Tự động hóa</span>
+    </div>
+    <p class="lead" style="margin-top:4vh">Đơn giản, rõ ràng — và ai cũng có thể bắt đầu ngay hôm nay.</p>
+  </section>
+
+  <!-- 16. KET -->
+  <section class="slide center">
+    <span class="tag" style="align-self:center">Kêu gọi hành động</span>
+    <h1>Người Thành Công<br>Là Người Hành Động Sớm Nhất</h1>
+    <div class="flow" style="margin-top:3vh">
+      <span>✔ Chọn cho mình một ngách</span>
+      <span>✔ Viết ra kết quả muốn mang lại</span>
+      <span>✔ Bắt đầu bước đầu tiên</span>
+    </div>
+    <p class="subtitle" style="margin-top:4vh">Cảm ơn anh chị đã lắng nghe — <b style="color:var(--gold-soft)">[TÊN CỦA BẠN]</b></p>
+  </section>
+
+</div>
+
+<div class="foot">
+  <button class="nav-btn" id="prev" title="Slide trước">‹</button>
+  <span id="counter">1 / 16</span>
+  <button class="nav-btn" id="next" title="Slide sau">›</button>
+</div>
+<div class="hint">Dùng phím ← → để lật slide · Nhấn F11 để toàn màn hình</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  let i = 0;
+  const counter = document.getElementById('counter');
+  const progress = document.getElementById('progress');
+  function show(n) {
+    i = Math.max(0, Math.min(slides.length - 1, n));
+    slides.forEach((s, k) => s.classList.toggle('active', k === i));
+    counter.textContent = (i + 1) + ' / ' + slides.length;
+    progress.style.width = ((i + 1) / slides.length * 100) + '%';
+  }
+  function next() { show(i + 1); }
+  function prev() { show(i - 1); }
+  document.getElementById('next').onclick = next;
+  document.getElementById('prev').onclick = prev;
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+    if (e.key === 'Home') show(0);
+    if (e.key === 'End') show(slides.length - 1);
+  });
+  // click on slide area (not buttons) to advance
+  document.getElementById('deck').addEventListener('click', next);
+  show(0);
+</script>
+</body>
+</html>
