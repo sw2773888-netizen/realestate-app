@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle2, Send } from "lucide-react";
-import { courses } from "@/lib/data";
+import { CheckCircle2, Send, MessageCircle } from "lucide-react";
+import { courses, BRAND } from "@/lib/data";
+
+const zaloLink = `https://zalo.me/${BRAND.zalo.replace(/\D/g, "")}`;
 
 export default function RegisterForm({
   defaultCourse,
@@ -10,6 +12,7 @@ export default function RegisterForm({
   defaultCourse?: string;
 }) {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -22,9 +25,42 @@ export default function RegisterForm({
     setForm((f) => ({ ...f, [field]: value }));
   }
 
-  function handleSubmit(e: React.FormEvent) {
+  function courseName(slug: string) {
+    if (slug === "tu-van") return "Cần tư vấn lộ trình";
+    return courses.find((c) => c.slug === slug)?.title ?? slug;
+  }
+
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    // Demo: lưu tạm phía client. Thực tế sẽ gửi tới email/CRM.
+    setLoading(true);
+
+    // Nếu đã cấu hình Web3Forms, gửi đăng ký về email của Thanh Hương.
+    const key = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+    if (key) {
+      try {
+        await fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            access_key: key,
+            subject: `🎓 Đăng ký khóa học: ${courseName(form.course)}`,
+            from_name: "Thanh Hương Academy",
+            "Họ và tên": form.name,
+            "Số điện thoại / Zalo": form.phone,
+            Email: form.email || "(không có)",
+            "Khóa học": courseName(form.course),
+            "Lời nhắn": form.note || "(không có)",
+          }),
+        });
+      } catch {
+        // Bỏ qua lỗi mạng để không cản trở học viên; vẫn hiển thị thành công.
+      }
+    }
+
+    setLoading(false);
     setSubmitted(true);
   }
 
@@ -38,10 +74,17 @@ export default function RegisterForm({
           Đăng ký thành công! 🎉
         </h2>
         <p className="mt-3 text-gray-600">
-          Cảm ơn <strong>{form.name || "bạn"}</strong> đã đăng ký. Thanh Hương
-          và đội ngũ sẽ liên hệ với bạn trong vòng 24 giờ để hướng dẫn thanh toán
-          và kích hoạt khóa học.
+          Cảm ơn <strong>{form.name || "bạn"}</strong> đã đăng ký. Để được kích
+          hoạt khóa học nhanh nhất, hãy nhắn Zalo cho Thanh Hương ngay nhé!
         </p>
+        <a
+          href={zaloLink}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-brand-gradient px-7 py-3.5 font-bold text-white shadow-lg transition hover:opacity-90"
+        >
+          <MessageCircle className="h-5 w-5" /> Nhắn Zalo {BRAND.zalo}
+        </a>
         <button
           onClick={() => {
             setSubmitted(false);
@@ -53,7 +96,7 @@ export default function RegisterForm({
               note: "",
             });
           }}
-          className="mt-6 rounded-full border border-gray-200 px-6 py-2.5 font-bold text-ink transition hover:border-brand hover:text-brand"
+          className="mt-4 block w-full text-sm font-semibold text-gray-500 hover:text-brand"
         >
           Đăng ký khóa khác
         </button>
@@ -135,9 +178,10 @@ export default function RegisterForm({
 
       <button
         type="submit"
-        className="mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-brand-gradient py-3.5 font-bold text-white shadow-lg transition hover:opacity-90"
+        disabled={loading}
+        className="mt-7 flex w-full items-center justify-center gap-2 rounded-full bg-brand-gradient py-3.5 font-bold text-white shadow-lg transition hover:opacity-90 disabled:opacity-60"
       >
-        <Send className="h-5 w-5" /> Gửi đăng ký
+        <Send className="h-5 w-5" /> {loading ? "Đang gửi..." : "Gửi đăng ký"}
       </button>
       <p className="mt-4 text-center text-xs text-gray-400">
         Bằng việc đăng ký, bạn đồng ý để đội ngũ Thanh Hương Academy liên hệ tư
