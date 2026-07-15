@@ -89,7 +89,7 @@ export default function AboutPage() {
       <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6">
         <div className="grid gap-8 rounded-3xl bg-brand-gradient p-10 text-center text-white sm:grid-cols-3">
           <div>
-            <p className="text-4xl font-black">13.000+</p>
+            <p className="text-4xl font-black">11.000+</p>
             <p className="mt-1 text-white/80">Học viên</p>
           </div>
           <div>
@@ -97,7 +97,7 @@ export default function AboutPage() {
             <p className="mt-1 text-white/80">Đánh giá trung bình</p>
           </div>
           <div>
-            <p className="text-4xl font-black">4</p>
+            <p className="text-4xl font-black">3</p>
             <p className="mt-1 text-white/80">Khóa học chuyên sâu</p>
           </div>
         </div>

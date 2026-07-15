@@ -75,8 +75,17 @@ export default function RegisterPage({
 
           <p className="mt-6 text-sm text-gray-500">
             Cần hỗ trợ nhanh? Nhắn Zalo{" "}
-            <strong className="text-ink">{BRAND.zalo}</strong> hoặc email{" "}
-            <strong className="text-ink">{BRAND.email}</strong>.
+            <strong className="text-ink">{BRAND.zalo}</strong> hoặc nhắn tin
+            TikTok{" "}
+            <a
+              href={BRAND.tiktok}
+              target="_blank"
+              rel="noreferrer"
+              className="font-bold text-brand hover:underline"
+            >
+              {BRAND.tiktokHandle}
+            </a>
+            .
           </p>
         </div>
 

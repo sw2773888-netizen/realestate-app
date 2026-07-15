@@ -54,7 +54,7 @@ export default function HomePage() {
               </Link>
             </div>
             <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4 text-sm">
-              <Stat value="13.000+" label="Học viên" />
+              <Stat value="11.000+" label="Học viên" />
               <Stat value="4.9/5" label="Đánh giá" />
               <Stat value="100%" label="Học online trọn đời" />
             </div>
@@ -246,7 +246,7 @@ export default function HomePage() {
             </p>
             <ul className="mt-6 space-y-3">
               {[
-                "13.000+ học viên trên khắp Việt Nam",
+                "11.000+ học viên trên khắp Việt Nam",
                 "Nhiều video triệu view & chiến dịch bán hàng thực tế",
                 "Phương pháp cầm tay chỉ việc, dễ áp dụng",
               ].map((t) => (

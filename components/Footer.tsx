@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Sparkles, Facebook, Youtube, Mail, Phone } from "lucide-react";
+import { Sparkles, Facebook, Phone, Music2 } from "lucide-react";
 import { BRAND } from "@/lib/data";
 
 const cols = [
@@ -49,7 +49,7 @@ export default function Footer() {
                 aria-label="TikTok"
                 className="grid h-9 w-9 place-items-center rounded-full bg-white/10 transition hover:bg-white/20"
               >
-                <span className="text-sm font-bold">TT</span>
+                <Music2 className="h-4 w-4" />
               </a>
               <a
                 href={BRAND.facebook}
@@ -59,15 +59,6 @@ export default function Footer() {
                 className="grid h-9 w-9 place-items-center rounded-full bg-white/10 transition hover:bg-white/20"
               >
                 <Facebook className="h-4 w-4" />
-              </a>
-              <a
-                href={BRAND.youtube}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="YouTube"
-                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 transition hover:bg-white/20"
-              >
-                <Youtube className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -93,11 +84,16 @@ export default function Footer() {
         <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
             <span className="flex items-center gap-2">
-              <Mail className="h-4 w-4" /> {BRAND.email}
-            </span>
-            <span className="flex items-center gap-2">
               <Phone className="h-4 w-4" /> Zalo: {BRAND.zalo}
             </span>
+            <a
+              href={BRAND.tiktok}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-2 transition hover:text-white"
+            >
+              <Music2 className="h-4 w-4" /> TikTok: {BRAND.tiktokHandle}
+            </a>
           </div>
           <p className="text-xs text-white/40">
             © {new Date().getFullYear()} {BRAND.name}. Nội dung mang tính minh

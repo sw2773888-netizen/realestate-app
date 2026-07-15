@@ -4,12 +4,10 @@ export const BRAND = {
   name: "Thanh Hương Academy",
   instructor: "Thanh Hương",
   tagline: "Làm chủ AI & TikTok — Bứt phá thu nhập từ hôm nay",
-  email: "thanhhuong.academy@gmail.com",
-  phone: "0900 000 000",
-  zalo: "0900 000 000",
-  facebook: "https://facebook.com/",
-  tiktok: "https://tiktok.com/@thanhhuong",
-  youtube: "https://youtube.com/",
+  zalo: "0942372806",
+  facebook: "https://www.facebook.com/share/1E9oHDsLkY/",
+  tiktok: "https://www.tiktok.com/@thanhhuongpy99?is_from_webapp=1&sender_device=pc",
+  tiktokHandle: "@thanhhuongpy99",
 };
 
 export const courses: Course[] = [
@@ -20,8 +18,7 @@ export const courses: Course[] = [
     tagline: "Từ số 0 đến thành thạo ChatGPT, tạo ảnh & tự động hóa công việc",
     description:
       "Khóa học giúp bạn hiểu và ứng dụng AI vào công việc hằng ngày dù không rành công nghệ. Bạn sẽ biết cách ra lệnh (prompt) đúng cho ChatGPT, tạo hình ảnh, viết nội dung, dựng kịch bản và tiết kiệm hàng chục giờ làm việc mỗi tuần.",
-    price: 990000,
-    oldPrice: 1990000,
+    price: 999000,
     level: "Cơ bản",
     durationHours: 8,
     lessonsCount: 42,
@@ -85,8 +82,7 @@ export const courses: Course[] = [
     tagline: "Xây kênh, lên xu hướng và biến người xem thành người mua",
     description:
       "Lộ trình bài bản để xây một kênh TikTok từ con số 0: chọn ngách, quay dựng bằng điện thoại, bắt trend, hiểu thuật toán và tạo ra video triệu view. Phù hợp cho người muốn xây thương hiệu cá nhân hoặc bán hàng.",
-    price: 1290000,
-    oldPrice: 2490000,
+    price: 499000,
     level: "Cơ bản",
     durationHours: 10,
     lessonsCount: 55,
@@ -144,76 +140,14 @@ export const courses: Course[] = [
     ],
   },
   {
-    slug: "tiktok-shop-ban-hang",
-    title: "TikTok Shop — Bán Hàng Bùng Nổ",
-    category: "tiktok",
-    tagline: "Livestream, video bán hàng và affiliate ra đơn đều đặn",
-    description:
-      "Tất tần tật về bán hàng trên TikTok Shop: thiết lập gian hàng, làm video bán hàng chuyển đổi cao, kỹ thuật livestream chốt đơn và tận dụng affiliate để nhân đôi doanh thu.",
-    price: 1490000,
-    oldPrice: 2990000,
-    level: "Nâng cao",
-    durationHours: 9,
-    lessonsCount: 48,
-    students: 2740,
-    rating: 4.8,
-    highlights: [
-      "Quy trình livestream chốt đơn từ A-Z",
-      "Mẫu kịch bản bán hàng chuyển đổi cao",
-      "Chiến lược affiliate cho người không có sản phẩm",
-    ],
-    outcomes: [
-      "Thiết lập và vận hành gian hàng TikTok Shop",
-      "Làm video bán hàng có tỷ lệ chuyển đổi cao",
-      "Livestream tự tin, chốt đơn liên tục",
-      "Kiếm tiền qua affiliate dù chưa có sản phẩm",
-    ],
-    audience: [
-      "Chủ shop muốn tăng doanh số",
-      "Người muốn làm affiliate TikTok",
-      "Người đã có kênh và muốn bắt đầu bán hàng",
-    ],
-    modules: [
-      {
-        title: "Chương 1 — Chuẩn bị gian hàng",
-        lessons: [
-          { title: "Đăng ký & thiết lập TikTok Shop", duration: "13:05" },
-          { title: "Chọn sản phẩm dễ bán", duration: "16:20" },
-        ],
-      },
-      {
-        title: "Chương 2 — Video bán hàng",
-        lessons: [
-          { title: "Công thức video ra đơn", duration: "19:44" },
-          { title: "Gắn giỏ hàng & liên kết sản phẩm", duration: "10:30" },
-        ],
-      },
-      {
-        title: "Chương 3 — Livestream chốt đơn",
-        lessons: [
-          { title: "Chuẩn bị phiên live chuyên nghiệp", duration: "18:12" },
-          { title: "Kịch bản & kỹ thuật chốt đơn", duration: "21:35" },
-          { title: "Xử lý tình huống khi live", duration: "14:50" },
-        ],
-      },
-      {
-        title: "Chương 4 — Affiliate & nhân bản",
-        lessons: [
-          { title: "Kiếm tiền không cần sản phẩm", duration: "17:08" },
-          { title: "Mở rộng đội nhóm & quy trình", duration: "15:26" },
-        ],
-      },
-    ],
-  },
-  {
     slug: "ai-tiktok-combo",
     title: "Combo AI + TikTok Toàn Diện",
     category: "combo",
     tagline: "Dùng AI sản xuất nội dung TikTok hàng loạt, bán hàng tự động",
     description:
-      "Khóa học đỉnh cao kết hợp sức mạnh AI và TikTok: dùng AI lên ý tưởng, viết kịch bản, tạo hình ảnh và sản xuất video TikTok nhanh gấp 10 lần. Đây là hệ thống hoàn chỉnh để một người vận hành cả kênh nội dung và bán hàng.",
-    price: 2490000,
-    oldPrice: 4990000,
+      "Học trọn bộ cả 2 khóa AI và TikTok kèm hệ thống kết hợp: dùng AI lên ý tưởng, viết kịch bản, tạo hình ảnh và sản xuất video TikTok nhanh gấp 10 lần. Tiết kiệm hơn so với mua lẻ từng khóa.",
+    price: 1290000,
+    oldPrice: 1498000,
     level: "Toàn diện",
     durationHours: 18,
     lessonsCount: 96,
@@ -292,9 +226,9 @@ export const testimonials: Testimonial[] = [
     name: "Hoàng Long",
     role: "Sinh viên",
     quote:
-      "Học xong khóa TikTok Shop mình bắt đầu làm affiliate, tháng đầu đã có đơn. Chị Hương hỗ trợ nhiệt tình, hỏi gì cũng được trả lời.",
+      "Học xong khóa TikTok mình xây kênh riêng, giờ đã có nhiều video vài trăm nghìn view. Chị Hương hỗ trợ nhiệt tình, hỏi gì cũng được trả lời.",
     avatar: "HL",
-    course: "TikTok Shop — Bán Hàng Bùng Nổ",
+    course: "TikTok Từ 0 Đến Viral",
   },
 ];
 
