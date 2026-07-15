@@ -1,24 +1,21 @@
-import { Property } from "./types";
-
-/** Định dạng giá VND sang dạng tỷ / triệu dễ đọc. */
+/** Định dạng giá VND sang dạng triệu / nghìn dễ đọc. */
 export function formatPrice(value: number): string {
-  if (value >= 1_000_000_000) {
-    const ty = value / 1_000_000_000;
-    return `${ty % 1 === 0 ? ty : ty.toFixed(1)} tỷ`;
-  }
+  if (value === 0) return "Miễn phí";
   if (value >= 1_000_000) {
     const trieu = value / 1_000_000;
-    return `${trieu % 1 === 0 ? trieu : trieu.toFixed(1)} triệu`;
+    return `${trieu % 1 === 0 ? trieu : trieu.toFixed(1)}tr`;
   }
-  return value.toLocaleString("vi-VN") + " đ";
+  return value.toLocaleString("vi-VN") + "đ";
 }
 
-export function formatPriceLabel(p: Property): string {
-  return p.listingType === "rent"
-    ? `${formatPrice(p.price)}/tháng`
-    : formatPrice(p.price);
-}
-
+/** Giá đầy đủ: 1.990.000 đ */
 export function formatFullPrice(value: number): string {
+  if (value === 0) return "Miễn phí";
   return value.toLocaleString("vi-VN") + " đ";
+}
+
+/** Phần trăm giảm giá giữa giá gốc và giá bán. */
+export function discountPercent(price: number, oldPrice?: number): number {
+  if (!oldPrice || oldPrice <= price) return 0;
+  return Math.round(((oldPrice - price) / oldPrice) * 100);
 }

@@ -1,35 +1,44 @@
-export type ListingType = "sale" | "rent";
+export type Category = "ai" | "tiktok" | "combo";
 
-export type HomeType =
-  | "Nhà phố"
-  | "Căn hộ"
-  | "Biệt thự"
-  | "Đất nền"
-  | "Nhà cấp 4";
-
-export interface Property {
-  id: string;
+export interface Lesson {
   title: string;
-  price: number; // giá bán (VND) hoặc giá thuê/tháng (VND)
-  listingType: ListingType;
-  homeType: HomeType;
-  address: string;
-  city: string;
-  district: string;
-  beds: number;
-  baths: number;
-  area: number; // m2
-  lat: number;
-  lng: number;
-  images: string[];
+  duration: string; // ví dụ "12:30"
+}
+
+export interface Module {
+  title: string;
+  lessons: Lesson[];
+}
+
+export interface Course {
+  slug: string;
+  title: string;
+  category: Category;
+  tagline: string;
   description: string;
-  features: string[];
-  yearBuilt: number;
-  agent: {
-    name: string;
-    phone: string;
-    company: string;
-  };
-  daysOnMarket: number;
-  isNew?: boolean;
+  price: number; // VND
+  oldPrice?: number; // VND (giá gốc để hiển thị giảm giá)
+  level: "Cơ bản" | "Nâng cao" | "Toàn diện";
+  durationHours: number;
+  lessonsCount: number;
+  students: number;
+  rating: number;
+  highlights: string[];
+  outcomes: string[];
+  audience: string[];
+  modules: Module[];
+  featured?: boolean;
+}
+
+export interface Testimonial {
+  name: string;
+  role: string;
+  quote: string;
+  avatar: string; // chữ cái viết tắt
+  course: string;
+}
+
+export interface Faq {
+  q: string;
+  a: string;
 }

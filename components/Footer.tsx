@@ -1,53 +1,108 @@
 import Link from "next/link";
-import { Home } from "lucide-react";
+import { Sparkles, Facebook, Youtube, Mail, Phone } from "lucide-react";
+import { BRAND } from "@/lib/data";
 
 const cols = [
   {
-    title: "Về Zola",
-    links: ["Giới thiệu", "Tuyển dụng", "Báo chí", "Blog bất động sản"],
+    title: "Khóa học",
+    links: [
+      { label: "Khóa học AI", href: "/courses?cat=ai" },
+      { label: "Khóa học TikTok", href: "/courses?cat=tiktok" },
+      { label: "Combo AI + TikTok", href: "/courses?cat=combo" },
+      { label: "Tất cả khóa học", href: "/courses" },
+    ],
   },
   {
-    title: "Dịch vụ",
-    links: ["Mua nhà", "Cho thuê", "Bán nhà", "Vay thế chấp", "Định giá nhà"],
-  },
-  {
-    title: "Hỗ trợ",
-    links: ["Trung tâm trợ giúp", "Liên hệ", "Điều khoản", "Bảo mật"],
+    title: "Về chúng tôi",
+    links: [
+      { label: "Về Thanh Hương", href: "/about" },
+      { label: "Lộ trình học", href: "/#lo-trinh" },
+      { label: "Cảm nhận học viên", href: "/#cam-nhan" },
+      { label: "Câu hỏi thường gặp", href: "/#faq" },
+    ],
   },
 ];
 
 export default function Footer() {
   return (
-    <footer className="mt-16 border-t border-gray-200 bg-gray-50">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-        <div className="grid gap-8 md:grid-cols-4">
-          <div>
-            <Link href="/" className="flex items-center gap-2 text-brand">
-              <Home className="h-6 w-6" strokeWidth={2.5} />
-              <span className="text-xl font-extrabold text-ink">Zola.</span>
+    <footer className="mt-20 border-t border-gray-100 bg-ink text-white">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6">
+        <div className="grid gap-10 md:grid-cols-4">
+          <div className="md:col-span-2">
+            <Link href="/" className="flex items-center gap-2">
+              <span className="grid h-9 w-9 place-items-center rounded-xl bg-brand-gradient text-white">
+                <Sparkles className="h-5 w-5" strokeWidth={2.5} />
+              </span>
+              <span className="text-xl font-extrabold">
+                Thanh Hương <span className="text-gradient">Academy</span>
+              </span>
             </Link>
-            <p className="mt-3 max-w-xs text-sm text-gray-500">
-              Nền tảng bất động sản giúp bạn mua, thuê và bán nhà dễ dàng hơn.
+            <p className="mt-4 max-w-sm text-sm text-white/60">
+              Nơi bạn học AI ứng dụng và xây kênh TikTok bán hàng bài bản, thực
+              chiến cùng Thanh Hương. Học là làm được.
             </p>
+            <div className="mt-5 flex items-center gap-3">
+              <a
+                href={BRAND.tiktok}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="TikTok"
+                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 transition hover:bg-white/20"
+              >
+                <span className="text-sm font-bold">TT</span>
+              </a>
+              <a
+                href={BRAND.facebook}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="Facebook"
+                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 transition hover:bg-white/20"
+              >
+                <Facebook className="h-4 w-4" />
+              </a>
+              <a
+                href={BRAND.youtube}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="YouTube"
+                className="grid h-9 w-9 place-items-center rounded-full bg-white/10 transition hover:bg-white/20"
+              >
+                <Youtube className="h-4 w-4" />
+              </a>
+            </div>
           </div>
           {cols.map((c) => (
             <div key={c.title}>
-              <h3 className="text-sm font-bold text-ink">{c.title}</h3>
-              <ul className="mt-3 space-y-2">
+              <h3 className="text-sm font-bold">{c.title}</h3>
+              <ul className="mt-4 space-y-2.5">
                 {c.links.map((l) => (
-                  <li key={l}>
-                    <span className="cursor-pointer text-sm text-gray-500 hover:text-brand">
-                      {l}
-                    </span>
+                  <li key={l.label}>
+                    <Link
+                      href={l.href}
+                      className="text-sm text-white/60 transition hover:text-white"
+                    >
+                      {l.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
           ))}
         </div>
-        <div className="mt-10 border-t border-gray-200 pt-6 text-center text-xs text-gray-400">
-          © {new Date().getFullYear()} Zola Real Estate. Dữ liệu mang tính minh
-          họa. Không phải sản phẩm thương mại thật.
+
+        <div className="mt-10 flex flex-col gap-4 border-t border-white/10 pt-8 text-sm text-white/60 sm:flex-row sm:items-center sm:justify-between">
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+            <span className="flex items-center gap-2">
+              <Mail className="h-4 w-4" /> {BRAND.email}
+            </span>
+            <span className="flex items-center gap-2">
+              <Phone className="h-4 w-4" /> Zalo: {BRAND.zalo}
+            </span>
+          </div>
+          <p className="text-xs text-white/40">
+            © {new Date().getFullYear()} {BRAND.name}. Nội dung mang tính minh
+            họa.
+          </p>
         </div>
       </div>
     </footer>
