@@ -9,18 +9,25 @@ const config: Config = {
     extend: {
       colors: {
         brand: {
-          DEFAULT: "#006aff",
-          dark: "#0053cc",
-          light: "#e7f0ff",
+          DEFAULT: "#fe2c55", // TikTok pink/red
+          dark: "#d81f45",
         },
-        ink: "#2a2a33",
+        cyan: {
+          neon: "#25f4ee", // TikTok cyan
+        },
+        ink: {
+          900: "#0b1020",
+          800: "#111834",
+          700: "#1a2242",
+          600: "#2a335c",
+        },
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        card: "0 2px 8px rgba(0,0,0,0.08)",
-        cardHover: "0 8px 24px rgba(0,0,0,0.14)",
+        glow: "0 0 40px rgba(254,44,85,0.25)",
+        card: "0 8px 30px rgba(0,0,0,0.35)",
       },
     },
   },

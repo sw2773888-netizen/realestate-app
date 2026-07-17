@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { FavoritesProvider } from "@/components/FavoritesProvider";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin", "vietnamese"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Zola — Bất động sản: Mua, Thuê, Bán nhà",
+  title: "AI Script Studio — Viết kịch bản bán hàng TikTok",
   description:
-    "Nền tảng bất động sản giúp bạn tìm nhà bán, nhà cho thuê và kết nối môi giới trên khắp Việt Nam.",
+    "Công cụ tạo Hook, kịch bản 30–60s, lời thoại, CTA, caption và hashtag cho video bán hàng TikTok theo từng ngành.",
 };
 
 export default function RootLayout({
@@ -20,13 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi" className={inter.variable}>
-      <body className="font-sans">
-        <FavoritesProvider>
-          <Header />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
-        </FavoritesProvider>
-      </body>
+      <body className="font-sans antialiased">{children}</body>
     </html>
   );
 }
