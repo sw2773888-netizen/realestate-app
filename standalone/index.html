@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>AI Script Studio — Viết kịch bản bán hàng TikTok</title>
+<meta name="description" content="Tạo Hook, kịch bản 30–60s, lời thoại, CTA, caption và hashtag cho video bán hàng TikTok theo từng ngành." />
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --brand: #fe2c55; --brand-dark: #d81f45; --cyan: #25f4ee;
+    --ink900: #0b1020; --ink800: #111834; --ink700: #1a2242; --ink600: #2a335c;
+    --line: rgba(255,255,255,.10); --line2: rgba(255,255,255,.25);
+    --txt: #e6e9f2; --muted: #94a3b8; --muted2: #64748b;
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--ink900); color: var(--txt); line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .aurora {
+    background:
+      radial-gradient(60% 60% at 20% 20%, rgba(37,244,238,.18), transparent 60%),
+      radial-gradient(50% 50% at 85% 15%, rgba(254,44,85,.22), transparent 60%),
+      radial-gradient(55% 55% at 60% 90%, rgba(124,58,237,.22), transparent 60%);
+    border-bottom: 1px solid var(--line);
+  }
+  .wrap { max-width: 1152px; margin: 0 auto; padding: 0 16px; }
+  .hero { text-align: center; padding: 52px 16px; max-width: 880px; margin: 0 auto; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600;
+    color: var(--cyan); border: 1px solid var(--line2); background: rgba(255,255,255,.05);
+    padding: 5px 12px; border-radius: 999px; margin-bottom: 16px;
+  }
+  h1 { font-size: 46px; font-weight: 900; line-height: 1.1; }
+  h1 .grad { background: linear-gradient(90deg, var(--brand), var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .sub { margin: 16px auto 0; max-width: 640px; color: var(--muted); font-size: 16px; }
+  .sub b { color: #fff; font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 24px; }
+  .chips span { background: rgba(255,255,255,.05); color: var(--muted); font-size: 12px; padding: 5px 12px; border-radius: 999px; }
+
+  .grid { display: grid; grid-template-columns: 380px 1fr; gap: 24px; padding: 32px 16px; max-width: 1152px; margin: 0 auto; }
+  @media (max-width: 900px) { .grid { grid-template-columns: 1fr; } h1 { font-size: 34px; } }
+
+  .card { border: 1px solid var(--line); background: rgba(17,24,52,.6); border-radius: 16px; padding: 20px; box-shadow: 0 8px 30px rgba(0,0,0,.35); }
+  .form-col { position: sticky; top: 24px; align-self: start; }
+  @media (max-width: 900px) { .form-col { position: static; } }
+  .card h2 { font-size: 16px; display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+  label.lbl { display: block; font-size: 12px; font-weight: 600; color: var(--muted); margin: 0 0 6px; }
+  .req { color: var(--brand); }
+
+  .ind-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 16px; }
+  .ind-btn, .opt-btn, .dur-btn {
+    border: 1px solid var(--line); background: rgba(11,16,32,.5); color: var(--muted);
+    border-radius: 12px; cursor: pointer; transition: .15s; font-family: inherit; text-align: left;
+  }
+  .ind-btn { padding: 10px 12px; }
+  .ind-btn .emo { font-size: 17px; }
+  .ind-btn .nm { display: block; font-weight: 700; font-size: 12px; color: inherit; margin-top: 2px; }
+  .ind-btn:hover, .opt-btn:hover, .dur-btn:hover { border-color: var(--line2); }
+  .ind-btn.active, .dur-btn.active { border-color: var(--brand); background: rgba(254,44,85,.15); color: #fff; }
+  .opt-btn.active { border-color: var(--cyan); background: rgba(37,244,238,.15); color: var(--cyan); }
+
+  input.txt {
+    width: 100%; border: 1px solid var(--line); background: rgba(11,16,32,.7); color: #fff;
+    border-radius: 12px; padding: 10px 14px; font-size: 14px; font-family: inherit; outline: none; transition: .15s;
+  }
+  input.txt::placeholder { color: var(--muted2); }
+  input.txt:focus { border-color: rgba(254,44,85,.6); box-shadow: 0 0 0 3px rgba(254,44,85,.25); }
+  .field { margin-bottom: 12px; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .row3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
+
+  .tones { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  .opt-btn { padding: 6px 10px; font-size: 12px; border-radius: 8px; }
+  .dur-btn { padding: 8px 12px; font-size: 12px; font-weight: 600; text-align: center; border-radius: 8px; }
+
+  .btn-primary {
+    width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px;
+    background: linear-gradient(90deg, var(--brand), var(--brand-dark)); color: #fff; font-weight: 800;
+    font-size: 14px; border: none; border-radius: 12px; padding: 13px; cursor: pointer;
+    box-shadow: 0 0 40px rgba(254,44,85,.25); transition: .15s; font-family: inherit; margin-top: 4px;
+  }
+  .btn-primary:hover { filter: brightness(1.1); }
+  .btn-primary:disabled { opacity: .4; cursor: not-allowed; }
+  .hint { text-align: center; font-size: 12px; color: var(--muted2); margin-top: 8px; }
+
+  .empty { display: grid; place-items: center; min-height: 400px; text-align: center;
+    border: 1px dashed var(--line2); border-radius: 16px; background: rgba(17,24,52,.3); padding: 32px; }
+  .empty .ic { width: 64px; height: 64px; display: grid; place-items: center; border-radius: 16px;
+    background: rgba(254,44,85,.15); color: var(--brand); margin: 0 auto 16px; font-size: 30px; }
+  .empty h3 { font-size: 18px; color: #fff; }
+  .empty p { max-width: 360px; margin: 8px auto 0; font-size: 14px; color: var(--muted); }
+
+  .res-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+  .res-head p { font-size: 14px; font-weight: 500; color: var(--muted); }
+  .btn-ghost { display: inline-flex; align-items: center; gap: 8px; border: 1px solid var(--line2);
+    background: rgba(255,255,255,.05); color: #cbd5e1; font-size: 12px; font-weight: 600; padding: 8px 14px;
+    border-radius: 12px; cursor: pointer; font-family: inherit; transition: .15s; }
+  .btn-ghost:hover { background: rgba(255,255,255,.1); }
+
+  section.block { border: 1px solid var(--line); background: rgba(17,24,52,.6); border-radius: 16px;
+    padding: 18px; box-shadow: 0 8px 30px rgba(0,0,0,.35); margin-bottom: 16px; }
+  .block-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+  .block-title { display: flex; align-items: center; gap: 8px; }
+  .block-ic { width: 32px; height: 32px; display: grid; place-items: center; border-radius: 8px;
+    background: rgba(254,44,85,.15); color: var(--brand); font-size: 15px; flex: none; }
+  .block-title h3 { font-size: 14px; color: #fff; }
+  .block-title .h { font-size: 12px; color: var(--muted); }
+
+  .copy-btn { display: inline-flex; align-items: center; gap: 6px; border: none; cursor: pointer;
+    background: rgba(255,255,255,.05); color: #cbd5e1; font-size: 12px; font-weight: 500;
+    padding: 6px 10px; border-radius: 8px; font-family: inherit; transition: .15s; white-space: nowrap; }
+  .copy-btn:hover { background: rgba(255,255,255,.1); color: #fff; }
+  .copy-btn.done { background: rgba(16,185,129,.2); color: #6ee7b7; }
+  .copy-all { background: rgba(254,44,85,.9); color: #fff; }
+  .copy-all:hover { background: var(--brand); color: #fff; }
+
+  ul.hooks { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  ul.hooks li { display: flex; align-items: flex-start; gap: 8px; background: rgba(255,255,255,.05);
+    padding: 10px 12px; border-radius: 12px; font-size: 14px; color: #f1f5f9; }
+  .num { width: 20px; height: 20px; flex: none; display: grid; place-items: center; border-radius: 6px;
+    background: rgba(37,244,238,.2); color: var(--cyan); font-size: 11px; font-weight: 700; margin-top: 2px; }
+
+  ol.beats { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  ol.beats li { background: rgba(255,255,255,.05); border-radius: 12px; padding: 12px; }
+  .beat-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .beat-time { background: rgba(254,44,85,.2); color: var(--brand); font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 6px; }
+  .beat-label { font-size: 12px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: var(--cyan); }
+  .beat-line { font-size: 13px; color: #f1f5f9; margin-top: 2px; }
+  .beat-line .k { color: var(--muted); }
+  .beat-line.vo b { font-weight: 600; }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 640px) { .two { grid-template-columns: 1fr; } .row2, .row3 { grid-template-columns: 1fr; } }
+  .body-txt { font-size: 14px; color: #f1f5f9; }
+  .tag { display: inline-block; background: rgba(37,244,238,.1); color: var(--cyan); font-size: 12px;
+    font-weight: 500; padding: 4px 12px; border-radius: 999px; margin: 0 6px 6px 0; }
+
+  footer { border-top: 1px solid var(--line); text-align: center; padding: 24px; font-size: 12px; color: var(--muted2); }
+  .hidden { display: none !important; }
+</style>
+</head>
+<body>
+  <div class="aurora">
+    <div class="hero">
+      <div class="badge">✦ Dành cho người làm nội dung TikTok &amp; bán hàng</div>
+      <h1>AI Script <span class="grad">Studio</span></h1>
+      <p class="sub">Có ảnh/video AI rồi, giờ cần lời? Nhập tên sản phẩm, chọn ngành — app tự viết
+        <b>Hook 3 giây, kịch bản 30–60s, lời thoại, CTA, caption và hashtag</b> trong 1 nốt nhạc.</p>
+      <div class="chips" id="chips"></div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <!-- FORM -->
+    <div class="form-col">
+      <div class="card">
+        <h2>🪄 Thông tin sản phẩm</h2>
+
+        <label class="lbl">Ngành hàng</label>
+        <div class="ind-grid" id="indGrid"></div>
+
+        <div class="field">
+          <label class="lbl">Tên sản phẩm <span class="req">*</span></label>
+          <input class="txt" id="product" placeholder="VD: Serum dưỡng trắng Vitamin C" />
+        </div>
+
+        <div class="field">
+          <label class="lbl">Điểm nổi bật (tuỳ chọn)</label>
+          <input class="txt" id="benefit" placeholder="VD: mờ thâm sau 2 tuần, cấp ẩm sâu" />
+        </div>
+
+        <div class="field row2">
+          <div>
+            <label class="lbl">Đối tượng</label>
+            <input class="txt" id="audience" placeholder="VD: chị em công sở" />
+          </div>
+          <div>
+            <label class="lbl">Giá bán</label>
+            <input class="txt" id="price" placeholder="VD: 199k" />
+          </div>
+        </div>
+
+        <label class="lbl">Phong cách</label>
+        <div class="tones" id="tones"></div>
+
+        <label class="lbl">Thời lượng video</label>
+        <div class="row3" id="durs" style="margin-bottom:18px"></div>
+
+        <button class="btn-primary" id="genBtn" disabled>✦ Viết kịch bản ngay</button>
+        <p class="hint" id="hint">Nhập tên sản phẩm để bắt đầu</p>
+      </div>
+    </div>
+
+    <!-- RESULT -->
+    <div id="result" style="min-height:400px; scroll-margin-top: 24px;">
+      <div class="empty">
+        <div>
+          <div class="ic">🪄</div>
+          <h3>Kịch bản sẽ hiện ở đây</h3>
+          <p>Điền thông tin sản phẩm bên trái rồi bấm “Viết kịch bản ngay”. Bạn sẽ nhận đủ bộ:
+             Hook, kịch bản, lời thoại, CTA, caption và hashtag.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>AI Script Studio — công cụ viết nội dung bán hàng cho người làm TikTok.</footer>
+
+<script>
+/* ============ DỮ LIỆU NGÀNH & PHONG CÁCH ============ */
+const INDUSTRIES = {
+  affiliate: { id:"affiliate", name:"Affiliate / Tiếp thị liên kết", emoji:"🔗",
+    keywords:["deal hời","săn sale","giỏ hàng","link dưới video","mã giảm giá","flash sale"],
+    painPoints:["mua nhầm hàng kém chất lượng vì không biết chọn","tốn tiền mà xài chẳng được bao lâu","lướt cả buổi vẫn không biết nên mua món nào","sợ mua online rồi thất vọng"],
+    benefits:["mình đã xài thật và thấy đáng tiền","chất lượng vượt xa cái giá của nó","được nhiều người mua lại nhất tháng này","vừa rẻ vừa bền, dùng cực đã tay"],
+    proofs:["hơn 10.000 lượt mua và 4.9 sao","chính mình quay video này bằng nó luôn nè","shop uy tín, đổi trả trong 7 ngày","riêng tháng này đã bán hết mấy đợt"],
+    ctas:["Bấm vào giỏ hàng góc màn hình, chốt ngay khi còn mã giảm nha!","Link ở dưới video, canh flash sale để được giá tốt nhất!","Lướt xuống bấm vào link, dùng mã của mình để bớt thêm tiền nè!"],
+    hashtags:["affiliate","reviewsanpham","sandeal","muahangonline","dealhoi","tiktokshop","shopee","xuhuong"] },
+  cosmetics: { id:"cosmetics", name:"Mỹ phẩm / Làm đẹp", emoji:"💄",
+    keywords:["làn da","cấp ẩm","thâm mụn","lên tông","bí kíp makeup","da căng bóng"],
+    painPoints:["da xỉn màu, lỗ chân lông to khiến bạn mất tự tin","thử cả tá sản phẩm mà da vẫn khô mụn","trang điểm xong một lát là trôi hết lớp nền","tốn cả đống tiền skincare mà da không cải thiện"],
+    benefits:["da căng mọng, sáng khỏe chỉ sau vài tuần","cấp ẩm sâu, lì mụn mà không hề bí da","lên tông tự nhiên như da em bé","thấm nhanh, không bết dính, hợp mọi loại da"],
+    proofs:["bảng thành phần lành tính, có kiểm định rõ ràng","hàng nghìn nàng review da đẹp lên trông thấy","chính da mình đây, không hề dùng app làm mịn","đạt chuẩn an toàn, không cồn không paraben"],
+    ctas:["Da đẹp không đợi ai đâu — bấm giỏ hàng rước em nó về liền!","Nhấn vào link, nhập mã để được tặng thêm mini size nha!","Chốt đơn ngay hôm nay để da bạn cảm ơn bạn sau 2 tuần!"],
+    hashtags:["myham","skincare","chamsocda","lamdep","reviewmypham","dadep","makeup","beautytips"] },
+  home: { id:"home", name:"Gia dụng / Đồ dùng nhà bếp", emoji:"🏠",
+    keywords:["tiện lợi","tiết kiệm thời gian","gọn gàng","sạch bong","nhà bếp","mẹo hay"],
+    painPoints:["làm việc nhà cực mà vẫn không xuể","gian bếp bừa bộn, đồ đạc để đâu cũng chật","chùi rửa mãi mà vết bẩn cứng đầu vẫn còn","tốn cả buổi cho một việc lẽ ra chỉ mất 5 phút"],
+    benefits:["làm xong việc nhà chỉ trong một nửa thời gian","sạch bong sáng bóng chỉ với một thao tác","gọn nhẹ, cất đâu cũng vừa, nhà cửa ngăn nắp hẳn","bền bỉ dùng cả năm không hỏng"],
+    proofs:["cả nhà mình đang dùng mỗi ngày","hàng trăm nghìn gia đình đã sắm về","quay thử tại chỗ cho các bạn thấy luôn nè","chất liệu dày dặn, an toàn cho sức khỏe"],
+    ctas:["Nhà nào cũng nên có một cái — bấm giỏ hàng sắm ngay nha!","Link dưới video, mua sớm còn được freeship tận nhà!","Chốt liền để việc nhà nhàn hơn ngay từ hôm nay!"],
+    hashtags:["giadung","dodungnhabep","meohay","tienich","nhacua","dongia","reviewgiadung","meovatnhabep"] },
+  herbal: { id:"herbal", name:"Thảo dược / Thực phẩm chức năng", emoji:"🌿",
+    keywords:["thảo mộc thiên nhiên","thanh lọc cơ thể","tăng đề kháng","lành tính","an toàn","gốc rễ"],
+    painPoints:["cơ thể mệt mỏi, uể oải suốt cả ngày","ăn ngủ không ngon khiến sức khỏe đi xuống","dùng nhiều thuốc mà chỉ giải quyết phần ngọn","lo lắng vì đề kháng yếu, dễ ốm vặt"],
+    benefits:["hỗ trợ cơ thể khỏe khoắn, tràn đầy năng lượng","giúp ăn ngon ngủ sâu một cách tự nhiên","thanh lọc, tăng đề kháng từ bên trong","chiết xuất thảo mộc lành tính, dùng lâu dài an tâm"],
+    proofs:["nguồn gốc thảo dược rõ ràng, có kiểm nghiệm","đạt chứng nhận an toàn thực phẩm","nhiều cô chú dùng đều đặn và phản hồi tích cực","quy trình chuẩn, không chất bảo quản độc hại"],
+    ctas:["Sức khỏe là vốn quý — bấm giỏ hàng chăm cho mình và gia đình nha!","Nhấn vào link, đặt liệu trình để cảm nhận rõ sự thay đổi!","Chốt ngay hôm nay, tặng người thân món quà sức khỏe!"],
+    hashtags:["thaoduoc","suckhoe","thucphamchucnang","thanhloccothe","tangdekhang","songkhoe","thaomoc","chamsocsuckhoe"] },
+  fashion: { id:"fashion", name:"Thời trang / Phụ kiện", emoji:"👗",
+    keywords:["phối đồ","outfit","tôn dáng","chất vải","xu hướng","style"],
+    painPoints:["tủ đồ đầy mà vẫn không biết mặc gì đi chơi","mua online về mặc lên chẳng giống hình","dáng người khó chọn đồ tôn dáng","chạy theo mốt mà mặc vài lần đã lỗi thời"],
+    benefits:["phối được cả chục outfit chỉ với một món","chất vải đẹp, form chuẩn, mặc lên sang liền","tôn dáng, che khuyết điểm cực khéo","hợp mọi hoàn cảnh từ đi làm đến đi chơi"],
+    proofs:["mình mặc thử ngay cho các bạn xem dáng thật","cả nghìn nàng đã rinh về và mê tít","vải dày dặn, đường may chắc chắn không lo bung","đủ size cho cả nàng mi nhon lẫn đầy đặn"],
+    ctas:["Xinh là phải sắm — bấm giỏ hàng chốt em nó ngay nha!","Link dưới video, inbox mình tư vấn size chuẩn nè!","Chốt sớm kẻo hết size đẹp, mặc là auto lên đồ!"],
+    hashtags:["thoitrang","phoido","outfit","style","quanao","reviewthoitrang","xuhuong","fashiontiktok"] },
+  mombaby: { id:"mombaby", name:"Mẹ và bé", emoji:"🍼",
+    keywords:["cho bé yêu","an toàn cho bé","mẹ nhàn tênh","chăm con","dịu nhẹ","chuẩn khoa học"],
+    painPoints:["chăm con nhỏ mà mẹ kiệt sức, thiếu ngủ","sợ mua đồ kém an toàn ảnh hưởng đến bé","bé quấy khóc, ăn ngủ thất thường khiến mẹ lo","đồ cho bé nhiều loại quá không biết chọn sao"],
+    benefits:["giúp mẹ chăm bé nhàn hơn, có thời gian nghỉ ngơi","an toàn tuyệt đối, dịu nhẹ với làn da bé","giúp bé ăn ngoan ngủ ngon, mẹ đỡ vất vả","thiết kế thông minh, tiện dùng mọi lúc mọi nơi"],
+    proofs:["chất liệu đạt chuẩn an toàn cho trẻ sơ sinh","hàng nghìn mẹ bỉm tin dùng và khen nức nở","chính mình đang dùng cho bé nhà mình đây","kiểm định rõ ràng, không chất gây hại"],
+    ctas:["Điều tốt nhất cho con — mẹ bấm giỏ hàng sắm ngay nha!","Nhấn vào link, đặt cho bé yêu để mẹ nhàn hơn mỗi ngày!","Chốt liền hôm nay, chăm con khỏe mẹ vui!"],
+    hashtags:["mevabe","chamcon","mebim","dochobe","embe","mebimsua","chamsocbe","dodungchobe"] },
+};
+const TONES = {
+  energetic:{id:"energetic",name:"Năng động",emoji:"⚡",desc:"Dồn dập, kích thích, hợp bắt trend"},
+  friendly:{id:"friendly",name:"Gần gũi",emoji:"🤗",desc:"Như bạn thân tâm sự, dễ tin"},
+  honest:{id:"honest",name:"Review chân thực",emoji:"🫶",desc:"Thật lòng, nói ưu nhược điểm"},
+  expert:{id:"expert",name:"Chuyên gia",emoji:"🎓",desc:"Kiến thức, uy tín, thuyết phục"},
+  luxury:{id:"luxury",name:"Sang xịn",emoji:"✨",desc:"Cao cấp, tinh tế, đẳng cấp"},
+  storytelling:{id:"storytelling",name:"Kể chuyện",emoji:"📖",desc:"Dẫn dắt bằng câu chuyện có thật"},
+};
+const IND_LIST = Object.values(INDUSTRIES);
+const TONE_LIST = Object.values(TONES);
+
+/* ============ BỘ MÁY SINH NỘI DUNG (có seed) ============ */
+function mulberry32(seed){ let a=seed>>>0; return function(){ a|=0; a=(a+0x6d2b79f5)|0; let t=Math.imul(a^(a>>>15),1|a); t=(t+Math.imul(t^(t>>>7),61|t))^t; return ((t^(t>>>14))>>>0)/4294967296; }; }
+function cap(s){ return s ? s.charAt(0).toUpperCase()+s.slice(1) : s; }
+function uniq(a){ return Array.from(new Set(a)); }
+function slugTag(s){
+  const c = s.normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/đ/g,"d").replace(/Đ/g,"D")
+    .replace(/[^a-zA-Z0-9\s]/g,"").trim().toLowerCase().replace(/\s+/g,"");
+  return (c.length>=3 && c.length<=24) ? c : "";
+}
+
+function generate(input){
+  const ind = INDUSTRIES[input.industry];
+  const tone = TONES[input.tone];
+  const rnd = mulberry32(input.seed + input.industry.length*7 + input.tone.length*13);
+  const pick = a => a[Math.floor(rnd()*a.length)];
+  const pickN = (a,n) => { const c=[...a], o=[]; while(o.length<n && c.length){ o.push(c.splice(Math.floor(rnd()*c.length),1)[0]); } return o; };
+
+  const product = (input.product||"").trim() || "sản phẩm này";
+  const audience = (input.audience||"").trim();
+  const benefit = (input.benefit||"").trim();
+  const price = (input.price||"").trim();
+
+  const pain = pick(ind.painPoints);
+  const benefitLine = benefit || pick(ind.benefits);
+  const proof = pick(ind.proofs);
+  const keyword = pick(ind.keywords);
+  const ap = audience ? cap(audience)+" ơi, " : "";
+
+  const hookBank = {
+    energetic:[ ap+"KHOAN đã lướt! "+cap(product)+" này đang gây bão vì "+benefitLine+"!",
+      "Dừng tay 3 giây thôi: "+product+" giúp bạn "+benefitLine+" — xem hết kẻo tiếc!",
+      "Cái này viral không phải không có lý do đâu nha!" ],
+    friendly:[ ap+"mình phải kể cho bạn nghe vụ "+product+" này liền!",
+      "Bạn có đang "+pain+" không? Mình từng y chang, tới khi gặp "+product+"...",
+      "Nói thật nhỏ nhỏ thôi, "+product+" này mình xài mê luôn á!" ],
+    honest:[ "Review thật lòng: mình đã xài "+product+" 2 tuần và đây là sự thật...",
+      ap+"đừng vội mua "+product+" trước khi xem hết video này!",
+      "Mình bỏ tiền thật mua "+product+" để review không thiên vị cho bạn." ],
+    expert:[ "90% người dùng sai cách nên mới "+pain+". Đây là giải pháp đúng.",
+      "Với kinh nghiệm trong ngành, mình chỉ bạn cách chọn "+product+" chuẩn nhất.",
+      ap+"muốn hết cảnh "+pain+"? Hiểu đúng 1 điều này là được." ],
+    luxury:[ cap(product)+" — khi bạn xứng đáng với những gì tinh tế nhất.",
+      "Không phải ai cũng biết bí mật đằng sau "+benefitLine+".",
+      "Đẳng cấp không nằm ở giá tiền, mà ở "+keyword+"." ],
+    storytelling:[ "Có một dạo mình gần như bỏ cuộc vì "+pain+"...",
+      "Chuyện là hôm bữa mình "+pain+", rồi mọi thứ thay đổi khi...",
+      ap+"để mình kể bạn nghe vì sao mình đổi sang "+product+"." ],
+  };
+  const hooks = pickN([...hookBank[tone.id], ...hookBank.friendly, ...hookBank.energetic], 3);
+
+  const beats = buildBeats(input.duration, { product, pain, benefitLine, proof, keyword, price, hook: hooks[0], cta: pick(ind.ctas) });
+  const voiceover = beats.map(b=>b.voiceover).join(" ");
+  const cta = pick(ind.ctas) + (price ? " Chỉ "+price+" thôi đó!" : "");
+
+  const captionBank = [
+    ind.emoji+" "+cap(product)+" — "+benefitLine+". "+(audience?"Đặc biệt hợp với "+audience+". ":"")+"Ai cần thì để lại \"1\" nha! 👇",
+    "Thử một lần là ghiền: "+product+" giúp bạn "+benefitLine+" 😍 "+proof+". Link ngay dưới video!",
+    "Đừng để "+pain+" nữa nhé 🥹 "+cap(product)+" chính là thứ bạn đang tìm. Chốt đơn thôi!",
+    cap(product)+" đang hot lắm nha mọi người 🔥 "+benefitLine+(price?", chỉ "+price:"")+". Lướt xuống bấm giỏ hàng nè!",
+  ];
+  const caption = pick(captionBank);
+
+  const productTag = slugTag(product);
+  const hashtags = uniq([ ...(productTag?[productTag]:[]), ...pickN(ind.hashtags,6), ...pickN(["fyp","xuhuong","tiktokshop","review"],3) ]).slice(0,12);
+
+  return { hooks, beats, voiceover, cta, caption, hashtags };
+}
+
+function buildBeats(duration, d){
+  const priceLine = d.price ? " Mà giá chỉ "+d.price+", quá hời!" : "";
+  const beats = [];
+  beats.push({ time:"0–3s", label:"Hook", visual:"Cận mặt / cầm sản phẩm, biểu cảm bất ngờ. Chữ hook to giữa màn hình.", voiceover:d.hook });
+  beats.push({ time: duration===30?"3–8s":"3–10s", label:"Chạm nỗi đau", visual:"Cảnh minh hoạ vấn đề: nhăn mặt, thao tác khó khăn, tình huống bực bội.", voiceover:"Chắc bạn cũng từng "+d.pain+" đúng không? Cảm giác đó thật sự khó chịu." });
+  beats.push({ time: duration===30?"8–16s":"10–22s", label:"Giới thiệu giải pháp", visual:"Khoe "+d.product+" ở nhiều góc, quay chậm điểm nổi bật.", voiceover:"Và rồi mình tìm ra "+d.product+". Nó giúp "+d.benefitLine+"."+priceLine });
+  if(duration>=45){ beats.push({ time:"22–32s", label:"Demo thực tế", visual:"Quay cận cảnh đang dùng sản phẩm, cho thấy trước - sau.", voiceover:"Bạn nhìn nè, mình dùng thử ngay tại đây. Hiệu quả thấy rõ luôn, "+d.keyword+" khỏi bàn." }); }
+  beats.push({ time: duration===30?"16–24s":duration===45?"32–40s":"22–34s", label:"Tạo niềm tin", visual:"Chèn review, ảnh chụp phản hồi khách, hoặc cận cảnh chi tiết chất lượng.", voiceover:"Không phải mình tự khen đâu, "+d.proof+"." });
+  if(duration>=60){ beats.push({ time:"34–48s", label:"Xử lý băn khoăn", visual:"Text hiện các câu hỏi thường gặp + trả lời nhanh gọn.", voiceover:"Nhiều bạn hỏi mình có đáng mua không, có bền không — câu trả lời là hoàn toàn xứng đáng, đổi trả rõ ràng nên yên tâm nha." }); }
+  beats.push({ time: duration===30?"24–30s":duration===45?"40–45s":"48–60s", label:"Kêu gọi hành động (CTA)", visual:"Chỉ tay vào giỏ hàng, hiệu ứng mũi tên, chữ CTA nhấp nháy.", voiceover:d.cta });
+  return beats;
+}
+
+/* ============ STATE & GIAO DIỆN ============ */
+const state = { industry:"cosmetics", tone:"friendly", duration:45, seed:1, result:null };
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+// chips ngành ở hero
+$("chips").innerHTML = IND_LIST.map(i => `<span>${i.emoji} ${esc(i.name.split(" / ")[0])}</span>`).join("");
+
+// nút ngành
+$("indGrid").innerHTML = IND_LIST.map(i =>
+  `<button class="ind-btn ${i.id===state.industry?'active':''}" data-ind="${i.id}">
+     <span class="emo">${i.emoji}</span><span class="nm">${esc(i.name.split(" / ")[0])}</span>
+   </button>`).join("");
+$("indGrid").addEventListener("click", e => {
+  const b = e.target.closest("[data-ind]"); if(!b) return;
+  state.industry = b.dataset.ind;
+  $("indGrid").querySelectorAll(".ind-btn").forEach(x => x.classList.toggle("active", x.dataset.ind===state.industry));
+});
+
+// nút phong cách
+$("tones").innerHTML = TONE_LIST.map(t =>
+  `<button class="opt-btn ${t.id===state.tone?'active':''}" data-tone="${t.id}" title="${esc(t.desc)}">${t.emoji} ${esc(t.name)}</button>`).join("");
+$("tones").addEventListener("click", e => {
+  const b = e.target.closest("[data-tone]"); if(!b) return;
+  state.tone = b.dataset.tone;
+  $("tones").querySelectorAll(".opt-btn").forEach(x => x.classList.toggle("active", x.dataset.tone===state.tone));
+});
+
+// thời lượng
+const DURS = [[30,"30 giây"],[45,"45 giây"],[60,"60 giây"]];
+$("durs").innerHTML = DURS.map(([v,l]) => `<button class="dur-btn ${v===state.duration?'active':''}" data-dur="${v}">${l}</button>`).join("");
+$("durs").addEventListener("click", e => {
+  const b = e.target.closest("[data-dur]"); if(!b) return;
+  state.duration = Number(b.dataset.dur);
+  $("durs").querySelectorAll(".dur-btn").forEach(x => x.classList.toggle("active", Number(x.dataset.dur)===state.duration));
+});
+
+// bật/tắt nút generate
+function refreshBtn(){
+  const ok = $("product").value.trim().length > 0;
+  $("genBtn").disabled = !ok;
+  $("hint").classList.toggle("hidden", ok);
+}
+$("product").addEventListener("input", refreshBtn);
+
+function run(nextSeed){
+  state.seed = nextSeed;
+  state.result = generate({
+    industry: state.industry, tone: state.tone,
+    product: $("product").value, audience: $("audience").value,
+    benefit: $("benefit").value, price: $("price").value,
+    duration: state.duration, seed: nextSeed,
+  });
+  renderResult();
+  $("result").scrollIntoView({ behavior:"smooth", block:"start" });
+}
+$("genBtn").addEventListener("click", () => run(state.seed + 1));
+
+/* ============ RENDER KẾT QUẢ ============ */
+function block(ic, title, hint, copyText, inner){
+  return `<section class="block">
+    <div class="block-head">
+      <div class="block-title"><span class="block-ic">${ic}</span>
+        <div><h3>${esc(title)}</h3>${hint?`<div class="h">${esc(hint)}</div>`:""}</div>
+      </div>
+      <button class="copy-btn" data-copy="${encodeURIComponent(copyText)}">⧉ Copy</button>
+    </div>${inner}</section>`;
+}
+
+function renderResult(){
+  const r = state.result;
+  const fullExport = [
+    "🎬 HOOK 3 GIÂY", ...r.hooks.map((h,i)=>(i+1)+". "+h), "",
+    "🎞️ KỊCH BẢN", ...r.beats.map(b=>"["+b.time+"] "+b.label+"\n  Hình ảnh: "+b.visual+"\n  Lời thoại: "+b.voiceover), "",
+    "🗣️ LỜI THOẠI (đọc liền mạch)", r.voiceover, "",
+    "📣 CTA", r.cta, "",
+    "📝 CAPTION", r.caption, "",
+    "🏷️ HASHTAG", r.hashtags.map(h=>"#"+h).join(" ")
+  ].join("\n");
+
+  const hooksInner = `<ul class="hooks">${r.hooks.map((h,i)=>`<li><span class="num">${i+1}</span><span>${esc(h)}</span></li>`).join("")}</ul>`;
+  const beatsInner = `<ol class="beats">${r.beats.map(b=>`<li>
+      <div class="beat-meta"><span class="beat-time">${esc(b.time)}</span><span class="beat-label">${esc(b.label)}</span></div>
+      <p class="beat-line"><span class="k">🎥 Hình ảnh: </span>${esc(b.visual)}</p>
+      <p class="beat-line vo"><span class="k">🗣️ Lời thoại: </span><b>${esc(b.voiceover)}</b></p>
+    </li>`).join("")}</ol>`;
+  const tagsInner = `<div>${r.hashtags.map(h=>`<span class="tag">#${esc(h)}</span>`).join("")}</div>`;
+
+  $("result").innerHTML = `
+    <div class="res-head">
+      <p>Kết quả của bạn</p>
+      <div style="display:flex; gap:8px">
+        <button class="btn-ghost" id="regen">↻ Tạo phiên bản khác</button>
+        <button class="copy-btn copy-all" data-copy="${encodeURIComponent(fullExport)}">⧉ Copy tất cả</button>
+      </div>
+    </div>
+    ${block("✦","Hook 3 giây đầu","Chọn 1 câu bạn thấy hợp nhất để mở video", r.hooks.join("\n"), hooksInner)}
+    ${block("🎬","Kịch bản theo timeline","Kèm gợi ý hình ảnh và lời thoại từng phần", r.beats.map(b=>"["+b.time+"] "+b.label+"\nHình ảnh: "+b.visual+"\nLời thoại: "+b.voiceover).join("\n\n"), beatsInner)}
+    <div class="two">
+      ${block("💬","Lời thoại liền mạch","Đọc để thu âm hoặc lồng tiếng", r.voiceover, `<p class="body-txt">${esc(r.voiceover)}</p>`)}
+      ${block("📣","CTA — Kêu gọi chốt đơn","", r.cta, `<p class="body-txt" style="font-weight:600">${esc(r.cta)}</p>`)}
+    </div>
+    ${block("🔤","Caption đăng bài","", r.caption, `<p class="body-txt">${esc(r.caption)}</p>`)}
+    ${block("#","Hashtag gợi ý","", r.hashtags.map(h=>"#"+h).join(" "), tagsInner)}
+  `;
+
+  $("regen").addEventListener("click", () => run(state.seed + 1));
+  $("result").querySelectorAll("[data-copy]").forEach(btn => {
+    btn.addEventListener("click", async () => {
+      const text = decodeURIComponent(btn.dataset.copy);
+      try { await navigator.clipboard.writeText(text); }
+      catch { const ta=document.createElement("textarea"); ta.value=text; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select(); try{document.execCommand("copy");}catch(e){} document.body.removeChild(ta); }
+      const old = btn.innerHTML; btn.classList.add("done"); btn.innerHTML = "✓ Đã copy";
+      setTimeout(() => { btn.classList.remove("done"); btn.innerHTML = old; }, 1500);
+    });
+  });
+}
+
+refreshBtn();
+</script>
+</body>
+</html>
