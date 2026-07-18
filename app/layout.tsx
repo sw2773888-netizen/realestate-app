@@ -1,16 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { FavoritesProvider } from "@/components/FavoritesProvider";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin", "vietnamese"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Zola — Bất động sản: Mua, Thuê, Bán nhà",
+  title: "AI Prompt Studio — Tạo prompt cho ảnh, video & ChatGPT",
   description:
-    "Nền tảng bất động sản giúp bạn tìm nhà bán, nhà cho thuê và kết nối môi giới trên khắp Việt Nam.",
+    "Công cụ cho người sáng tạo nội dung AI. Nhập ý tưởng, tự động tạo prompt tạo ảnh, prompt Veo/Kling, prompt ChatGPT và prompt Flux/Midjourney.",
 };
 
 export default function RootLayout({
@@ -20,12 +17,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="vi" className={inter.variable}>
-      <body className="font-sans">
-        <FavoritesProvider>
-          <Header />
-          <main className="min-h-screen">{children}</main>
-          <Footer />
-        </FavoritesProvider>
+      <body className="min-h-screen bg-slate-950 font-sans text-slate-100 antialiased">
+        {children}
+        <footer className="border-t border-white/10 py-6 text-center text-xs text-slate-500">
+          AI Prompt Studio · Công cụ tạo nguyên liệu đầu vào cho AI
+        </footer>
       </body>
     </html>
   );
