@@ -11,6 +11,7 @@
 - 💰 **Máy tính khoản vay** trả góp hàng tháng theo giá nhà, trả trước, lãi suất, thời hạn.
 - 🧑‍💼 **Trang môi giới** và các trang giới thiệu (Bán nhà, Vay mua nhà).
 - 📱 Giao diện **responsive** cho cả desktop và mobile.
+- 🤖 **Bộ 500 Prompt AI kiếm tiền** (`/prompts`): trang bán + thư viện tra cứu (lọc theo 7 nhóm, tìm kiếm, copy nhanh). Bản tài liệu đầy đủ ở `docs/500-prompts-ai-kiem-tien.md`.
 
 ## Chạy dự án
 
