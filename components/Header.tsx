@@ -11,6 +11,7 @@ const navLinks = [
   { href: "/sell", label: "Bán nhà" },
   { href: "/loans", label: "Vay mua nhà" },
   { href: "/agents", label: "Tìm môi giới" },
+  { href: "/mua-thu-ha-noi", label: "🍂 Ảnh mùa thu" },
 ];
 
 export default function Header() {
