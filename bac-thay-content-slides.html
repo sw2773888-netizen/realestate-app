@@ -1,0 +1,503 @@
+<title>Bậc Thầy Content — Master Thanh Hương</title>
+<style>
+  :root{
+    --ground:#0B0B0D;
+    --panel:#141317;
+    --panel2:#1B1A1F;
+    --line:#2A2621;
+    --gold:#E4B95B;
+    --gold-bright:#F6D98A;
+    --gold-deep:#B0812F;
+    --bronze:#A9743C;
+    --white:#F5F1E8;
+    --muted:#B0A691;
+    --dim:#7C725F;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:var(--ground);
+    color:var(--white);
+    font-family:"Segoe UI",system-ui,Roboto,Helvetica,Arial,sans-serif;
+    overflow:hidden;
+    display:flex;align-items:center;justify-content:center;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* ===== STAGE 16:9 ===== */
+  #stage{
+    position:relative;
+    width:min(100vw, calc(100vh * 16/9));
+    height:min(100vh, calc(100vw * 9/16));
+    container-type:size;
+    background:
+      radial-gradient(120% 90% at 82% 8%, rgba(228,185,91,.10), transparent 55%),
+      radial-gradient(80% 80% at 8% 100%, rgba(169,116,60,.10), transparent 60%),
+      var(--ground);
+    overflow:hidden;
+  }
+  .slide{
+    position:absolute; inset:0;
+    padding:15cqh 8cqw 7cqh;
+    display:none;
+    flex-direction:column;
+  }
+  .cover,.part,.modcover,.closing{padding-top:7cqh}
+  .slide.active{display:flex; animation:fade .5s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(1.2cqh)}to{opacity:1;transform:none}}
+
+  /* frame */
+  #frame{position:absolute;inset:2.2cqh 2cqw;border:1px solid rgba(228,185,91,.22);pointer-events:none}
+  #frame::after{content:"";position:absolute;inset:.7cqh .55cqw;border:1px solid rgba(228,185,91,.10)}
+
+  /* ===== BRAND (top-left every slide) ===== */
+  #brand{position:absolute;top:3.4cqh;left:3.2cqw;display:flex;align-items:center;gap:1.1cqw;z-index:20}
+  #brand svg{width:5cqw;height:5cqw;display:block;filter:drop-shadow(0 .3cqh .6cqh rgba(0,0,0,.5))}
+  #brand .wm{line-height:1}
+  #brand .wm b{display:block;font-family:Georgia,"Times New Roman",serif;font-size:1.5cqw;letter-spacing:.12em;
+    background:linear-gradient(180deg,var(--gold-bright),var(--gold) 55%,var(--gold-deep));
+    -webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
+  #brand .wm span{display:block;font-size:.82cqw;letter-spacing:.42em;color:var(--muted);margin-top:.35cqh;text-transform:uppercase}
+
+  /* progress + counter */
+  #bar{position:absolute;left:0;bottom:0;height:.55cqh;background:linear-gradient(90deg,var(--gold-deep),var(--gold),var(--gold-bright));z-index:20;transition:width .35s ease}
+  #count{position:absolute;right:3cqw;bottom:2.6cqh;font-size:1cqw;letter-spacing:.3em;color:var(--dim);z-index:20;font-variant-numeric:tabular-nums}
+  #count b{color:var(--gold)}
+
+  /* ===== TYPO HELPERS ===== */
+  .eyebrow{font-size:1.15cqw;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .goldtext{background:linear-gradient(180deg,var(--gold-bright),var(--gold) 50%,var(--gold-deep));
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  h1{font-family:Georgia,serif;font-weight:700;line-height:1.02;text-wrap:balance}
+  h2{font-family:Georgia,serif;font-weight:700;line-height:1.05;text-wrap:balance}
+  .lead{color:var(--muted);font-size:1.7cqw;line-height:1.5;max-width:62ch}
+  .hr{height:1px;background:linear-gradient(90deg,var(--gold),transparent);width:22cqw;margin:2cqh 0}
+
+  .slide-head{margin-bottom:2.4cqh}
+  .slide-head h2{font-size:3.9cqw}
+  .slide-head .eyebrow{margin-bottom:1cqh}
+
+  /* ===== COVER ===== */
+  .cover{justify-content:center}
+  .cover .kick{font-size:1.3cqw;letter-spacing:.5em;color:var(--muted);text-transform:uppercase}
+  .cover h1{font-size:9.2cqw;margin:2.2cqh 0 1.4cqh}
+  .cover .sub{font-size:2.3cqw;color:var(--white);font-family:Georgia,serif;font-style:italic;letter-spacing:.02em}
+  .cover .by{margin-top:4.2cqh;display:flex;align-items:center;gap:1.4cqw;font-size:1.3cqw;letter-spacing:.32em;color:var(--muted);text-transform:uppercase}
+  .cover .by b{color:var(--gold);letter-spacing:.24em}
+  .cover .dot{width:.55cqw;height:.55cqw;background:var(--bronze);transform:rotate(45deg)}
+
+  /* ===== INFO GRID ===== */
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.6cqh 2.2cqw;flex:1;align-content:center}
+  .info{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);
+    border-radius:.4cqw;padding:2.1cqh 2cqw;display:flex;flex-direction:column;gap:.7cqh}
+  .info .k{font-size:1.02cqw;letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+  .info .v{font-size:1.62cqw;color:var(--white);line-height:1.35}
+
+  /* ===== PART DIVIDER ===== */
+  .part{justify-content:center}
+  .part .pnum{font-family:Georgia,serif;font-size:20cqw;line-height:.8;opacity:.9}
+  .part .plabel{font-size:1.3cqw;letter-spacing:.5em;color:var(--muted);text-transform:uppercase;margin-bottom:1cqh}
+  .part h1{font-size:7cqw;margin-top:1.4cqh}
+  .part .psub{font-size:1.9cqw;color:var(--muted);font-family:Georgia,serif;font-style:italic;margin-top:1.6cqh}
+  .part-row{display:flex;align-items:center;gap:4cqw}
+
+  /* ===== BIG NUMBERED LIST (core / summary) ===== */
+  .biglist{display:flex;flex-direction:column;gap:1.35cqh;flex:1;justify-content:center}
+  .biglist .row{display:flex;align-items:flex-start;gap:2cqw}
+  .badge{flex:none;width:4.4cqw;height:4.4cqw;border:1px solid var(--gold);border-radius:50%;
+    display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:2cqw;color:var(--gold);
+    background:radial-gradient(circle at 50% 30%,rgba(228,185,91,.14),transparent 70%)}
+  .biglist .tx{font-size:2.15cqw;line-height:1.3;padding-top:.5cqh}
+  .biglist .tx b{color:var(--gold)}
+
+  /* ===== MAP (module list) ===== */
+  .maplist{display:flex;flex-direction:column;gap:1.15cqh;flex:1;justify-content:center}
+  .mrow{display:flex;align-items:center;gap:1.8cqw;background:linear-gradient(90deg,var(--panel),transparent 90%);
+    border:1px solid var(--line);border-left:2px solid var(--gold);border-radius:.35cqw;padding:1.5cqh 2cqw}
+  .mrow .tag{flex:none;font-family:Georgia,serif;font-size:1.5cqw;color:var(--gold);width:4.4cqw;letter-spacing:.05em}
+  .mrow .nm{font-size:1.85cqw;color:var(--white);font-weight:600;min-width:19cqw}
+  .mrow .ds{font-size:1.42cqw;color:var(--muted)}
+
+  /* ===== MODULE COVER ===== */
+  .modcover{justify-content:center}
+  .modcover .mtag{font-family:Georgia,serif;font-size:2cqw;letter-spacing:.3em;color:var(--gold)}
+  .modcover h1{font-size:6.4cqw;margin:1.4cqh 0}
+  .modcover .mtl{font-size:2cqw;color:var(--muted);font-family:Georgia,serif;font-style:italic}
+
+  /* ===== TWO PANEL (problem + framework) ===== */
+  .cols{display:grid;grid-template-columns:1fr 1.05fr;gap:2.6cqw;flex:1}
+  .panel{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:.5cqw;padding:2.4cqh 2.2cqw;display:flex;flex-direction:column}
+  .panel.fw{border-color:rgba(228,185,91,.35)}
+  .plab{font-size:1.05cqw;letter-spacing:.3em;text-transform:uppercase;margin-bottom:1.5cqh;display:flex;align-items:center;gap:.9cqw}
+  .plab .ic{color:var(--gold)}
+  .plab.red{color:#D98A6A}
+  .plab.gold{color:var(--gold)}
+  .fwname{font-family:Georgia,serif;font-size:2cqw;color:var(--gold);margin-bottom:1.4cqh;line-height:1.1}
+  ul.clean{list-style:none;display:flex;flex-direction:column;gap:1.15cqh}
+  ul.clean li{position:relative;padding-left:2cqw;font-size:1.52cqw;line-height:1.34;color:var(--white)}
+  ul.clean li::before{content:"";position:absolute;left:.2cqw;top:.62cqh;width:.72cqw;height:.72cqw;
+    background:var(--gold);transform:rotate(45deg)}
+  ul.clean.dim li{color:var(--muted)}
+  ul.clean.dim li::before{background:var(--bronze)}
+  ul.steps li{padding-left:2.6cqw}
+  ul.steps li b{color:var(--gold)}
+  ul.steps li::before{display:none}
+  ul.steps li .sn{position:absolute;left:0;top:.15cqh;font-family:Georgia,serif;color:var(--gold);font-size:1.4cqw}
+
+  /* ===== THREE BLOCKS (explain/example/action) ===== */
+  .three{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:1.7cqh 2.2cqw;flex:1;align-content:center}
+  .blk{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:.5cqw;padding:2cqh 2cqw}
+  .blk.wide{grid-column:1 / -1}
+  .blk .bh{font-size:1.05cqw;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1.1cqh;display:flex;gap:.8cqw;align-items:center}
+  .blk ul.clean li{font-size:1.4cqw;gap:.8cqh}
+  .check li{list-style:none;position:relative;padding-left:2.4cqw;font-size:1.4cqw;line-height:1.32;margin-bottom:1cqh;color:var(--white)}
+  .check li::before{content:"";position:absolute;left:.1cqw;top:.15cqh;width:1.4cqw;height:1.4cqw;border:1px solid var(--gold);border-radius:.18cqw}
+  .check{list-style:none;display:flex;flex-direction:column}
+
+  /* ===== 10 PRINCIPLES 2-col ===== */
+  .princ{display:grid;grid-template-columns:1fr 1fr;gap:1.15cqh 3cqw;flex:1;align-content:center}
+  .prow{display:flex;align-items:baseline;gap:1.3cqw}
+  .prow .pn{font-family:Georgia,serif;font-size:1.9cqw;color:var(--gold);width:2.6cqw;flex:none;text-align:right}
+  .prow .pt{font-size:1.62cqw;line-height:1.28;color:var(--white)}
+  .prow .pt b{color:var(--gold)}
+
+  /* ===== HOOKS grid ===== */
+  .hooks{display:grid;grid-template-columns:1fr 1fr;gap:1.5cqh 2.2cqw;flex:1;align-content:center}
+  .hook{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid var(--line);border-radius:.5cqw;padding:1.9cqh 2cqw;display:flex;gap:1.5cqw;align-items:flex-start}
+  .hook.solo{grid-column:1 / -1}
+  .hook .hn{font-family:Georgia,serif;font-size:2.6cqw;color:var(--gold);flex:none;line-height:1}
+  .hook .ht{font-size:1.72cqw;color:var(--white);font-weight:600;margin-bottom:.6cqh}
+  .hook .hf{font-size:1.32cqw;color:var(--muted);font-style:italic;font-family:Georgia,serif}
+
+  /* ===== QUOTES ===== */
+  .quotes{display:grid;grid-template-columns:1fr 1fr;gap:1.25cqh 2.4cqw;flex:1;align-content:center}
+  .q{position:relative;padding-left:2.6cqw;font-family:Georgia,serif;font-size:1.62cqw;line-height:1.3;color:var(--white)}
+  .q::before{content:"“";position:absolute;left:0;top:-.4cqh;font-family:Georgia,serif;font-size:3.2cqw;color:var(--gold);line-height:1}
+  .q em{color:var(--gold);font-style:normal}
+
+  /* ===== MISTAKES ===== */
+  .mist{display:grid;grid-template-columns:1fr 1fr;gap:1.1cqh 3cqw;flex:1;align-content:center}
+  .mi{display:flex;align-items:baseline;gap:1.2cqw}
+  .mi .x{color:var(--bronze);font-size:1.7cqw;flex:none;font-family:Georgia,serif}
+  .mi .mt{font-size:1.55cqw;line-height:1.28;color:var(--white)}
+
+  /* ===== FRAMEWORK CARDS (bonus1) ===== */
+  .fwcards{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2.4cqw;flex:1;align-content:center}
+  .fwc{background:linear-gradient(180deg,var(--panel),var(--panel2));border:1px solid rgba(228,185,91,.3);border-radius:.5cqw;padding:2.8cqh 1.9cqw;display:flex;flex-direction:column;gap:1.4cqh}
+  .fwc .fnum{font-family:Georgia,serif;font-size:2.4cqw;color:var(--gold-deep)}
+  .fwc .fnm{font-family:Georgia,serif;font-size:2.1cqw;color:var(--gold);line-height:1.1}
+  .fwc .fst{font-size:1.4cqw;color:var(--muted);line-height:1.5}
+
+  /* ===== CLOSING ===== */
+  .closing{justify-content:center;align-items:center;text-align:center}
+  .closing .big{font-family:Georgia,serif;font-size:5.4cqw;line-height:1.15;margin-bottom:2.4cqh;text-wrap:balance}
+  .closing .who{display:flex;align-items:center;gap:1.4cqw;font-size:1.5cqw;letter-spacing:.34em;text-transform:uppercase;color:var(--muted);margin-top:1cqh}
+  .closing .who b{color:var(--gold);letter-spacing:.24em}
+
+  /* hint */
+  #hint{position:absolute;left:3.2cqw;bottom:2.4cqh;font-size:.95cqw;letter-spacing:.24em;color:var(--dim);text-transform:uppercase;z-index:20}
+</style>
+
+<div id="stage" role="application" aria-label="Slide bài giảng Bậc Thầy Content">
+  <div id="frame"></div>
+
+  <div id="brand" aria-hidden="true">
+    <svg viewBox="0 0 100 100" fill="none">
+      <defs>
+        <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#F6D98A"/><stop offset=".55" stop-color="#E4B95B"/><stop offset="1" stop-color="#B0812F"/>
+        </linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="46" stroke="url(#g)" stroke-width="1.6"/>
+      <circle cx="50" cy="50" r="40" stroke="url(#g)" stroke-width=".7" opacity=".6"/>
+      <path d="M28 30 Q22 50 28 70" stroke="url(#g)" stroke-width="1.2" fill="none" opacity=".7"/>
+      <path d="M72 30 Q78 50 72 70" stroke="url(#g)" stroke-width="1.2" fill="none" opacity=".7"/>
+      <text x="50" y="60" text-anchor="middle" font-family="Georgia,serif" font-size="34" font-weight="700" fill="url(#g)">TH</text>
+      <path d="M40 78 L50 82 L60 78" stroke="url(#g)" stroke-width="1.4" fill="none"/>
+    </svg>
+    <div class="wm"><b>Master Thanh Hương</b><span>Content Mastery</span></div>
+  </div>
+
+  <div id="bar"></div>
+  <div id="count"><b id="cur">1</b> / <span id="tot">26</span></div>
+  <div id="hint">← → chuyển slide</div>
+</div>
+
+<script>
+const S = [];
+
+/* 1 COVER */
+S.push(`<section class="slide cover">
+  <div class="kick">Khóa học cộng đồng</div>
+  <h1 class="goldtext">Bậc Thầy<br>Content</h1>
+  <div class="sub">Viết Content Viral — Chạm Cảm Xúc — Giữ Chân Người Xem</div>
+  <div class="by"><span class="dot"></span> Đào tạo bởi <b>Master Thanh Hương</b></div>
+</section>`);
+
+/* 2 OVERVIEW */
+S.push(`<section class="slide">
+  <div class="slide-head"><div class="eyebrow">Tổng quan</div><h2>Khóa học này dành cho ai?</h2></div>
+  <div class="grid2">
+    <div class="info"><div class="k">Chủ đề</div><div class="v">Kỹ năng sáng tạo content thu hút &amp; giữ chân người xem</div></div>
+    <div class="info"><div class="k">Đối tượng</div><div class="v">Người kinh doanh online, chủ shop, người xây thương hiệu cá nhân</div></div>
+    <div class="info"><div class="k">Nỗi đau chính</div><div class="v">Đăng bài mỗi ngày — không ai xem, không ai nhớ</div></div>
+    <div class="info"><div class="k">Kết quả mong muốn</div><div class="v">Viết được content khiến người xem <b style="color:var(--gold)">dừng lại</b>, đọc hết &amp; nhớ</div></div>
+    <div class="info"><div class="k">Thời lượng</div><div class="v">1 buổi cốt lõi (~90 phút) • 5 module</div></div>
+    <div class="info"><div class="k">Cam kết học tập</div><div class="v">Hiểu nhanh — Làm được ngay</div></div>
+  </div>
+</section>`);
+
+/* 3 PART 1 */
+S.push(partSlide("01","Phần một","Tư Duy Cốt Lõi","Hiểu đúng trước — rồi làm mới đúng."));
+
+/* 4 CORE truths */
+S.push(`<section class="slide">
+  <div class="slide-head"><div class="eyebrow">Phần 1 · Tư duy cốt lõi</div><h2>5 sự thật phải hiểu</h2></div>
+  <div class="biglist">
+    ${bigRow("1","Content là <b>năng lực số 1</b> trong kinh doanh — không phải năng khiếu.")}
+    ${bigRow("2","AI chỉ là <b>công cụ</b>. Tư duy mới là gốc rễ.")}
+    ${bigRow("3","Người xem quyết định <b>ở lại hay lướt</b> trong 3 giây đầu.")}
+    ${bigRow("4","Không ai hành động vì thứ họ <b>không cảm</b> và <b>không tin</b>.")}
+    ${bigRow("5","1 content = 1 thông điệp. <b>Tham lam = mất tất cả.</b>")}
+  </div>
+</section>`);
+
+/* 5 PART 2 */
+S.push(partSlide("02","Phần hai","Bản Đồ Khóa Học","5 chặng — đi từ tư duy đến thực chiến."));
+
+/* 6 MAP */
+S.push(`<section class="slide">
+  <div class="slide-head"><div class="eyebrow">Phần 2 · Bản đồ</div><h2>Lộ trình 5 module</h2></div>
+  <div class="maplist">
+    ${mapRow("M1","Tư Duy Content Gốc Rễ","Hiểu bản chất để không viết vô nghĩa.")}
+    ${mapRow("M2","Cú Hook 3 Giây","Chặn đứng người xem ngay câu đầu tiên.")}
+    ${mapRow("M3","Chạm Cảm Xúc &amp; Kể Chuyện","Khiến người xem “cảm” trước khi “hiểu”.")}
+    ${mapRow("M4","10 Nguyên Tắc Content Viral","Bộ luật để content lan tỏa.")}
+    ${mapRow("M5","5 Công Thức HOOK","Khung viết câu mở đầu giữ chân.")}
+  </div>
+</section>`);
+
+/* ---- MODULE 1 ---- */
+S.push(modCover("Module 01","Tư Duy Content Gốc Rễ","Ngừng viết theo cảm hứng — bắt đầu viết theo hệ thống."));
+S.push(pfSlide("Module 1 · Tư duy content",
+  ["Viết theo cảm hứng, không có hệ thống.","Coi content là việc “đăng cho có”.","Dựa hết vào AI, không có tư duy riêng."],
+  "3 Lớp Content",
+  [["Lớp 1 — Kết nối","kể chuyện, tâm sự, ứng xử."],
+   ["Lớp 2 — Giá trị","dạy, chia sẻ, giải quyết vấn đề."],
+   ["Lớp 3 — Dấu ấn","cá tính, quan điểm, câu chuyện thật."]]));
+S.push(eeaSlide("Module 1 · Tư duy content",
+  ["Content không phải bài đăng — là cách bạn <b>giữ chân</b> người xem.","AI viết ra chữ. Bạn tạo ra tư duy &amp; cảm xúc."],
+  ["Cùng 1 sản phẩm: người <b>kể chuyện thật</b> → giữ được người xem.","Người chỉ <b>liệt kê tính năng</b> → bị lướt qua ngay."],
+  ["Xác định: content của bạn đang ở <b>lớp</b> nào?","Chọn 1 câu chuyện thật của bạn để kể tuần này.","Viết nháp bằng tư duy của bạn trước — rồi mới dùng AI."]));
+
+/* ---- MODULE 2 ---- */
+S.push(modCover("Module 02","Cú Hook 3 Giây","Người xem không đọc câu 2 nếu câu 1 nhạt."));
+S.push(pfSlide("Module 2 · Cú Hook 3 giây",
+  ["Mở đầu vòng vo — không ai đọc tới câu thứ hai.","Câu đầu chung chung, không cho lý do để dừng lại."],
+  "Cú Hook 3 Giây",
+  [["Chốt 1 — Nỗi đau","gọi thẳng tên điều họ đang khổ."],
+   ["Chốt 2 — Bất ngờ","nói điều phản trực giác, gây tò mò."],
+   ["Chốt 3 — Lời hứa","hứa 1 điều cụ thể, đáng để xem tiếp."]]));
+S.push(eeaSlide("Module 2 · Cú Hook 3 giây",
+  ["3 giây đầu không phải là VÀNG — mà là <b>KIM CƯƠNG</b>.","Đầu xuôi thì đuôi mới lọt."],
+  ["“Đăng 10 bài/ngày mà vẫn không ra đơn?” → gọi tên nỗi đau.","“Tôi từng vỡ nợ — đây là cách tôi làm lại.” → bất ngờ."],
+  ["Viết 5 câu mở đầu cho cùng 1 chủ đề.","Đọc to — câu nào khiến bạn muốn đọc tiếp?","Giữ câu mạnh nhất, cắt bỏ phần vòng vo phía trước."]));
+
+/* ---- MODULE 3 ---- */
+S.push(modCover("Module 03","Chạm Cảm Xúc &amp; Kể Chuyện","Người ta nhớ cảm xúc — quên thông tin."));
+S.push(pfSlide("Module 3 · Chạm cảm xúc",
+  ["Dạy kiến thức khô khan — người xem không “cảm”.","Nói lý trí trước, cảm xúc sau → mất kết nối."],
+  "Cảm Trước — Hiểu Sau",
+  [["Bước 1 — Cảm xúc","chạm vào: thương, nghẹn, tâm đắc."],
+   ["Bước 2 — Câu chuyện","kể chuyện thật, chi tiết, cụ thể."],
+   ["Bước 3 — Bài học","rút ra kiến thức từ câu chuyện đó."]]));
+S.push(eeaSlide("Module 3 · Chạm cảm xúc",
+  ["Người ta nhớ <b>cảm xúc</b>, quên thông tin.","Chi tiết càng cụ thể → càng thật → càng giữ chân."],
+  ["Video kể hành trình vượt khó → người xem xem hết vì “cảm”.","Giữ đúng <b>1 thông điệp</b> — không lan man."],
+  ["Chọn 1 cảm xúc chính bạn muốn người xem cảm nhận.","Thêm 3 chi tiết thật (con số, thời gian, tình huống).","Kiểm tra: content này có đúng 1 thông điệp không?"]));
+
+/* ---- MODULE 4 ---- */
+S.push(modCover("Module 04","10 Nguyên Tắc Content Viral","Bộ luật để mỗi content có sức nặng."));
+S.push(`<section class="slide">
+  <div class="slide-head"><div class="eyebrow">Module 4 · Framework</div><h2>10 Nguyên Tắc Content Viral</h2></div>
+  <div class="princ">
+    ${prin("1","Đúng <b>nỗi đau</b> — gọi thẳng tên.")}
+    ${prin("2","<b>Bùng nổ</b> trong 3 giây đầu.")}
+    ${prin("3","<b>Giá trị thật</b> — xem xong nhận được gì?")}
+    ${prin("4","Chạm <b>cảm xúc</b> trước khi dạy.")}
+    ${prin("5","Dễ hiểu — dễ nhớ — dễ làm.")}
+    ${prin("6","1 content = 1 <b>thông điệp</b>.")}
+    ${prin("7","Có <b>dấu ấn cá nhân</b>.")}
+    ${prin("8","Nhiều <b>“điểm gãi đúng chỗ”</b>.")}
+    ${prin("9","Có <b>bằng chứng thật</b>.")}
+    ${prin("10","Kết bằng 1 <b>hành động rõ ràng</b>.")}
+  </div>
+</section>`);
+S.push(`<section class="slide">
+  <div class="slide-head"><div class="eyebrow">Module 4 · Áp dụng</div><h2>Ví dụ &amp; Hành động</h2></div>
+  <div class="three">
+    <div class="blk"><div class="bh">◆ Ví dụ</div>
+      <ul class="clean"><li>Nội dung drama dễ viral nhưng khó tạo niềm tin → chọn <b>giá trị thật</b>.</li>
+      <li>Có bằng chứng (kết quả, hình ảnh) → người xem mới tin.</li></ul></div>
+    <div class="blk"><div class="bh">◆ Ghi nhớ</div>
+      <ul class="clean"><li>Viral mà không có niềm tin = không bền.</li>
+      <li>Nguyên tắc là để <b>tự chấm điểm</b>, không phải để thuộc lòng.</li></ul></div>
+    <div class="blk wide"><div class="bh">✓ Hành động ngay</div>
+      <ul class="check"><li>Chấm content gần nhất theo 10 nguyên tắc — đạt mấy điểm?</li>
+      <li>Chọn 3 nguyên tắc bạn yếu nhất để sửa ngay.</li>
+      <li>Viết lại 1 bài cũ cho đủ 10 nguyên tắc.</li></ul></div>
+  </div>
+</section>`);
+
+/* ---- MODULE 5 ---- */
+S.push(modCover("Module 05","5 Công Thức HOOK","Bộ khung viết câu mở đầu — dùng được ngay."));
+S.push(`<section class="slide">
+  <div class="slide-head"><div class="eyebrow">Module 5 · Framework</div><h2>5 Công Thức HOOK</h2></div>
+  <div class="hooks">
+    ${hook("1","Tôi Từng Sai","“Tôi từng [sai lầm]… cho đến khi…”")}
+    ${hook("2","Đừng Làm Nếu","“Đừng… nếu bạn không muốn [kết quả].”")}
+    ${hook("3","Sự Thật Ít Ai Nói","“Sự thật về… mà ít người nói cho bạn.”")}
+    ${hook("4","So Sánh Chênh Lệch","“Nhìn nhỏ… nhưng thật ra rất lớn.”")}
+    ${hookSolo("5","Gọi Đúng Người","“Nếu bạn là [kiểu người]… phần này dành cho bạn.”")}
+  </div>
+</section>`);
+S.push(`<section class="slide">
+  <div class="slide-head"><div class="eyebrow">Module 5 · Áp dụng</div><h2>Giải thích · Ví dụ · Hành động</h2></div>
+  <div class="three">
+    <div class="blk"><div class="bh">◆ Vì sao hiệu quả</div>
+      <ul class="clean" style="gap:.75cqh">
+        <li><b>Tôi từng sai</b> → người ta thích xem sự chuyển đổi.</li>
+        <li><b>Đừng làm nếu</b> → cấm nhẹ → gây tò mò.</li>
+        <li><b>Sự thật ít ai nói</b> → cảm giác “phe nội bộ”.</li>
+        <li><b>So sánh</b> → não bị hút bởi khoảng cách.</li>
+        <li><b>Gọi đúng người</b> → thấy “dành riêng cho mình”.</li></ul></div>
+    <div class="blk"><div class="bh">◆ Ví dụ</div>
+      <ul class="clean"><li>“Tôi từng làm 6 tháng không có kết quả, cho đến khi…”</li>
+      <li>“Nếu bạn viết content mà không ai đọc — phần này dành cho bạn.”</li></ul></div>
+    <div class="blk wide"><div class="bh">✓ Hành động ngay</div>
+      <ul class="check"><li>Chọn 1 công thức HOOK hợp với chủ đề của bạn.</li>
+      <li>Viết 1 câu mở đầu theo đúng khung đó.</li>
+      <li>Nhớ: HOOK phải THẬT — nói sai là mất uy tín ngay.</li></ul></div>
+  </div>
+</section>`);
+
+/* PART 4 SUMMARY */
+S.push(partSlide("04","Phần bốn","Tổng Kết","Gói toàn bộ khóa học vào 7 câu."));
+S.push(`<section class="slide">
+  <div class="slide-head"><div class="eyebrow">Tổng kết</div><h2>7 điều mang về</h2></div>
+  <div class="biglist" style="gap:1cqh">
+    ${bigRow("1","Content là <b>kỹ năng</b> — học được, luyện được.","1.85")}
+    ${bigRow("2","<b>Tư duy trước</b>, công cụ sau.","1.85")}
+    ${bigRow("3","<b>3 giây đầu</b> quyết định tất cả.","1.85")}
+    ${bigRow("4","<b>Cảm xúc</b> dẫn đường, kiến thức theo sau.","1.85")}
+    ${bigRow("5","1 content = 1 <b>thông điệp</b>.","1.85")}
+    ${bigRow("6","<b>Bằng chứng thật</b> tạo niềm tin.","1.85")}
+    ${bigRow("7","Viết mỗi ngày — <b>sửa theo nguyên tắc</b>.","1.85")}
+  </div>
+</section>`);
+
+/* BONUS 1 frameworks */
+S.push(`<section class="slide">
+  <div class="slide-head"><div class="eyebrow">Bonus 01</div><h2>3 Framework <span class="goldtext">nhớ trọn đời</span></h2></div>
+  <div class="fwcards">
+    <div class="fwc"><div class="fnum">01</div><div class="fnm">3 Lớp Content</div><div class="fst">Kết nối · Giá trị · Dấu ấn</div></div>
+    <div class="fwc"><div class="fnum">02</div><div class="fnm">Cú Hook 3 Giây</div><div class="fst">Nỗi đau · Bất ngờ · Lời hứa</div></div>
+    <div class="fwc"><div class="fnum">03</div><div class="fnm">Cảm Trước Hiểu Sau</div><div class="fst">Cảm xúc · Câu chuyện · Bài học</div></div>
+  </div>
+</section>`);
+
+/* BONUS 2 quotes */
+S.push(`<section class="slide">
+  <div class="slide-head"><div class="eyebrow">Bonus 02</div><h2>10 câu <span class="goldtext">khắc cốt</span></h2></div>
+  <div class="quotes">
+    ${quote("Không viral thì <em>vô hình</em>.")}
+    ${quote("3 giây đầu là <em>kim cương</em>.")}
+    ${quote("AI viết chữ — bạn tạo <em>cảm xúc</em>.")}
+    ${quote("Người ta nhớ cảm xúc, <em>quên thông tin</em>.")}
+    ${quote("Một content, <em>một thông điệp</em>.")}
+    ${quote("Content không cảm là content <em>chết</em>.")}
+    ${quote("Không tin thì <em>không theo</em>.")}
+    ${quote("Chi tiết càng thật, càng <em>giữ chân</em>.")}
+    ${quote("Tham lam thông điệp = <em>mất tất cả</em>.")}
+    ${quote("Viết mỗi ngày, <em>giỏi mỗi ngày</em>.")}
+  </div>
+</section>`);
+
+/* BONUS 3 mistakes */
+S.push(`<section class="slide">
+  <div class="slide-head"><div class="eyebrow">Bonus 03</div><h2>10 lỗi sai <span class="goldtext">phải tránh</span></h2></div>
+  <div class="mist">
+    ${mist("Mở đầu vòng vo, không có hook.")}
+    ${mist("Nhồi nhiều thông điệp vào 1 bài.")}
+    ${mist("Dạy kiến thức khô, thiếu cảm xúc.")}
+    ${mist("Copy-paste AI, không có tư duy riêng.")}
+    ${mist("Viết cho “tất cả” → không cho ai cả.")}
+    ${mist("Không có bằng chứng thật.")}
+    ${mist("Không có dấu ấn cá nhân.")}
+    ${mist("Chạy theo drama, mất niềm tin.")}
+    ${mist("Content chung chung, không giải quyết gì.")}
+    ${mist("Viết xong không đọc lại, không sửa.")}
+  </div>
+</section>`);
+
+/* CLOSING */
+S.push(`<section class="slide closing">
+  <div class="big">Học để <span class="goldtext">HIỂU</span>.<br>Làm để <span class="goldtext">CÓ KẾT QUẢ</span>.</div>
+  <div class="hr" style="width:16cqw;margin:1cqh auto 2cqh"></div>
+  <div class="who"><span class="dot" style="width:.55cqw;height:.55cqw;background:var(--bronze);transform:rotate(45deg)"></span> Master <b>Thanh Hương</b></div>
+</section>`);
+
+/* ===== helper renderers ===== */
+function bigRow(n,t,fs){return `<div class="row"><div class="badge">${n}</div><div class="tx"${fs?` style="font-size:${fs}cqw"`:""}>${t}</div></div>`;}
+function mapRow(tag,nm,ds){return `<div class="mrow"><div class="tag">${tag}</div><div class="nm">${nm}</div><div class="ds">${ds}</div></div>`;}
+function partSlide(num,label,title,sub){return `<section class="slide part"><div class="part-row"><div class="pnum goldtext">${num}</div><div><div class="plabel">${label}</div><h1 class="goldtext">${title}</h1><div class="psub">${sub}</div></div></div></section>`;}
+function modCover(tag,title,tl){return `<section class="slide modcover"><div class="mtag">${tag}</div><h1 class="goldtext">${title}</h1><div class="hr"></div><div class="mtl">${tl}</div></section>`;}
+function prin(n,t){return `<div class="prow"><div class="pn">${n}</div><div class="pt">${t}</div></div>`;}
+function hook(n,t,f){return `<div class="hook"><div class="hn">${n}</div><div><div class="ht">${t}</div><div class="hf">${f}</div></div></div>`;}
+function hookSolo(n,t,f){return `<div class="hook solo"><div class="hn">${n}</div><div><div class="ht">${t}</div><div class="hf">${f}</div></div></div>`;}
+function quote(t){return `<div class="q">${t}</div>`;}
+function mist(t){return `<div class="mi"><div class="x">✕</div><div class="mt">${t}</div></div>`;}
+function pfSlide(eye,problems,fwName,steps){
+  return `<section class="slide">
+    <div class="slide-head"><div class="eyebrow">${eye}</div><h2>Vấn đề &amp; Framework</h2></div>
+    <div class="cols">
+      <div class="panel"><div class="plab red">✕&nbsp; Học viên đang sai gì</div>
+        <ul class="clean dim">${problems.map(p=>`<li>${p}</li>`).join("")}</ul></div>
+      <div class="panel fw"><div class="plab gold">◆&nbsp; Framework</div>
+        <div class="fwname">${fwName}</div>
+        <ul class="clean steps">${steps.map((s,i)=>`<li><span class="sn">${i+1}</span><b>${s[0]}</b> — ${s[1]}</li>`).join("")}</ul></div>
+    </div>
+  </section>`;
+}
+function eeaSlide(eye,explain,example,action){
+  return `<section class="slide">
+    <div class="slide-head"><div class="eyebrow">${eye}</div><h2>Giải thích · Ví dụ · Hành động</h2></div>
+    <div class="three">
+      <div class="blk"><div class="bh">◆ Giải thích</div><ul class="clean">${explain.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+      <div class="blk"><div class="bh">◆ Ví dụ</div><ul class="clean">${example.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+      <div class="blk wide"><div class="bh">✓ Hành động ngay</div><ul class="check">${action.map(x=>`<li>${x}</li>`).join("")}</ul></div>
+    </div>
+  </section>`;
+}
+
+/* ===== mount + navigation ===== */
+const stage=document.getElementById("stage");
+S.forEach(html=>stage.insertAdjacentHTML("beforeend",html));
+const slides=[...stage.querySelectorAll(".slide")];
+document.getElementById("tot").textContent=slides.length;
+let i=0;
+function show(n){
+  i=Math.max(0,Math.min(slides.length-1,n));
+  slides.forEach((s,k)=>s.classList.toggle("active",k===i));
+  document.getElementById("cur").textContent=i+1;
+  document.getElementById("bar").style.width=((i+1)/slides.length*100)+"%";
+  document.getElementById("hint").style.opacity = i===0 ? "1":"0";
+}
+function next(){show(i+1)} function prev(){show(i-1)}
+document.addEventListener("keydown",e=>{
+  if(["ArrowRight","ArrowDown","PageDown"," "].includes(e.key)){e.preventDefault();next();}
+  else if(["ArrowLeft","ArrowUp","PageUp"].includes(e.key)){e.preventDefault();prev();}
+  else if(e.key==="Home"){show(0);} else if(e.key==="End"){show(slides.length-1);}
+});
+stage.addEventListener("click",e=>{ if(e.clientX < window.innerWidth*0.28) prev(); else next(); });
+show(0);
+</script>
