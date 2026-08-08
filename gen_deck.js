@@ -40,13 +40,19 @@ let s = p.addSlide(); bg(s, NAVY);
 // big soft circle motif
 s.addShape(p.ShapeType.ellipse,{x:9.4,y:-2.2,w:6.6,h:6.6,fill:{color:CORAL,transparency:82},line:{type:"none"}});
 s.addShape(p.ShapeType.ellipse,{x:10.9,y:3.4,w:4.6,h:4.6,fill:{color:GOLD,transparency:88},line:{type:"none"}});
+// ---- portrait on the right (gold-framed) ----
+const IMG = "portrait.jpg";
+const imgX=9.30, imgY=0.62, imgW=3.44, imgH=6.02; // aspect 768x1344 -> w/h 0.5714
+s.addShape(p.ShapeType.roundRect,{x:imgX-0.30,y:imgY-0.30,w:imgW+0.60,h:imgH+0.60,rectRadius:0.10,fill:{color:"0E1322"},line:{color:GOLD,width:1.25},shadow:{type:"outer",color:"05070C",opacity:0.55,blur:14,offset:5,angle:90}});
+s.addImage({path:IMG,x:imgX,y:imgY,w:imgW,h:imgH});
+s.addShape(p.ShapeType.roundRect,{x:imgX,y:imgY,w:imgW,h:imgH,rectRadius:0.04,fill:{type:"none"},line:{color:GOLD,width:0.75}});
 s.addShape(p.ShapeType.ellipse,{x:0.85,y:1.15,w:0.9,h:0.9,fill:{color:CORAL},line:{type:"none"}});
 s.addText("10+5", {x:0.72,y:1.2,w:1.15,h:0.8,align:"center",valign:"middle",fontFace:HFONT,fontSize:15,bold:true,color:WHITE});
 kicker(s, "Lớp cộng đồng  •  Buổi học tối nay", 1.95, 1.35, GOLD);
-s.addText("BẬC THẦY\nCONTENT", {x:0.8,y:2.15,w:9.2,h:2.6,fontFace:HFONT,fontSize:74,bold:true,color:WHITE,lineSpacing:70});
-s.addText("Content Viral & Nghệ thuật bán hàng đỉnh cao", {x:0.85,y:4.95,w:9,h:0.6,fontFace:BFONT,fontSize:22,color:"CBD3E6",italic:true});
+s.addText("BẬC THẦY\nCONTENT", {x:0.8,y:2.15,w:8.2,h:2.6,fontFace:HFONT,fontSize:74,bold:true,color:WHITE,lineSpacing:70});
+s.addText("Content Viral & Nghệ thuật bán hàng đỉnh cao", {x:0.85,y:4.95,w:8.1,h:0.6,fontFace:BFONT,fontSize:22,color:"CBD3E6",italic:true});
 dots(s, 0.9, 6.05, CORAL, 5, 0.28);
-s.addText("10 Nguyên tắc content viral   ·   Tư duy sát thủ bán hàng   ·   5 công thức HOOK", {x:0.85,y:6.35,w:11,h:0.4,fontFace:BFONT,fontSize:14,color:"9AA4BF"});
+s.addText("10 Nguyên tắc content viral   ·   Tư duy sát thủ bán hàng   ·   5 công thức HOOK", {x:0.85,y:6.35,w:8.2,h:0.9,fontFace:BFONT,fontSize:14,color:"9AA4BF"});
 
 // ============ SLIDE 2 : PAIN POINTS ============
 s = p.addSlide(); bg(s, LIGHT);
@@ -284,4 +290,4 @@ s.addShape(p.ShapeType.roundRect,{x:0.8,y:4.95,w:11.73,h:1.65,rectRadius:0.12,fi
 s.addText("🎯  Bài tập tối nay",{x:1.15,y:5.15,w:11,h:0.5,fontFace:HFONT,fontSize:20,bold:true,color:WHITE});
 s.addText("Viết ngay 1 content theo 1 trong 5 công thức HOOK — và đăng lên!",{x:1.15,y:5.7,w:11,h:0.7,fontFace:BFONT,fontSize:18,color:WHITE});
 
-p.writeFile({ fileName: "Bac-Thay-Content.pptx" }).then(f=>console.log("WROTE", f));
+p.writeFile({ fileName: "BacThayContent.pptx" }).then(f=>console.log("WROTE", f));
